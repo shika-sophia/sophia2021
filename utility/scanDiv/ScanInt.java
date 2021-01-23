@@ -1,24 +1,41 @@
 package utility.scanDiv;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ScanInt extends ScanStr {
-    private List<Integer> prevList;
+    private List<Integer> preList;
     private List<Integer> lastList;
 
+    //====== initializer, constructor ======
     {
-        prevList = new ArrayList<Integer>();
+        preList = new ArrayList<Integer>();
         lastList = new ArrayList<Integer>();
     }
 
-    public ScanInt(int prev, int last) {
-        prevList.add(prev);
+    public ScanInt() {
+        super();
+    }
+
+    public ScanInt(int pre, int last) {
+        preList.add(pre);
         lastList.add(last);
     }
 
+    public ScanInt(Integer[] preAry, Integer[] lastAry) {
+        Collections.addAll(this.preList, preAry);
+        Collections.addAll(this.lastList, lastAry);
+    }
+
+    public ScanInt(List<Integer> preList, List<Integer> lastList) {
+        this.preList = preList;
+        this.lastList = lastList;
+    }
+
+    //====== input Loop ======
     public void questInt(String quest) {
 
         //for(int i = 0; i < questList.size(); i++){

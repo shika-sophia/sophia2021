@@ -17,8 +17,8 @@ import java.util.Scanner;
 public abstract class AbsScan {
     protected Scanner scan;
     protected Scanner scanSub;
-    protected List<String> inListStr; //inputを記録
-    protected List<Integer> inListInt;//inputを記録
+    protected List<String> inListStr; //inputStr を記録
+    protected List<Integer> inListInt;//inputInt を記録
     protected final String SUFFIX = "入力して下さい。";
 
     public AbsScan() {
@@ -26,4 +26,28 @@ public abstract class AbsScan {
         inListInt = new ArrayList<Integer>();
     }//constructor
 
+    //====== getter, setter ======
+    public List<String> getInListStr() {
+        return inListStr;
+    }
+
+    protected void setInListStr(List<String> inListStr) {
+        this.inListStr = inListStr;
+    }
+
+    protected void setInListStr(String inputStr) {
+        this.inListStr.add(inputStr);
+    }
+
+    public List<Integer> getInListInt() {
+        return inListInt;
+    }
+
+    protected void setInListInt(List<Integer> inListInt) {
+        this.inListInt = inListInt;
+    }
+
+    protected void setInListInt(int inputInt) {
+        this.inListInt.add(inputInt);
+    }
 }//abatract class
