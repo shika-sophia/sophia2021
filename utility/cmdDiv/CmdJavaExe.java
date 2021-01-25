@@ -16,17 +16,17 @@ public class CmdJavaExe extends CmdExecute{
     //eclipseのsrcファイル専用、コマンド実行メソッド
     public String cmdJavaEclipse() {
         String exeResult = cmdExecutor(String.format(
-            "java %s -cp %s/build/classes ", classNameExe, cd));
+            "java -cp ./build/classes %s", classNameExe));
 
         //System.out.println(exeResult);
         return exeResult;
     }//cmdJavaEclipse()
 
 
-    //====== Test main() ======
-    public static void main(String[] args) {
-        var here = new CmdJavaExe("swing.sample.SampleWindow$1");
-        String result = here.cmdJavaEclipse();
-        System.out.println(result);
-    }//main()
+//    //====== Test main() ======
+//    public static void main(String[] args) {
+//        var here = new CmdJavaExe("swing.sample.SampleWindowListener$1");
+//        String result = here.cmdJavaEclipse();
+//        System.out.println(result);
+//    }//main()
 }//class
