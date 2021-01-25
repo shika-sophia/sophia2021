@@ -2,23 +2,21 @@ package swing.sample;
 
 import javax.swing.JFrame;
 
-import swing.SwingExecute;
-
 public class SampleWindow {
 
-    public static void smpWin() {
+    public static void main(String[] args) {
         final JFrame frame =new JFrame("Sample Window");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,480);
         frame.setVisible(true);
     }//main()
 
-    public static void main(String[] args) {
-        String className = new Object(){ }.getClass().getName();
-        new SwingExecute(className);
-    }
+//    public static void main(String[] args) {
+//        String className = new Object(){ }.getClass().getName();
+//        new SwingExecute(className);
+//
+//    }//main()
 }//class
-
 
 /*
 #
@@ -48,4 +46,9 @@ OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.7+10, mixed mode)
 
 C:\Users\6A16\Desktop>java SampleWindow // ->実行可能
 
-*/
+
+
+ここの main()にこれを記述すると
+main() -> SwingExecute -> java SampleWind -> main() とループしてしまう。
+if文を付けて メソッド呼び出し or コンストラクタ呼び出しにしても同様
+ */
