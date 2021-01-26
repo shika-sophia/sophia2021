@@ -1,0 +1,318 @@
+/**
+ * @title utility / cmdDiv / selfAnalysis.txt
+ * @content 各所に書き散らした考察(独り言)を１か所にまとめておくファイル
+ * @author shika
+ * @date 2021-01-25
+ */
+ //====== CmdExecute ======
+cmdExecutor("@cd");
+C:\Program Files\pleiades\workspace-web\janJava2021
+result=0
+
+cmdExecutor("chcp 65001");//chcp 65001 -> UTF-8
+Active code page: 65001
+
+cmdExecutor("chcp 932");  //chcp 932 -> Shift-JIS
+���݂̃R�[�h �y�[�W: 932
+(現在のコード ページ: 932)
+
+cmdExecutor("java -version --chcp 65001");
+openjdk version "11.0.5" 2019-10-15
+OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.5+10)
+OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.5+10, mixed mode)
+
+//文字化け問題(未解決)
+cmdExecutor("java Fake --chcp 65001");
+
+�G���[: ���C���E�N���XFake�����o����у��[�h�ł��܂���ł���
+����: java.lang.ClassNotFoundException: Fake
+(エラー: メイン・クラスFakeを検出およびロードできませんでした
+原因: java.lang.ClassNotFoundException: Fake)
+
+◆絶対パスの問題
+cmdExecutor(
+    "java -cp C:\\Program Files/pleiades/workspace-web/janJava2021/build/classes/swing/sample
+    swing.sample.SampleWindow");
+    エラー: メイン・クラスFiles\\pleiades\\workspace-web\\janJava2021\\build\\classes\\swing\\sample
+    を検出およびロードできませんでした
+    原因: java.lang.ClassNotFoundException:
+    Files\\pleiades\\workspace-web\\janJava2021\\build\\classes\\swing\\sample
+
+【考察】2021-01-23
+Windowsの「Program Files」に半角スペースが空いているので、
+-cp (class-path)オプションを利用すると、「Files～」以下を クラスファイル名と認識している。
+
+それで、C直下に pleiadesを置くんか。
+このエクリプスは「Program Files」下に置いてあり、改善するなら C直下に入れ直しが必要。
+(註: Program Filesのファイル名をいじるのは禁じ手。この下のコンテンツ全てのPathが狂うので動作しなくなる可能性がある)
+↑前にやった。少なくとも eclipseは全てのファイルのビルドパスが崩れて、壊れます。
+
+引っ越しするなら、現在のプロジェクトを全て warファイル(jarも可?)にして
+新しい eclipseに入れ直す必要がある。
+    ↓
+相対パスにすればいい。(ふりだしに戻る)
+cmdExecutor("@cd");
+C:\Program Files\pleiades\workspace-web\janJava2021
+    ↓
+それか、 -cpをクラス名の後ろに記述すればいいのかも
+◆コマンドラインで検証
+cd で カレントをここにする。
+(eclipseでコンパイルは済んでいて、classファイルがここにある)
+C:\Program Files\pleiades\workspace-web\janJava2021\build\classes>
+
+>java swing.sample.SampleWindow
+で実行できる。
+
+ただし、CmdExecute(=このクラス)は一文ずつしか実行できず、
+２文を実行すると、その都度、コマンドプロンプトのデフォルトに戻されるようだ。
+つまり cdでカレントを移動できないので -cp (= --class-path) 相対パスで一文で実行するしかない。
+
+◆成功！
+cmdExecutor("java -cp ./build/classes swing.sample.SampleWindow");
+
+おお、javaからコマンドプロンプト経由で swingプログラムを実行できた！
+これで、いちいちデスクトップにソースファイルをコピーしてコマンドプロンプトで実行せんでも
+CmdExecuteを呼び出せば、行けるぞ～
+
+(ちなみに私のこのeclipseは
+旧バージョン[pleiades-2019-12-java-win-64bit-jre_20200213]
+
+JDKは
+C:\Users\sophia>java -version
+openjdk version "11.0.7" 2020-04-14
+OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.7+10)
+OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.7+10, mixed mode)
+
+のため、そのままeclipseで swingを実行できるのであった。eclipseの引っ越しできないやん。
+この CmdExecuteは 最新のeclipseだと、そのまま実行できないため、それ用のクラスです。)
+*/
+/*
+//====== SwingExecute / 2021-01-25 ======
+eclipseでこのクラスを直接実行できないときのために、
+実行したいクラスに このような main()を用意し、
+swing部分はメソッド or コンストラクタにして、
+コマンドプロンプトで実行することを考えてみたが
+
+public static void main(String[] args) {
+    if(className == null){
+        String className = new Object(){ }.getClass().getName();
+        new SwingExecute(className);
+    } else {
+        sampleWnd()
+    }
+}//main()
+
+これを記述すると
+main() -> SwingExecute -> java SampleWind -> main() とループしてしまう。
+if文を付けて メソッド呼び出し or コンストラクタ呼び出しにしても同様
+
+「自動でコマンドプロンプト実行」という発想だったが、
+SwingExecute(=ここのクラス)の main() に
+完全修飾クラス名を手打ちして実行するしかなさそう。(無念・・)
+
+ただ、クラス名からコマンドプロンプトを呼び出す cmdDivクラス群は
+ちゃんと機能しているので、今後 使ってみよう。「$1」のところは改良が必要だな。
+ */
+
+なぜか、こんなものが出現していたので、一応 残しておいて消してしまおう。
+なんじゃこりゃ。たぶん swing関係のファイルは どうのこうのって話だ。
+あっ、前述したmain()ループを発生させると出るのかも。
+こんなとこに密かにアップされても、誰も気付かんわ。
+
+//====== WebContent / hs_err_pid25280.log / 2021-01-25 ======
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 266338304 bytes for Failed to commit area from 0x0000000703600000 to 0x0000000713400000 of length 266338304.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (c:/cygwin64/tmp/openjdk-jdk11u-windows-x64-hotspot/workspace/build/src/src/hotspot/os/windows/os_windows.cpp:3291), pid=25280, tid=22284
+#
+# JRE version:  (11.0.5+10) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.5+10, mixed mode, aot, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: swing.sample.SampleWindow
+
+Host: Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 12 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.662)
+Time: Mon Jan 25 10:26:34 2021 ���� (�W����) elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001964bbbd800):  JavaThread "Unknown thread" [_thread_in_vm, id=22284, stack(0x00000002d4400000,0x00000002d4500000)]
+
+Stack: [0x00000002d4400000,0x00000002d4500000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5d9aaa]
+V  [jvm.dll+0x70ed1e]
+V  [jvm.dll+0x7103ab]
+V  [jvm.dll+0x710a73]
+V  [jvm.dll+0x23f658]
+V  [jvm.dll+0x5d6f4a]
+V  [jvm.dll+0x5cbb35]
+V  [jvm.dll+0x2f4cac]
+V  [jvm.dll+0x2f4b32]
+V  [jvm.dll+0x2f97e6]
+V  [jvm.dll+0x33ad8f]
+V  [jvm.dll+0x33a7c0]
+V  [jvm.dll+0x2d20c8]
+V  [jvm.dll+0x2d3216]
+V  [jvm.dll+0x6eaa97]
+V  [jvm.dll+0x6ec21f]
+V  [jvm.dll+0x347c69]
+V  [jvm.dll+0x6cefb0]
+V  [jvm.dll+0x3af4af]
+V  [jvm.dll+0x3b1991]
+C  [jli.dll+0x51fb]
+C  [ucrtbase.dll+0x214c2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x4d0d1]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000019649271de0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000001964bbd2800 GCTaskThread "GC Thread#0" [stack: 0x00000002d4500000,0x00000002d4600000] [id=31124]
+  0x000001966ce22000 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000002d4600000,0x00000002d4700000] [id=35356]
+  0x000001966ce24800 ConcurrentGCThread "G1 Conc#0" [stack: 0x00000002d4700000,0x00000002d4800000] [id=15936]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff81da31717]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000001964bbbb180] Heap_lock - owner thread: 0x000001964bbbd800
+
+Heap address: 0x0000000703600000, size: 4042 MB, Compressed Oops mode: Non-zero based: 0x0000000703600000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff7d4520000 - 0x00007ff7d452d000     C:\Program Files\pleiades\eclipse\jre\bin\java.exe
+0x00007ff879b90000 - 0x00007ff879d86000     C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ff8786a0000 - 0x00007ff87875d000     C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ff877500000 - 0x00007ff8777c9000     C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ff877400000 - 0x00007ff877500000     C:\WINDOWS\System32\ucrtbase.dll
+0x00007ff871730000 - 0x00007ff871746000     C:\Program Files\pleiades\eclipse\jre\bin\VCRUNTIME140.dll
+0x00007ff8710c0000 - 0x00007ff8710d7000     C:\Program Files\pleiades\eclipse\jre\bin\jli.dll
+0x00007ff877bf0000 - 0x00007ff877d90000     C:\WINDOWS\System32\USER32.dll
+0x00007ff877bc0000 - 0x00007ff877be2000     C:\WINDOWS\System32\win32u.dll
+0x00007ff877ed0000 - 0x00007ff877efa000     C:\WINDOWS\System32\GDI32.dll
+0x00007ff863090000 - 0x00007ff86332b000     C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.746_none_ca02b4b61b8320a4\COMCTL32.dll
+0x00007ff877ab0000 - 0x00007ff877bbb000     C:\WINDOWS\System32\gdi32full.dll
+0x00007ff878be0000 - 0x00007ff878c7e000     C:\WINDOWS\System32\msvcrt.dll
+0x00007ff8778b0000 - 0x00007ff87794d000     C:\WINDOWS\System32\msvcp_win.dll
+0x00007ff879830000 - 0x00007ff879860000     C:\WINDOWS\System32\IMM32.DLL
+0x00007ff863990000 - 0x00007ff863b91000     C:\Windows\system32\tmumh\20019\AddOn\8.53.0.1066\TmUmEvt64.dll
+0x00007ff877ec0000 - 0x00007ff877ec8000     C:\WINDOWS\System32\PSAPI.DLL
+0x00007ff879030000 - 0x00007ff8790dc000     C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ff878dc0000 - 0x00007ff878e5c000     C:\WINDOWS\System32\sechost.dll
+0x00007ff8799c0000 - 0x00007ff879aeb000     C:\WINDOWS\System32\RPCRT4.dll
+0x000000006dc80000 - 0x000000006ddee000     C:\Windows\system32\tmumh\20019\TmMon\2.8.0.1045\tmmon64.dll
+0x00007ff878640000 - 0x00007ff878695000     C:\WINDOWS\System32\Shlwapi.dll
+0x00007ff86d6e0000 - 0x00007ff86d77b000     C:\Program Files\pleiades\eclipse\jre\bin\msvcp140.dll
+0x00007ff81d750000 - 0x00007ff81e20a000     C:\Program Files\pleiades\eclipse\jre\bin\server\jvm.dll
+0x00007ff865110000 - 0x00007ff865119000     C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ff878fc0000 - 0x00007ff87902b000     C:\WINDOWS\System32\WS2_32.dll
+0x00007ff864510000 - 0x00007ff864537000     C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ff86ea00000 - 0x00007ff86ea0a000     C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ff875bb0000 - 0x00007ff875bc2000     C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ff872480000 - 0x00007ff872490000     C:\Program Files\pleiades\eclipse\jre\bin\verify.dll
+0x00007ff8757c0000 - 0x00007ff8759a4000     C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ff860aa0000 - 0x00007ff860acc000     C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ff877830000 - 0x00007ff8778b0000     C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ff872350000 - 0x00007ff872378000     C:\Program Files\pleiades\eclipse\jre\bin\java.dll
+0x00007ff8710a0000 - 0x00007ff8710b6000     C:\Program Files\pleiades\eclipse\jre\bin\zip.dll
+0x00007ff871090000 - 0x00007ff87109a000     C:\Program Files\pleiades\eclipse\jre\bin\jimage.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\pleiades\eclipse\jre\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.746_none_ca02b4b61b8320a4;C:\Windows\system32\tmumh\20019\AddOn\8.53.0.1066;C:\Windows\system32\tmumh\20019\TmMon\2.8.0.1045;C:\Program Files\pleiades\eclipse\jre\bin\server
+
+VM Arguments:
+java_command: swing.sample.SampleWindow
+java_class_path (initial): ./build/classes
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 266338304                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4238344192                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5836300                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122910970                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122910970                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_251
+PATH=C:/Program Files/pleiades/eclipse//jre/bin/server;C:/Program Files/pleiades/eclipse//jre/bin;C:\Program Files\AdoptOpenJDK\jdk-11.0.7.10-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk1.8.0_251\bin;C:\Program Files\Apache24\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\sophia\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_251\bin;C:\Users\sophia\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\pleiades\eclipse;
+USERNAME=sophia
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 166 Stepping 0, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.662)
+
+CPU:total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 166 stepping 0, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 16163M (5934M free)
+TotalPageFile size 65258M (AvailPageFile size 106M)
+current process WorkingSet (physical memory assigned to process): 13M, peak: 13M
+current process commit charge ("private bytes"): 67M, peak: 321M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.5+10) for windows-amd64 JRE (11.0.5+10), built on Oct 19 2019 12:23:57 by "" with MS VC++ 15.8 (VS2017)
+
+END.
+
