@@ -46,21 +46,28 @@ public class CmdExecute extends AbsCmdExe{
         prcBld.redirectErrorStream(true);
 
         Process prc = null;
+        BufferedReader reader = null;
         try {
             prc = prcBld.start();
 
-            BufferedReader reader =
-                new BufferedReader(
-                    new InputStreamReader(
+            reader = new BufferedReader(
+                       new InputStreamReader(
                         prc.getInputStream(), Charset.forName("UTF-8") ));
 
             String line;
             while ((line = reader.readLine()) != null) {
                 bld.append(line);
             }//while
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }//try-catch-finally
 
         //---- Test print ----
         //int result = prc.exitValue();
