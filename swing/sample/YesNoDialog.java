@@ -1,3 +1,10 @@
+/**
+ * @title javaPractice / swing / sample / YesNoDialog.java
+ * @refernce 日向俊二『JavaGUIプログラミング』カットシステム, 2020
+ * @content List3.9 / YesNoDlg.java
+ * @see swing/sample/resultImage/YesNoDialog.jpg
+ * @date 2021-01-04
+ */
 package swing.sample;
 
 import java.awt.GridLayout;
