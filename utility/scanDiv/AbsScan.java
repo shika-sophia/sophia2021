@@ -17,11 +17,13 @@ import java.util.Scanner;
 public abstract class AbsScan {
     protected Scanner scan;
     protected Scanner scanSub;
+    protected List<String> questList; //質問内容のリスト
     protected List<String> inListStr; //inputStr を記録
     protected List<Integer> inListInt;//inputInt を記録
     protected final String SUFFIX = "入力して下さい。";
 
     public AbsScan() {
+        questList = new ArrayList<String>();
         inListStr = new ArrayList<String>();
         inListInt = new ArrayList<Integer>();
     }//constructor

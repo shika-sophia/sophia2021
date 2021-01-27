@@ -9,7 +9,7 @@ public class ScanConfirm extends AbsScan{
         scanSub = new Scanner(System.in);
         System.out.print(quest + SUFFIX);
 
-        String input = scan.next();
+        String input = scanSub.next();
 
         //---- judge input ----
         switch (input) {
