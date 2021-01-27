@@ -12,7 +12,7 @@
  *
  * ====== 実行結果 ======
  * 12 ＋ 4 ＝ 16
- * 12 ー 4 ＝ 8
+ * 12 － 4 ＝ 8
  * 12 × 4 ＝ 48
  * 12 ÷ 4 ＝ 3
  */
@@ -25,14 +25,14 @@ public class Lesson003Ans {
         int y = 4;
 
         System.out.println( x + " ＋ " + y + " ＝ " + (x + y));
-        System.out.println( x + " ー " + y + " ＝ " + (x - y));
+        System.out.println( x + " － " + y + " ＝ " + (x - y));
         System.out.println( x + " × " + y + " ＝ " + (x * y));
         System.out.println( x + " ÷ " + y + " ＝ " + (x / y));
         System.out.println();
 
         //---- ( )の用法を示すため、( )を外したコード例 ----
         System.out.println( x + " ＋ " + y + " ＝ " + x + y);
-        //System.out.println( x + " ー " + y + " ＝ " + x - y);
+        //System.out.println( x + " － " + y + " ＝ " + x - y);
         System.out.println( x + " × " + y + " ＝ " + x * y);
         System.out.println( x + " ÷ " + y + " ＝ " + x / y);
     }//main()
@@ -69,7 +69,7 @@ public class Lesson003Ans {
 
  //====== 実行結果 ======
 12 ＋ 4 ＝ 16
-12 ー 4 ＝ 8
+12 － 4 ＝ 8
 12 × 4 ＝ 48
 12 ÷ 4 ＝ 3
 
