@@ -1,67 +1,83 @@
-/*
-//###### SampleWindow / 2020-12-25 ######
-◆swingに対応していない eclipseで実行するとこういうエラー表示が出る。
-
-# A fatal error has been detected by the Java Runtime Environment:
-#
-#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffb6df5fa16, pid=13268, tid=3160
-#
-# JRE version: OpenJDK Runtime Environment (11.0.6+10) (build 11.0.6+10)
-# Java VM: OpenJDK 64-Bit Server VM (11.0.6+10, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
-# Problematic frame:
-# C  [awt.dll+0x8fa16]
-#
-# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
-#
-# An error report file with more information is saved as:
-# C:\pleiades202003\workspace_web\sepJavaRecurrent\hs_err_pid13268.log
-#
-# If you would like to submit a bug report, please visit:
-#   https://github.com/AdoptOpenJDK/openjdk-support/issues
-# The crash happened outside the Java Virtual Machine in native code.
-# See problematic frame for where to report the bug.
-#
-C:\Users\6A16\Desktop>java -version
-openjdk version "11.0.7" 2020-04-14
-OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.7+10)
-OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.7+10, mixed mode)
-
-C:\Users\6A16\Desktop>java SampleWindow // ->実行可能
-
-◆2021-01-25
-ここの main()にこれを記述すると
-main() -> SwingExecute -> java SampleWind -> main() とループしてしまう。
-if文を付けて メソッド呼び出し or コンストラクタ呼び出しにしても同様
+/**
+ * @title javaPractice / swing / sample / Fonts.java
+ * @refernce 日向俊二『JavaGUIプログラミング
+ *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020
+ * @content List5.1 / Fonts.java
+ * @see swing/sample/resultImage/Fonts.jpg
+ * @author shika
+ * @date 2021-01-28
  */
+package swing.sample;
 
-//###### SplashSample / 2021-01-05 ######
-＊使い方(コマンド・プロンプト)＊
->java SplashSample -splash:Sample.gif
+import java.awt.Font;
+
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Fonts extends JFrame {
+    public Fonts() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel label1 = new JLabel();
+        Font font1 = new Font(Font.SERIF, Font.PLAIN, 12);
+        label1.setFont(font1);
+        label1.setText("Font.SERIF, Font.PLAIN, 12");
+        panel.add(label1);
+
+        JLabel label2 = new JLabel();
+        Font font2 = new Font(Font.SERIF, Font.ITALIC, 14);
+        label2.setFont(font2);
+        label2.setText("Font.SERIF,  Font.ITALIC, 14");
+        panel.add(label2);
+
+        JLabel label3 = new JLabel();
+        Font font3 = new Font(Font.SERIF, Font.BOLD, 16);
+        label3.setFont(font3);
+        label3.setText("Font.SERIF, Font.BOLD, 16");
+        panel.add(label3);
+
+        JLabel label4 = new JLabel();
+        Font font4 = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
+        label4.setFont(font4);
+        label4.setText("Font.SANS_SERIF, Font.PLAIN, 12");
+        panel.add(label4);
+
+        JLabel label5 = new JLabel();
+        Font font5 = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        label5.setFont(font5);
+        label5.setText("Font.MONOSPACED, Font.PLAIN, 12");
+        panel.add(label5);
+
+        //JFrame
+        this.getContentPane().add(panel);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Fonts");
+        this.pack();
+        this.setSize(280, 160);
+        this.setVisible(true);
+    }//constructor
+
+    public static void main(String[] args) {
+        new Fonts();
+
+//        String[] fontAry = GraphicsEnvironment
+//            .getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+//
+//        for(String font : fontAry) {
+//            System.out.println(font);
+//        }
+    }//main()
+
+}//class
 
 /*
-//###### ImageLabel / 2021-01-26 ######
-@see  swing/sample/resultImage/ImageLabel.jpg
+for(String font : fontAry) {
+    System.out.println(font);
+}
 
-【考察】
-・イメージのpath: 「WebContent/image/sophia500.jpg」
-       src内に imageフォルダを置いても読み込んでくれない。
-       WebContent内に imageフォルダを置いて上記のように
-       「WebContent/」の記述が必要。
-
-・button のサイズが異様に大きいが setSize()をしても、
-  たぶん、setLayout()が優先されている様子。
-*/
-/*
-//###### Fonts / 2021-01-28 ######
-public static void main(String[] args) {
-    String[] fontAry = GraphicsEnvironment
-        .getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-
-    for(String font : fontAry) {
-        System.out.println(font);
-    }
-}//main()
-◆このLocalGraphicsEnvionment(このＰＣの環境)で利用できるフォント
 Arial
 Arial Black
 Arial Narrow
@@ -223,4 +239,5 @@ Yu Gothic UI Semilight
 ＭＳ 明朝
 ＭＳ Ｐゴシック
 ＭＳ Ｐ明朝
+
 */
