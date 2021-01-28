@@ -1,25 +1,8 @@
 /**
  * @title primaryLesson / primaryAns / Lesson004Ans.java
- * @content System.out,println(); 「+」演算子
+ * @content System.out.println(); 「+」演算子
  * @author shika
  * @dete 2021-01-27
- */
-/*
- * ◆Lesson004
- * 下記のコードを実行すると何が表示されるか。正しいものを１つ記号で答えよ。
- *
- * (A) 48
- * (B) 372
- * (C) 124 = 124 = 124
- * (D) 16 = 16 = 16
- * (E) 124 = 16 = 124
- * (F) 16 = ( 12 + 4 ) = 16
- * (G) 124 = ( x + y ) = 124
- * (H) 16 = ( x + y ) = 16
- * (I) 16 = ( x + y ) = 124
- * (J) 124 = ( x + y ) = 16
- *
- * ◆正解 (I)
  */
 package primaryLesson.Answer;
 
@@ -34,7 +17,23 @@ public class Lesson004Ans {
     }//main()
 
 }//class
-
+/*
+ * ◆Lesson004
+ * 上記のコードを実行すると何が表示されるか。正しいものを１つ記号で答えよ。
+ *
+ * (A) 48
+ * (B) 372
+ * (C) 124 = 124 = 124
+ * (D) 16 = 16 = 16
+ * (E) 124 = 16 = 124
+ * (F) 16 = ( 12 + 4 ) = 16
+ * (G) 124 = ( x + y ) = 124
+ * (H) 16 = ( x + y ) = 16
+ * (I) 16 = ( x + y ) = 124
+ * (J) 124 = ( x + y ) = 16
+ *
+ * ◆正解 (I)
+ */
 /*
 //====== 解説 ======
 println(x + y + " = ( x + y ) = " + x + y);

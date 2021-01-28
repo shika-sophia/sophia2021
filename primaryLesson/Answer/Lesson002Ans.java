@@ -1,6 +1,6 @@
 /**
  * @title primaryLesson / primaryAns / Lesson002Ans.java
- * @content 変数 String, int, System.out,println(str);
+ * @content 変数 String, int, System.out.println(str);
  * @author shika
  * @dete 2021-01-21
  */

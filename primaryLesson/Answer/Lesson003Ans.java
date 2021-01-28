@@ -1,6 +1,6 @@
 /**
  * @title primaryLesson / primaryAns / Lesson003Ans.java
- * @content System.out,println(); 「+」演算子と( )
+ * @content System.out.println(); 「+」演算子と( )
  * @author shika
  * @dete 2021-01-27
  */

@@ -1,6 +1,6 @@
 /**
  * @title primaryLesson / Lesson002.java
- * @content 変数 String, int, System.out,println(str),「+」演算子
+ * @content 変数 String, int, System.out.println(str), 「+」演算子
  * @author shika
  * @dete 2021-01-21
  */
