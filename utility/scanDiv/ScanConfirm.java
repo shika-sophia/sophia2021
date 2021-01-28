@@ -7,12 +7,12 @@ public class ScanConfirm extends AbsScan{
     public boolean questConfirm(String quest) {
         //---- scanSub ----
         scanSub = new Scanner(System.in);
-        System.out.print(quest + SUFFIX);
+        System.out.print(quest + CONFIRMKEY);
+        String inputYN = scanSub.next();
+        System.out.println();
 
-        String input = scanSub.next();
-
-        //---- judge input ----
-        switch (input) {
+        //---- judge inputYN ----
+        switch (inputYN) {
         case "y":
         case "Y":
         case "ｙ":

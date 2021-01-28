@@ -38,33 +38,37 @@ public class ScanInt extends ScanStr {
     //====== input Loop ======
     public void questInt(String quest) {
 
-        //for(int i = 0; i < questList.size(); i++){
-        while (true) {
-            scan = new Scanner(System.in);
+        for(int i = 0; i < questList.size(); i++){
+            while (true) {
+                scan = new Scanner(System.in);
 
-            System.out.print(quest + SUFFIX);
+                System.out.print(quest + SUFFIX);
 
-            int inputInt = 0;
-            try {
-                inputInt = scan.nextInt();
+                int inputInt = 0;
+                try {
+                    inputInt = scan.nextInt();
 
-            //---- 不正値チェック(非整数) ----
-            } catch (InputMismatchException e) {
-                System.out.println("< ! > 整数で" + SUFFIX);
-                continue;
-            }
+                //---- 不正値チェック(非整数) ----
+                } catch (InputMismatchException e) {
+                    System.out.println("< ! > 整数で" + SUFFIX);
+                    continue;
+                }
 
-            //---- 不正値チェック(範囲外) ----
-            //if(prevList.get(i) <= inputInt
-            //    && inputInt <= lastList.get(i)){
-            //    ;
-            //} else {
-            //    continue;
-            //}
+                //---- 不正値チェック(範囲外) ----
+                if(preList.get(i) <= inputInt
+                    && inputInt <= lastList.get(i)){
+                    ;
+                } else {
+                    System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
+                        preList.get(i), lastList.get(i));
+                    System.out.println();
+                    continue;
+                }
 
-            inListInt.add(inputInt);
-        }//while
-   // }//for
+                inListInt.add(inputInt);
+                break;
+            }//while
+        }//for
 
     }//questStr
 }//class
