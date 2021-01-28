@@ -42,3 +42,8 @@ public class Lesson005 {
     }//main()
 
 }//class
+
+/*
+//====== 実行結果 ======
+名前: Your Name / 年齢 24歳 / 誕生日 1972-11-24
+*/
