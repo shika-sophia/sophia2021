@@ -1,6 +1,6 @@
 /**
  * @title primaryLesson / primaryAns / Lesson005Ans.java
- * @content System.out,printf();
+ * @content System.out.printf();
  * @author shika
  * @dete 2021-01-28
  */
