@@ -93,9 +93,10 @@ eclipseでこのクラスを直接実行できないときのために、
 swing部分はメソッド or コンストラクタにして、
 コマンドプロンプトで実行することを考えてみたが
 
+String className;
 public static void main(String[] args) {
     if(className == null){
-        String className = new Object(){ }.getClass().getName();
+        className = new Object(){ }.getClass().getName();
         new SwingExecute(className);
     } else {
         sampleWnd()
