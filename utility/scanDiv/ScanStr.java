@@ -39,7 +39,7 @@ public class ScanStr extends ScanConfirm {
                 System.out.println();
 
                 //input '0'でループ終了
-                if (inputStr.equals("0") || inputStr.equals("０")) {
+                if (inputStr.equals("-99") || inputStr.equals("ー９９")) {
                     //終了していいかを確認[ Y / N ]
                     boolean isFin = questConfirm(
                         String.format("回答を終了しますか？ (回答数: %d)"

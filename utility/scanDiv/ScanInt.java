@@ -35,56 +35,77 @@ public class ScanInt extends ScanStr {
         this.lastList = lastList;
     }
 
-    public void multiAnsInt(String quest) {
+    public void singleAnsInt(List<String> questList) {
+        for(int i = 0; i < questList.size(); i++){
+            System.out.print(questList.get(i) + SUFFIX);
+            inputLoop(i, -1);
+        }//for
+    }//singleAnsInt()
+
+    public void multiAnsInt(List<String> questList) {
         //quest:
         for(int i = 0; i < questList.size(); i++){
+            System.out.print(questList.get(i) + SUFFIX);
+
             answerLoop:
             for (int j = 0;  ; j++) {
-                judgeLoop:
-                while (true) {
-                    scan = new Scanner(System.in);
-                    System.out.printf("[ %d ] ", j + 1);
-                    System.out.print(quest + SUFFIX);
+                boolean isFin = inputLoop(i, j);
 
-                    int inputInt = 0;
-                    try {
-                        inputInt = scan.nextInt();
-
-                    //---- 不正値チェック(非整数) ----
-                    } catch (InputMismatchException e) {
-                        System.out.println("< ! > 整数で" + SUFFIX);
-                        continue judgeLoop;
-                    }
-
-                    //---- 不正値チェック(範囲外) ----
-                    if(preList.get(i) <= inputInt
-                        && inputInt <= lastList.get(i)
-                        || inputInt == -99){
-                        ;
-                    } else {
-                        System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
-                            preList.get(i), lastList.get(i));
-                        System.out.println();
-                        continue judgeLoop;
-                    }
-
-                    //---- input '0'で answerLoop終了 ----
-                    if (inputInt == -99) {
-                        //終了していいかを確認[ Y / N ]
-                        boolean isFin = questConfirm(
-                            String.format("回答を終了しますか？ (回答数: %d)"
-                                , inListInt.size()));
-
-                        if (isFin) {
-                            break answerLoop;
-                        } //if isFin
-                    } //if 0
-
-                    inListInt.add(inputInt);
-                    break judgeLoop;
-                }//while
-
+                if (isFin) {
+                    break answerLoop;
+                } //if isFin
             }//for j answerLoop
         }//for i quest
     }//multiAnsInt()
+
+    public boolean inputLoop(int i, int j) {
+        while (true) {
+            scan = new Scanner(System.in);
+
+            int inputInt = 0;
+            try {
+                //singleAns
+                if(j == -1) {
+                    ;
+                //multiAns
+                } else {
+                    System.out.printf("[ %d ] ", j + 1);
+                }
+                inputInt = scan.nextInt();
+
+            //---- 不正値チェック(非整数) ----
+            } catch (InputMismatchException e) {
+                System.out.println("< ! > 整数で" + SUFFIX);
+                beep(); //ScanConfirm.beep()
+                continue;
+            }
+
+            //---- 不正値チェック(範囲外) ----
+            if(preList.get(i) <= inputInt
+                && inputInt <= lastList.get(i)
+                || inputInt == -99){
+                ;
+            } else {
+                System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
+                    preList.get(i), lastList.get(i));
+                System.out.println();
+                beep(); //ScanConfirm.beep()
+                continue;
+            }
+
+            //---- input '-99'で answerLoop終了 ----
+            if (inputInt == -99) {
+                //終了していいかを確認[ Y / N ]
+                boolean isFin = questConfirm(
+                    String.format("回答を終了しますか？ (回答数: %d)"
+                        , inListInt.size()));
+                return isFin;
+            } //if -99
+
+            inListInt.add(inputInt);
+            break;
+        }//while
+
+        return false;
+    }//inputLoop()
 }//class
