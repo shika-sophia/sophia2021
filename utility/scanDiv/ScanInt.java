@@ -35,40 +35,55 @@ public class ScanInt extends ScanStr {
         this.lastList = lastList;
     }
 
-    //====== input Loop ======
-    public void questInt(String quest) {
-
+    public void multiAnsInt(String quest) {
+        //quest:
         for(int i = 0; i < questList.size(); i++){
-            while (true) {
-                scan = new Scanner(System.in);
+            answerLoop:
+            for (int j = 0;  ; j++) {
+                judgeLoop:
+                while (true) {
+                    scan = new Scanner(System.in);
+                    System.out.printf("[ %d ] ", j + 1);
+                    System.out.print(quest + SUFFIX);
 
-                System.out.print(quest + SUFFIX);
+                    int inputInt = 0;
+                    try {
+                        inputInt = scan.nextInt();
 
-                int inputInt = 0;
-                try {
-                    inputInt = scan.nextInt();
+                    //---- 不正値チェック(非整数) ----
+                    } catch (InputMismatchException e) {
+                        System.out.println("< ! > 整数で" + SUFFIX);
+                        continue judgeLoop;
+                    }
 
-                //---- 不正値チェック(非整数) ----
-                } catch (InputMismatchException e) {
-                    System.out.println("< ! > 整数で" + SUFFIX);
-                    continue;
-                }
+                    //---- 不正値チェック(範囲外) ----
+                    if(preList.get(i) <= inputInt
+                        && inputInt <= lastList.get(i)){
+                        ;
+                    } else {
+                        System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
+                            preList.get(i), lastList.get(i));
+                        System.out.println();
+                        continue judgeLoop;
+                    }
 
-                //---- 不正値チェック(範囲外) ----
-                if(preList.get(i) <= inputInt
-                    && inputInt <= lastList.get(i)){
-                    ;
-                } else {
-                    System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
-                        preList.get(i), lastList.get(i));
-                    System.out.println();
-                    continue;
-                }
+                    //---- input '0'で answerLoop終了 ----
+                    if (inputInt == -99) {
+                        //終了していいかを確認[ Y / N ]
+                        boolean isFin = questConfirm(
+                            String.format("回答を終了しますか？ (回答数: %d)"
+                                , inListInt.size()));
 
-                inListInt.add(inputInt);
-                break;
-            }//while
-        }//for
+                        if (isFin) {
+                            break answerLoop;
+                        } //if isFin
+                    } //if 0
 
-    }//questStr
+                    inListInt.add(inputInt);
+                    break judgeLoop;
+                }//while
+
+            }//for j answerLoop
+        }//for i quest
+    }//multiAnsInt()
 }//class

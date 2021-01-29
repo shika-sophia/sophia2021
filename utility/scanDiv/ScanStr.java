@@ -11,31 +11,48 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ScanStr extends ScanConfirm {
-
-    public void questStr(List<String> questList) {
+    public ScanStr() {
         scan = new Scanner(System.in);
+    }
 
-        //多問多答 multiQuest-maltiAnswer
+    //====== 多問一答 multiQuest-singleAnswer ======
+    public void singleAnsStr(List<String> questList) {
         for (int i = 0; i < questList.size(); i++) {
-            System.out.printf("[ %d ] ", i + 1);
-            System.out.print(questList.get(i) + SUFFIX + FINKEY);
+            System.out.println(questList.get(i) + SUFFIX + FINKEY);
             String inputStr = scan.nextLine();
             System.out.println();
 
-            //input '0'でループ終了
-            if (inputStr.equals("0") || inputStr.equals("０")) {
-                //終了していいかを確認[ Y / N ]
-                boolean isFin = questConfirm(
-                    String.format("回答を終了しますか？ (回答数: %d)"
-                        , inListStr.size()));
+            inListStr.add(inputStr);
+        }//for i
+    }//singleAnsStr()
 
-                if (isFin) {
-                    break;
-                } //if isFin
-            } //if 0
+    //====== 多問多答 multiQuest-multiAnswer ======
+    public void multiAnsStr(List<String> questList) {
+        //quest:
+        for (int i = 0; i < questList.size(); i++) {
+            System.out.println(questList.get(i) + SUFFIX + FINKEY);
 
-            inListStr.add(String.format(
-                "[ %d ] %s", (i + 1), inputStr));
-        } //for
-    }//questStr()
+            answerLoop:
+            for(int j = 0;  ; j++) {
+                System.out.printf("[ %d ] ", j + 1);
+                String inputStr = scan.nextLine();
+                System.out.println();
+
+                //input '0'でループ終了
+                if (inputStr.equals("0") || inputStr.equals("０")) {
+                    //終了していいかを確認[ Y / N ]
+                    boolean isFin = questConfirm(
+                        String.format("回答を終了しますか？ (回答数: %d)"
+                            , inListStr.size()));
+
+                    if (isFin) {
+                        break answerLoop;
+                    } //if isFin
+                } //if 0
+
+                inListStr.add(String.format(
+                    "[ %d ] %s", (j + 1), inputStr));
+            }//for j answerLoop
+        } //for i quest
+    }//multiAnsStr()
 }//class
