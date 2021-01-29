@@ -46,7 +46,7 @@ javaSilver.AnswerMakerのように、
 今の一般形のままだと、連携ある質問の終了も [-99: 終了]キーを入力しなければならぬ。
 
 ◆Intの終了キー
-nextInt()で、MismatchInputExceptionの try-catchをしているので、
+nextInt()で、InputMismatchExceptionの try-catchをしているので、
 当然、整数しか通らなくなる。
 終了キーも整数で入力するしかないが、範囲外のを指定するしかない。
 しかし、特に範囲を定めない場合は、その値を通常入力することができなくなる問題。
