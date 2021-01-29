@@ -58,7 +58,8 @@ public class ScanInt extends ScanStr {
 
                     //---- 不正値チェック(範囲外) ----
                     if(preList.get(i) <= inputInt
-                        && inputInt <= lastList.get(i)){
+                        && inputInt <= lastList.get(i)
+                        || inputInt == -99){
                         ;
                     } else {
                         System.out.printf("< ! > %d ～ %d の範囲で" + SUFFIX,
