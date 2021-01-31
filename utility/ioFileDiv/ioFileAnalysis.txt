@@ -153,3 +153,10 @@ filePathも正常に通っているが、
 元からあった class, main()の記述が消され、nullとなり、
 おそらく ReadFileでの読み込みも null となっていて、この結果と思われ。
 
+InterAnswerSetting（インターフェイス）のフィールドで
+new BuildFilePage()をしていることから、
+暗黙的に public static finalが付されており、
+ioFileDivのインスタンスは static領域にあるのかと疑い、
+AnswerEditor内でも new BuildFilePage()をしてみたが、結果は同じ。
+(いやインスタンスは ちゃんと heap領域にあるからね)
+
