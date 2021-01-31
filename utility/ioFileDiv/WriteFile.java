@@ -1,5 +1,5 @@
 /**
- * @title utility / WriteFile.java
+ * @title utility / ioFileDiv / WriteFile.java
  * @content pathを指定し、そのファイルに書き込み
  * @reference 結城浩『Java言語プログラミングレッスン(下)』SB Creative,2012 / p237
  * @author shika
@@ -23,7 +23,7 @@ public class WriteFile extends ReadFile {
 
     public void writePathFile(String path, String writeText) {
         //書き込む前に現ファイルのバックアップ
-        readText = readPathFile(path);
+        //readText = readPathFile(path);
 
         try(PrintWriter writer = new PrintWriter(
                 new BufferedWriter(new FileWriter(path)))){

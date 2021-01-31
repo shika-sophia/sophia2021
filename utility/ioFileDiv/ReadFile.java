@@ -1,5 +1,5 @@
 /**
- * @title utility / ReadFile.java
+ * @title utility / ioFileDiv/ ReadFile.java
  * @content pathを指定し、そのファイルの読み込み
  * @reference 結城浩『Java言語プログラミングレッスン(下)』SB Creative,2012 / p224
  * @author shika
