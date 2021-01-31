@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 class PassDialog extends JDialog {
     boolean fSuccess;
 
-    public PassDialog(Frame owner, String title, boolean modal) {
+    PassDialog(Frame owner, String title, boolean modal) {
         super(owner, title, modal);
 
         JLabel label1 = new JLabel("ID");

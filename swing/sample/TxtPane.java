@@ -22,7 +22,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 public class TxtPane extends JFrame {
-    public TxtPane() {
+    TxtPane() {
         JTextPane textPane = new JTextPane();
         JScrollPane scroll = new JScrollPane(textPane);
         this.getContentPane().add(scroll);

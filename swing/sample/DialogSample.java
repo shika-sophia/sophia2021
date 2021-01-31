@@ -20,7 +20,7 @@ public class DialogSample extends JFrame{
         new DialogSample();
     }//main()
 
-    public DialogSample() {
+    DialogSample() {
         JButton button = new JButton("Dialog Boxの表示");
 
         ActionListener listener = new ActionListener() {

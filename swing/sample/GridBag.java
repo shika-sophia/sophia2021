@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class GridBag extends JFrame {
-    public GridBag() {
+    GridBag() {
         JPanel panel = new JPanel();
         JLabel labelId = new JLabel("ID: ");
         JTextField txtFldId = new JTextField(20);

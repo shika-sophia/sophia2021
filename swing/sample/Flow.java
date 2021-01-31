@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Flow extends JFrame {
-    public Flow() {
+    Flow() {
         JPanel panel = new JPanel();
             panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 

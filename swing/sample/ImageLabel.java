@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class ImageLabel extends JFrame {
-    public ImageLabel() {
+    ImageLabel() {
         ImageIcon image = new ImageIcon(
             "WebContent/image/TakakiFantasia1200×800.jpg");
         JLabel label = new JLabel(image);

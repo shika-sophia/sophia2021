@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 
 public class BoundWindow extends JFrame{
 
-    public BoundWindow() {
+    BoundWindow() {
         JLabel label = new JLabel("ウィンドウを中心に表示するサンプル");
         add(label);
 

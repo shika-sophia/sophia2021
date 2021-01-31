@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 
 public class ImageButton extends JFrame {
 
-    public ImageButton() {
+    ImageButton() {
         ImageIcon image = new ImageIcon("WebContent/image/iconUN.gif");
         JButton button = new JButton("Button", image);
 

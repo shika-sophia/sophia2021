@@ -19,7 +19,7 @@ public class Border extends JFrame {
         NORTH, SOUTH, WEST, EAST, CENTER
     }
 
-    public Border() {
+    Border() {
         this.setLayout(new BorderLayout(5, 5));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

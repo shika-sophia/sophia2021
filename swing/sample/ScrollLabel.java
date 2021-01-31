@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 public class ScrollLabel extends JFrame {
-    public ScrollLabel() {
+    ScrollLabel() {
         JLabel label = new JLabel(
             new ImageIcon("WebContent/image/TakakiFantasia1200×800.jpg"));
         JScrollPane scroll = new JScrollPane(label);

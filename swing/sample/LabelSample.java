@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 
 public class LabelSample extends JFrame{
 
-    public LabelSample() {
+    LabelSample() {
         //---- Label ----
         JLabel label = new JLabel("Label Sample");
         label.setPreferredSize(new Dimension());

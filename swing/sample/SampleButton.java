@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 public class SampleButton extends JFrame {
 
-    public SampleButton() {
+    SampleButton() {
         JLabel label = new JLabel("ボタンをクリックしてください。");
         label.setPreferredSize(new Dimension(220, 40));
 

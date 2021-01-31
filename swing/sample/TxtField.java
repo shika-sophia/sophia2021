@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 
 public class TxtField extends JFrame {
 
-
     public static void main(String[] args) {
         TxtField frame = new TxtField();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

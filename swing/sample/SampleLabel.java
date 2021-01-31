@@ -17,7 +17,7 @@ import javax.swing.border.LineBorder;
 
 public class SampleLabel extends JFrame {
 
-    public SampleLabel(){
+    SampleLabel(){
         JLabel label = new JLabel("Sample Label");
             label.setPreferredSize(new Dimension(220, 40));
             label.setBackground(Color.LIGHT_GRAY);

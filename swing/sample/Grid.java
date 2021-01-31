@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 
 public class Grid extends JFrame {
 
-    public Grid() {
+    Grid() {
         GridLayout layout = new GridLayout(3, 4, 5, 5);
         this.setLayout(layout);
 

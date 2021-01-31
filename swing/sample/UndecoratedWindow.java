@@ -19,7 +19,7 @@ public class UndecoratedWindow extends JFrame{
         new UndecoratedWindow();
     }//main()
 
-    public UndecoratedWindow() {
+    UndecoratedWindow() {
         JButton button = new JButton("閉じる");
         button.addActionListener(new ActionListener() {
             @Override

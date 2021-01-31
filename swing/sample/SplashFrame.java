@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SplashFrame extends JFrame{
-    public SplashFrame() {
+    SplashFrame() {
         JLabel label = new JLabel("Main Frame");
         add(label);
         setSize(400, 360);

@@ -22,7 +22,7 @@ public class DialogWindow extends JFrame {
         new DialogWindow();
     }//main()
 
-    public DialogWindow() {
+    DialogWindow() {
         frame = this;
         this.setTitle("DialogWindow");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
