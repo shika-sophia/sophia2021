@@ -75,19 +75,19 @@ public abstract class AbsFileSystem extends Thread {
     }
 
     //====== abstract ======
-    protected abstract void setReadText();
+    protected abstract void setReadText(String readText);
 
     protected abstract void setJavaDoc(String javaDoc);
 
 
-    //====== Test main() ======
-    public static void main(String[] args) {
-        var extendHere = new ReadFile();
-        System.out.println("className: " + extendHere.className);
-        System.out.println("currentDir: " + extendHere.currentDir);
-        System.out.println("filePath: " + extendHere.filePath);
-        System.out.println("readText: \n" + extendHere.readText);
-    }//main()
+//    //====== Test main() ======
+//    public static void main(String[] args) {
+//        var extendHere = new ReadFile();
+//        System.out.println("className: " + extendHere.className);
+//        System.out.println("currentDir: " + extendHere.currentDir);
+//        System.out.println("filePath: " + extendHere.filePath);
+//        System.out.println("readText: \n" + extendHere.readText);
+//    }//main()
 
 }//class
 

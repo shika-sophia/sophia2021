@@ -160,3 +160,32 @@ ioFileDivのインスタンスは static領域にあるのかと疑い、
 AnswerEditor内でも new BuildFilePage()をしてみたが、結果は同じ。
 (いやインスタンスは ちゃんと heap領域にあるからね)
 
+あっ、 ReadFile.readPathFile(String path)内に、
+setReadText(String readText)を入れてなかった。
+しっかり読み込んでいたけど、Absのフィールドにセットされてなくて nullだ。
+
+また、nullが 上下に２つある問題は、
+WriteFile内で元ファイルのバックアップ目的で readTextを書き込んでいたので、コメントアウト。
+
+修正後、ちゃんとファイルできました。
+「/＊＊
+ * @title javaGold / testExamin / TestJavaDoc.java
+ * @reference 山本道子『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021
+ *            米山 学 『徹底攻略 Java Gold SE8 問題集 [1Z0-809]』 インプレス, 2020
+ * @content
+ * @author shika
+ * @date 2021-02-01
+ ＊/
+package javaGold.testExamin;
+
+import javaGold.AnswerEditor;
+
+public class TestJavaDoc {
+    public static void main(String[] args) {
+        new AnswerEditor();
+        System.out.println("TestJavaDoc終了");
+    }//main()
+}//class 」
+
+てか、FileWriter.println() って、元のファイルを消して、
+そこに上書きしてしまうのね。

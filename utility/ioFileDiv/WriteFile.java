@@ -27,7 +27,7 @@ public class WriteFile extends ReadFile {
 
         try(PrintWriter writer = new PrintWriter(
                 new BufferedWriter(new FileWriter(path)))){
-            writer.println(readText);
+            //writer.println(readText);
             writer.println(writeText);
 
         } catch(FileNotFoundException e) {

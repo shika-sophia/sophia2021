@@ -30,18 +30,21 @@ public class ReadFile extends AbsFileSystem {
                 bld.append(line).append("\n");
             }//while
 
+            reader.close();
         } catch(FileNotFoundException e) {
             System.out.println(path + "が見つかりません。");
         } catch(IOException e) {
             e.printStackTrace();
         }
 
-        return bld.toString();
+        String readText = bld.toString();
+        setReadText(readText);
+        return readText;
     }//readPathFile()
 
     @Override
-    protected void setReadText() {
-        super.readText = readPathFile(super.filePath);
+    protected void setReadText(String readText) {
+        super.readText = readText;
     }//setReadText()
 
     //@abstract
