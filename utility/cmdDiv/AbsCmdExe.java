@@ -41,7 +41,7 @@ public abstract class AbsCmdExe {
 
     protected void setClassNameCpl(String className) {
         this.classNameCpl = className
-            .replace('.', '\\').replace("$1", ".java");
+            .replace('.', '\\') + ".java";
     }
 
     public String getClassNameExe() {
@@ -49,7 +49,7 @@ public abstract class AbsCmdExe {
     }
 
     protected void setClassNameExe(String className) {
-        this.classNameExe = className.replace("$1", "");
+        this.classNameExe = className;
     }
 
     public String getCd() {
