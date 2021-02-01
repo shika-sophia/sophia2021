@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class AbsScan {
+public abstract class AbsScan implements InterRevesible {
     protected Scanner scan;
     protected Scanner scanSub;
     protected List<String> questList; //質問内容のリスト
