@@ -24,6 +24,29 @@ public interface InterCalcTime {
         }
 
         String timeResult = buildTimeResult(startTime, lastTime, costTime);
+
+        @SuppressWarnings("unused")
+        class CalcTimeData {
+            LocalDate startDay;
+            LocalDateTime startTime;
+            LocalDateTime lastTime;
+            Duration costTime;
+            String timeResult;
+
+            public CalcTimeData(
+                    LocalDate startDay,
+                    LocalDateTime startTime,
+                    LocalDateTime lastTime,
+                    Duration costTime,
+                    String timeResult){
+
+                this.startDay = startDay;
+                this.startTime = startTime;
+                this.lastTime = lastTime;
+                this.costTime = costTime;
+                this.timeResult = timeResult;
+            }
+        }//inner class / CalcTimeData
     }//calcTime()
 
     public default String buildTimeResult(
