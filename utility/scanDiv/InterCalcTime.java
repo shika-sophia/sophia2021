@@ -25,7 +25,7 @@ public interface InterCalcTime {
 
         String timeResult = buildTimeResult(startTime, lastTime, costTime);
         var timeData = new CalcTimeData(
-            startDay, ldtNow, ldtNow, costTime, timeResult);
+            startDay, startTime, lastTime, costTime, timeResult);
 
         return timeData;
     }//calcTime()
