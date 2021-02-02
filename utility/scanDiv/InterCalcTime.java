@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public interface InterCalcTime {
     //====== get startTime, lastTime / calc costTime ======
-    public default void calcTime(LocalDateTime startTime) {
+    public default CalcTimeData calcTime(LocalDateTime startTime) {
         LocalDateTime lastTime = null;
         LocalDate startDay = null;
         Duration costTime = null;
@@ -24,29 +24,10 @@ public interface InterCalcTime {
         }
 
         String timeResult = buildTimeResult(startTime, lastTime, costTime);
+        var timeData = new CalcTimeData(
+            startDay, ldtNow, ldtNow, costTime, timeResult);
 
-        @SuppressWarnings("unused")
-        class CalcTimeData {
-            LocalDate startDay;
-            LocalDateTime startTime;
-            LocalDateTime lastTime;
-            Duration costTime;
-            String timeResult;
-
-            public CalcTimeData(
-                    LocalDate startDay,
-                    LocalDateTime startTime,
-                    LocalDateTime lastTime,
-                    Duration costTime,
-                    String timeResult){
-
-                this.startDay = startDay;
-                this.startTime = startTime;
-                this.lastTime = lastTime;
-                this.costTime = costTime;
-                this.timeResult = timeResult;
-            }
-        }//inner class / CalcTimeData
+        return timeData;
     }//calcTime()
 
     public default String buildTimeResult(
@@ -70,3 +51,27 @@ public interface InterCalcTime {
         return ldtStr;
     }//formatTime()
 }//InterCalcTime
+
+class CalcTimeData {
+    LocalDate startDay;
+    LocalDateTime startTime;
+    LocalDateTime lastTime;
+    Duration costTime;
+    String timeResult;
+
+    public CalcTimeData(
+        LocalDate startDay,
+        LocalDateTime startTime,
+        LocalDateTime lastTime,
+        Duration costTime,
+        String timeResult){
+
+        this.startDay = startDay;
+        this.startTime = startTime;
+        this.lastTime = lastTime;
+        this.costTime = costTime;
+        this.timeResult = timeResult;
+    }
+}//class CalcTimeData
+
+
