@@ -22,19 +22,19 @@ public class ShuffleSeatSW {
         while(true) {
             Collections.shuffle(neoList);
 
-            int matched = Arrays.mismatch(
-                oldList.toArray(), neoList.toArray());
+            int matched = 0;
+            for(int i = 0; i < oldList.size(); i++) {
+                if(oldList.get(i) == neoList.get(i)) {
+                    matched++;
+                }
+            }//for
 
-            System.out.println("oldList: " + oldList);
-            System.out.println("neoList: " + neoList);
-            System.out.println(matched);
-
-            if(matched == -1) {
+            if(matched == 0) {
                 break;
             }
         }//while
+    }//shuffleElement()
 
-    }
     public static void main(String[] args) {
         var shuf = new ShuffleSeatSW();
         shuf.shuffleElement();
@@ -42,6 +42,8 @@ public class ShuffleSeatSW {
 //    	var view = new ViewSeat();
 //        view.buildJLabelAry(shuf.oldList);
 
+        System.out.println("oldList: " + shuf.oldList);
+        System.out.println("neoList: " + shuf.neoList);
     }//main()
 
 }//class
@@ -58,4 +60,9 @@ neoList: [後藤, 廣野, 波部, 吉田, 中西, 宗像, 西居, 辻林, 加藤
 【考察】
 mismatch()は違っている indexを出力。完全一致なら -1。
 出したい結果は全て違っているList なので、これじゃない。
+*/
+/*
+できた
+oldList: [後藤, 濱田, 中西, 門脇, 加藤, 中谷, 吉田, 藤本, 波部, 宗像, 吉見, 西岡, 西居, 赤尾, 辻林, 廣野]
+neoList: [門脇, 廣野, 宗像, 中西, 西岡, 西居, 赤尾, 吉見, 後藤, 藤本, 加藤, 中谷, 濱田, 波部, 吉田, 辻林]
 */
