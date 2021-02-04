@@ -17,14 +17,12 @@ public class ShuffleSeatSW {
 
     public void buildList() {
         for(int i = 0; i < BOUND; i++) {
-            char alphabet = (char) (65313 + i); // \u0041ではなく &#65;
+            // 半角「A」 \u0041ではなく &#65; -> 全角「Ａ」 &#65313;
+            char alphabet = (char) (65313 + i);
             oldList.add(String.valueOf(alphabet));
         }//for
 
         neoList.addAll(oldList);
-
-        //System.out.println("oldList: " + oldList);
-        //System.out.println("neoList: " + neoList);
     }//buildList()
 
     public void shuffleElement() {
@@ -32,7 +30,7 @@ public class ShuffleSeatSW {
             Collections.shuffle(neoList);
 
             int matched = 0;
-            for(int i = 0; i < oldList.size(); i++) {
+            for(int i = 0; i < BOUND; i++) {
                 if(oldList.get(i).equals(neoList.get(i))) {
                     matched++;
                 }
@@ -67,9 +65,6 @@ mismatch()は違っている indexを出力。完全一致なら -1。
 */
 /*
 できた
-oldList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
-neoList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
-
-oldList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
-neoList: [N, E, D, B, P, L, J, G, A, O, I, H, C, F, M, K]
+oldList: [Ａ, Ｂ, Ｃ, Ｄ, Ｅ, Ｆ, Ｇ, Ｈ, Ｉ, Ｊ, Ｋ, Ｌ, Ｍ, Ｎ, Ｏ, Ｐ]
+neoList: [Ｍ, Ｏ, Ｇ, Ａ, Ｂ, Ｐ, Ｋ, Ｉ, Ｎ, Ｅ, Ｃ, Ｆ, Ｈ, Ｊ, Ｄ, Ｌ]
 */
