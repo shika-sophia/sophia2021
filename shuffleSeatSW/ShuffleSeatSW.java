@@ -1,22 +1,31 @@
 package shuffleSeatSW;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class ShuffleSeatSW {
+    private final int BOUND = 16; //メンバー人数
     List<String> oldList; //現在の座席順
     List<String> neoList; //シャッフル後の座席順
 
     ShuffleSeatSW(){
-        oldList = new ArrayList<String>(
-            Arrays.asList("後藤","濱田","中西","門脇",
-                          "加藤","中谷","吉田","藤本",
-                          "波部","宗像","吉見","西岡",
-                          "西居","赤尾","辻林","廣野"));
-        neoList = new ArrayList<String>(oldList);
+        oldList = new ArrayList<String>(BOUND);
+        neoList = new ArrayList<String>(BOUND);
+        buildList();
     }//constructor
+
+    public void buildList() {
+        for(int i = 0; i < BOUND; i++) {
+            char alphabet = (char) (65313 + i); // \u0041ではなく &#65;
+            oldList.add(String.valueOf(alphabet));
+        }//for
+
+        neoList.addAll(oldList);
+
+        //System.out.println("oldList: " + oldList);
+        //System.out.println("neoList: " + neoList);
+    }//buildList()
 
     public void shuffleElement() {
         while(true) {
@@ -24,7 +33,7 @@ public class ShuffleSeatSW {
 
             int matched = 0;
             for(int i = 0; i < oldList.size(); i++) {
-                if(oldList.get(i) == neoList.get(i)) {
+                if(oldList.get(i).equals(neoList.get(i))) {
                     matched++;
                 }
             }//for
@@ -51,18 +60,16 @@ public class ShuffleSeatSW {
 /*
 int matched = Arrays.mismatch(
     oldList.toArray(), neoList.toArray());
-oldList: [後藤, 濱田, 中西, 門脇, 加藤, 中谷, 吉田, 藤本, 波部, 宗像, 吉見, 西岡, 西居, 赤尾, 辻林, 廣野]
-neoList: [赤尾, 加藤, 中谷, 廣野, 西居, 波部, 藤本, 吉見, 宗像, 西岡, 吉田, 中西, 濱田, 門脇, 後藤, 辻林]
-0
-oldList: [後藤, 濱田, 中西, 門脇, 加藤, 中谷, 吉田, 藤本, 波部, 宗像, 吉見, 西岡, 西居, 赤尾, 辻林, 廣野]
-neoList: [後藤, 廣野, 波部, 吉田, 中西, 宗像, 西居, 辻林, 加藤, 門脇, 西岡, 赤尾, 藤本, 濱田, 中谷, 吉見]
-1
+
 【考察】
 mismatch()は違っている indexを出力。完全一致なら -1。
 出したい結果は全て違っているList なので、これじゃない。
 */
 /*
 できた
-oldList: [後藤, 濱田, 中西, 門脇, 加藤, 中谷, 吉田, 藤本, 波部, 宗像, 吉見, 西岡, 西居, 赤尾, 辻林, 廣野]
-neoList: [門脇, 廣野, 宗像, 中西, 西岡, 西居, 赤尾, 吉見, 後藤, 藤本, 加藤, 中谷, 濱田, 波部, 吉田, 辻林]
+oldList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
+neoList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
+
+oldList: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]
+neoList: [N, E, D, B, P, L, J, G, A, O, I, H, C, F, M, K]
 */
