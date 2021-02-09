@@ -1,6 +1,7 @@
 package javaGold;
 
-public class AnswerEditor implements InterAnswerSetting {
+public class AnswerEditor 
+	implements InterAnswerSetting, Reference {
 
     public AnswerEditor() {
         run();
