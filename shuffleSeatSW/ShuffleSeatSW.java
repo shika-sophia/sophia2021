@@ -1,8 +1,8 @@
 package shuffleSeatSW;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,8 +13,8 @@ public class ShuffleSeatSW {
     List<String> neoList; //シャッフル後の座席順
 
     ShuffleSeatSW(){
-        oldList = new ArrayList<String>(seatNum);
-        neoList = new ArrayList<String>(seatNum);
+        oldList = new LinkedList<String>();
+        neoList = new LinkedList<String>();
         buildList();
     }//constructor
 
