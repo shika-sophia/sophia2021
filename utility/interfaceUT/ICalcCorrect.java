@@ -30,8 +30,11 @@ public interface ICalcCorrect {
             })
             .collect(Collectors.toList());
 
+        String correctResult = String.format("正答率 %.2f ％ ( 〇%d問 / 全%d問 )",
+                correctRate, correctNum, answerNum);
+
         CorrectData data = new CorrectData(
-            answerNum, correctNum, correctRate, correctList);
+            answerNum, correctNum, correctRate, correctResult, correctList);
         return data;
     }//zeroToString(()
 

@@ -44,7 +44,7 @@ public interface ICalcTime {
     }//buildTimeResult()
 
     //====== format startTime, lastTime ======
-    private String formatTime(LocalDateTime ldt) {
+    public default String formatTime(LocalDateTime ldt) {
         String ldtStr = ldt.format(
             DateTimeFormatter.ofPattern("HH:mm"));
 
