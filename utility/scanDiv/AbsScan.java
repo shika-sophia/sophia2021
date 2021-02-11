@@ -38,6 +38,10 @@ public abstract class AbsScan implements ICalcTime {
         return questList;
     }
 
+    public void setQuestList(List<String> questList) {
+        this.questList = questList;
+    }
+
     public List<String> getInListStr() {
         return inListStr;
     }
