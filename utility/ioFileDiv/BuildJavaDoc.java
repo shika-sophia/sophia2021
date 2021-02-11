@@ -14,7 +14,7 @@ public class BuildJavaDoc extends WriteFile {
 
     public BuildJavaDoc() {}
 
-    public void buildJavaDoc(String reference) {
+    public void buildJavaDoc(String reference, String content) {
         var bld = new StringBuilder(100);
 
         bld.append("/** \n");
@@ -22,7 +22,7 @@ public class BuildJavaDoc extends WriteFile {
             ,filePath.substring(filePath.indexOf("src") + 4)
             .replace("\\", " / ")));
         bld.append(" * @reference ").append(reference).append("\n");
-        bld.append(" * @content \n");
+        bld.append(" * @content ").append(content).append("\n");
         bld.append(" * @author shika \n");
         bld.append(String.format(" * @date %s \n"
             , LocalDate.now()
