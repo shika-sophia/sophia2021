@@ -17,6 +17,7 @@ public class ScanStr extends ScanConfirm {
 
     //====== 多問一答 multiQuest-singleAnswer ======
     public void singleAnsStr(List<String> questList) {
+        inListStr.clear();
         for (int i = 0; i < questList.size(); i++) {
             System.out.println(questList.get(i) + SUFFIX + FINKEY);
             String inputStr = scan.nextLine();
@@ -28,6 +29,7 @@ public class ScanStr extends ScanConfirm {
 
     //====== 多問多答 multiQuest-multiAnswer ======
     public void multiAnsStr(List<String> questList) {
+        inListStr.clear();
         //quest:
         for (int i = 0; i < questList.size(); i++) {
             System.out.println(questList.get(i) + SUFFIX + FINKEY);
