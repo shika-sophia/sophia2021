@@ -10,8 +10,9 @@ public class AnswerEditor
     public void run() {
         String className = ioFileExe.getClassName();
         String reference = IReference.seekRef(className);
+        String content = "";
 
-        ioFileExe.buildJavaDoc(reference);
+        ioFileExe.buildJavaDoc(reference, content);
         ioFileExe.buildFilePage();
     }//run()
 
