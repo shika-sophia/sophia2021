@@ -11,6 +11,14 @@ public class TimeData {
     protected Duration costTime;
     protected String timeResult;
 
+    public TimeData() { }
+
+    public TimeData(
+        LocalDate startDay,LocalDateTime startTime) {
+        this.startDay = startDay;
+        this.startTime = startTime;
+    }
+
     public TimeData(
         LocalDate startDay,
         LocalDateTime startTime,
@@ -25,7 +33,7 @@ public class TimeData {
         this.timeResult = timeResult;
     }
 
-    //====== getter ======
+    //====== getter, setter ======
     public LocalDate getStartDay() {
         return startDay;
     }
@@ -44,6 +52,26 @@ public class TimeData {
 
     public String getTimeResult() {
         return timeResult;
+    }
+
+    public void setStartDay(LocalDate startDay) {
+        this.startDay = startDay;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setLastTime(LocalDateTime lastTime) {
+        this.lastTime = lastTime;
+    }
+
+    public void setCostTime(Duration costTime) {
+        this.costTime = costTime;
+    }
+
+    public void setTimeResult(String timeResult) {
+        this.timeResult = timeResult;
     }
 }//class TimeData
 

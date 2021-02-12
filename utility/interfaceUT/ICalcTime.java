@@ -7,25 +7,33 @@ import java.time.format.DateTimeFormatter;
 
 public interface ICalcTime {
     //====== get startTime, lastTime / calc costTime ======
-    public default CalcTimeData calcTime(LocalDateTime startTime) {
-        LocalDateTime lastTime = null;
-        LocalDate startDay = null;
-        Duration costTime = null;
+    public default TimeData calcTime(LocalDateTime startTime) {
+        LocalDateTime lastTime;
+        LocalDate startDay;
+        Duration costTime;
 
         LocalDateTime ldtNow = LocalDateTime.now();
+        var timeData = new TimeData();
 
         if(startTime == null) {
             startTime = ldtNow;
             startDay = LocalDate.of(
                 ldtNow.getYear(), ldtNow.getMonthValue(), ldtNow.getDayOfMonth());
+
+            timeData.setStartTime(startTime);
+            timeData.setStartDay(startDay);
+            return timeData;
+
         } else {
             lastTime = ldtNow;
             costTime = Duration.between(startTime, lastTime);
         }
 
         String timeResult = buildTimeResult(startTime, lastTime, costTime);
-        var timeData = new CalcTimeData(
-            startDay, startTime, lastTime, costTime, timeResult);
+
+        timeData.setLastTime(lastTime);
+        timeData.setCostTime(costTime);
+        timeData.setTimeResult(timeResult);
 
         return timeData;
     }//calcTime()
