@@ -33,6 +33,7 @@ public class ReadFile extends AbsFileSystem {
             reader.close();
         } catch(FileNotFoundException e) {
             System.out.println(path + "が見つかりません。");
+            e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();
         }

@@ -32,9 +32,13 @@ public class BuildJavaDoc extends WriteFile {
         setJavaDoc(bld.toString());
     }//buildJavaDoc()
 
+    //====== setter ======
     @Override
     protected void setJavaDoc(String javaDoc) {
         super.javaDoc = javaDoc;
     }//setJavaDoc()
 
+    public void appendJavaDoc(String appendix) {
+        super.javaDoc = javaDoc + appendix;
+    }//appendJavaDoc
 }//class
