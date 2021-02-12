@@ -37,6 +37,7 @@ public class PracticeEditor
         inListStr = scanExe.getInListStr();
 
         //---- 答え合わせ ----
+        System.out.println("*** 答え合わせ *** \n");
         prepairRange(inListStr);
         scanExe.singleAnsInt(inListStr);
         List<Integer> inListInt = scanExe.getInListInt();
