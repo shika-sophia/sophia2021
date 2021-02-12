@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public interface ICalcTime {
+    TimeData timeData = new TimeData();
+
     //====== get startTime, lastTime / calc costTime ======
     public default TimeData calcTime(LocalDateTime startTime) {
         LocalDateTime lastTime;
@@ -13,7 +15,7 @@ public interface ICalcTime {
         Duration costTime;
 
         LocalDateTime ldtNow = LocalDateTime.now();
-        var timeData = new TimeData();
+
 
         if(startTime == null) {
             startTime = ldtNow;
@@ -46,7 +48,7 @@ public interface ICalcTime {
         String lastTimeStr = formatTime(lastTime);
         bld.append("\n開始時刻 ").append(startTimeStr).append("\n");
         bld.append("終了時刻 ").append(lastTimeStr).append("\n");
-        bld.append("所要時間 ").append(costTime.toMinutes()).append(" 分").append("\n\n");
+        bld.append("所要時間 ").append(costTime.toMinutes()).append(" 分").append("\n");
 
         return bld.toString();
     }//buildTimeResult()
