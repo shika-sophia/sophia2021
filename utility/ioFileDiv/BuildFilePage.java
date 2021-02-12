@@ -1,7 +1,19 @@
 package utility.ioFileDiv;
 
-public class BuildFilePage extends BuildJavaDoc {
+import javaGold.IReference;
 
+public class BuildFilePage extends BuildJavaDoc {
+    public BuildFilePage() { }
+
+    //====== javaDocの書き込み時にだけ利用 ======
+    public BuildFilePage(String docContent) {
+        String reference = IReference.seekRef(className);
+        buildJavaDoc(reference, docContent);
+        buildFilePage();
+        System.out.println(className + " / javaDoc完了");
+    }
+
+    //====== javaDocの書き込み時にだけ利用 ======
     public void buildFilePage() {
         //【註】buildJavaDoc(reference);を完了させてからここを起動する。
         if(javaDoc == null) {

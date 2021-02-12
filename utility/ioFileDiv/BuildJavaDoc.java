@@ -10,7 +10,9 @@ package utility.ioFileDiv;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class BuildJavaDoc extends WriteFile {
+import javaGold.IReference;
+
+public class BuildJavaDoc extends WriteFile implements IReference {
 
     public BuildJavaDoc() {}
 
