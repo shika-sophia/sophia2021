@@ -1,6 +1,7 @@
 package javaGold;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import utility.interfaceUT.CorrectData;
 import utility.interfaceUT.ICalcCorrect;
@@ -23,6 +24,10 @@ public class PracticeEditor
 
         //---- 練習問題の回答 ----
         questList.clear();              //questListを初期化
+        inListStr = inListStr.stream()
+            .map(s -> s.replace("[ \\d ]", ""))
+            .collect(Collectors.toList());
+
         questList.addAll(inListStr);    //questListを更新
         scanExe.setQuestList(questList);//questListを保存
 
@@ -83,7 +88,7 @@ public class PracticeEditor
 
         //---- タイトル(日付) ----
         var bld = new StringBuilder(300);
-        bld.append("/*");
+        bld.append("/* \n");
         bld.append("//====== ")
             .append(timeData.getStartDay())
             .append(" ====== \n");
@@ -96,7 +101,7 @@ public class PracticeEditor
 
             answer:
             for(int i = count; i < inListStr.size(); i++) {
-                if(i != 0 && inListStr.get(i).startsWith("[ 1 ]")) {
+                if(i != count && inListStr.get(i).startsWith("[ 1 ]")) {
                     count = i;
                     break answer; //to next quest
                 }
@@ -109,7 +114,7 @@ public class PracticeEditor
         bld.append(timeData.getTimeResult());
 
         //---- correctData ----
-        bld.append(correctData.getCorrectResult());
+        bld.append(correctData.getCorrectResult()).append("\n");
         bld.append("*/ \n");
 
         return bld.toString();
@@ -124,7 +129,7 @@ public class PracticeEditor
                 formatTime(timeData.getStartTime()),
                 formatTime(timeData.getLastTime()),
                 timeData.getCostTime().toMinutes()));
-        bld.append(" * @correctRate ").append(correctData).append("\n");
+        bld.append(" * @correctRate ").append(correctData.getCorrectResult()).append("\n");
         bld.append(" */ \n");
 
         return bld.toString();
