@@ -19,9 +19,8 @@ public class ScanStr extends ScanConfirm {
     public void singleAnsStr(List<String> questList) {
         inListStr.clear();
         for (int i = 0; i < questList.size(); i++) {
-            System.out.println(questList.get(i) + SUFFIX + FINKEY);
+            System.out.println(questList.get(i) + FINKEY);
             String inputStr = scan.nextLine();
-            System.out.println();
 
             inListStr.add(inputStr);
         }//for i
@@ -32,13 +31,12 @@ public class ScanStr extends ScanConfirm {
         inListStr.clear();
         //quest:
         for (int i = 0; i < questList.size(); i++) {
-            System.out.println(questList.get(i) + SUFFIX + FINKEY);
+            System.out.println(questList.get(i) + FINKEY);
 
             answerLoop:
             for(int j = 0;  ; j++) {
                 System.out.printf("[ %d ] ", j + 1);
                 String inputStr = scan.nextLine();
-                System.out.println();
 
                 //input '0'でループ終了
                 if (inputStr.equals("-99") || inputStr.equals("ー９９")) {

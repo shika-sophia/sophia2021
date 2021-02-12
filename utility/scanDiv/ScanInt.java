@@ -110,4 +110,29 @@ public class ScanInt extends ScanStr {
 
         return false;
     }//inputLoop()
+
+    //====== getter, setter ======
+    public List<Integer> getPreList() {
+        return preList;
+    }
+
+    public void setPreList(Integer[] preAry) {
+        Collections.addAll(this.preList, preAry);
+    }
+
+    public void setPreList(List<Integer> preList) {
+        this.preList = preList;
+    }
+
+    public List<Integer> getLastList() {
+        return lastList;
+    }
+
+    public void setLastList(Integer[] lastAry) {
+        Collections.addAll(this.lastList, lastAry);
+    }
+
+    public void setLastList(List<Integer> lastList) {
+        this.lastList = lastList;
+    }
 }//class
