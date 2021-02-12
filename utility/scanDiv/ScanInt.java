@@ -38,7 +38,7 @@ public class ScanInt extends ScanStr {
     public void singleAnsInt(List<String> questList) {
         inListInt.clear();
         for(int i = 0; i < questList.size(); i++){
-            System.out.print(questList.get(i) + SUFFIX);
+            System.out.print(questList.get(i));
             inputLoop(i, -1);
         }//for
     }//singleAnsInt()
@@ -47,7 +47,7 @@ public class ScanInt extends ScanStr {
         inListInt.clear();
         //quest:
         for(int i = 0; i < questList.size(); i++){
-            System.out.print(questList.get(i) + SUFFIX);
+            System.out.print(questList.get(i));
 
             answerLoop:
             for (int j = 0;  ; j++) {
