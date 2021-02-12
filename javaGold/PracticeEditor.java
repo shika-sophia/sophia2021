@@ -2,10 +2,10 @@ package javaGold;
 
 import java.util.List;
 
-import utility.interfaceUT.CalcTimeData;
 import utility.interfaceUT.CorrectData;
 import utility.interfaceUT.ICalcCorrect;
 import utility.interfaceUT.ICalcTime;
+import utility.interfaceUT.TimeData;
 
 public class PracticeEditor
     implements IAnsNeedInstance, IReference, ICalcTime, ICalcCorrect {
@@ -26,12 +26,13 @@ public class PracticeEditor
         questList.addAll(inListStr);    //questListを更新
         scanExe.setQuestList(questList);//questListを保存
 
-        CalcTimeData timeData = calcTime(null);
+        TimeData timeData = calcTime(null);
         scanExe.multiAnsStr(questList);
         timeData = calcTime(timeData.getStartTime());
         inListStr = scanExe.getInListStr();
 
         //---- 答え合わせ ----
+        prepairRange(inListStr);
         scanExe.singleAnsInt(inListStr);
         List<Integer> inListInt = scanExe.getInListInt();
         CorrectData correctData = zeroToString(inListInt);
@@ -42,21 +43,41 @@ public class PracticeEditor
 
         //---- javaDoc 作成 ----
         String className = ioFileExe.getClassName();
-        String reference = IReference.seekRef(className);
-        String content = questList.toString();
-        ioFileExe.buildJavaDoc(reference, content);
+        boolean isRepeat = ioFileExe.readPathFile(
+                    ioFileExe.getFilePath()).contains("/**");
+        //初回なら javaDoc作成
+        if(!isRepeat) {
+            String reference = IReference.seekRef(className);
+            String content = questList.toString();
+            ioFileExe.buildJavaDoc(reference, content);
+        }
 
         //---- javaDoc 追加 ----
         String appendix = buildAppendix(timeData, correctData);
+        ioFileExe.appendJavaDoc(appendix);
 
         //---- writeFile ----
-        ioFileExe.buildFilePage(appendix + practiceResult);
+        ioFileExe.buildFilePage(practiceResult);
     }//run()
+
+    private void prepairRange(List<String> list) {
+        int questNum = list.size();
+        Integer[] preAry = new Integer[questNum];
+        Integer[] lastAry = new Integer[questNum];
+
+        for(int i = 0; i < questNum; i++) {
+            preAry[i] = 0;
+            lastAry[i] = 1;
+        }//for
+
+        scanExe.setPreList(preAry);
+        scanExe.setLastList(lastAry);
+    }//prepairRange()
 
     private String buildPracticeResult(
             List<String> questList, //問題項目
             List<String> inListStr, //回答
-            CalcTimeData timeData,  //日時データ
+            TimeData timeData,  //日時データ
             CorrectData correctData) { //正答データ
         List<String> correctList = correctData.getCorrectList();
 
@@ -95,7 +116,7 @@ public class PracticeEditor
     }//buildPracticeResult()
 
     private String buildAppendix(
-            CalcTimeData timeData, CorrectData correctData) {
+            TimeData timeData, CorrectData correctData) {
         var bld = new StringBuilder(100);
         bld.append("/* Appendix \n");
         bld.append(" * @costTime ")
