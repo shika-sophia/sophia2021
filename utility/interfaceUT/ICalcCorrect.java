@@ -25,7 +25,7 @@ public interface ICalcCorrect {
         correctList = inListInt.stream()
             .map(z -> {
                 if(z == 0) return "〇";
-                if(z == 1) return "×";
+                if(z == 1) return "Ｘ";
                 return "";
             })
             .collect(Collectors.toList());
