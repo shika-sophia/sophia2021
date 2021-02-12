@@ -1,0 +1,66 @@
+//====== Chapter01 / 2021-02-12 ======
+Test中 -> いろいろ要修正
+
+//null (isRepeat == trueのとき javaDocは nullで表示される問題)
+/* Appendix
+ * @costTime 19:26 - 19:26 ( 0 分)
+ * @correctRate 正答率 40.00 ％ ( 〇2問 / 全5問 )
+ */
+/**
+ * @title javaGold / selfLearn / Chapter01.java
+ * @reference 山田祥寛『独習 Java 新版』 翔泳社, 2019
+ * @content [[ 1 ] ◆練習問題, [ 2 ] ◆章末問題]
+ * @author shika
+ * @date 2021-02-12
+ */
+/* Appendix
+ * @costTime 19:13 - 19:14 ( 0 分)
+ * @correctRate 正答率 80.00 ％ ( 〇4問 / 全5問 )
+ */
+
+/* Appendix
+ * @costTime 19:01 - 19:01 ( 0 分)
+ * @correctRate 正答率 60.00 ％ ( 〇3問 / 全5問 )
+ */
+
+package javaGold.selfLearn;
+
+import javaGold.PracticeEditor;
+
+public class Chapter01 {
+    public static void main(String[] args) {
+        new PracticeEditor();
+    }//main()
+}//class
+
+
+
+/*
+//====== 2021-02-12 ======
+[ 1 ] ◆練習問題
+〇 [ 1 ] A
+〇 [ 2 ] B
+[ 2 ] ◆章末問題
+
+開始時刻 19:13
+終了時刻 19:14
+所要時間 0 分
+正答率 80.00 ％ ( 〇4問 / 全5問 )
+*/
+
+/*
+//====== 2021-02-12 ======
+[ 1 ] ◆練習問題
+〇 [ 1 ] A
+Ｘ [ 2 ] B
+[ 2 ] ◆章末問題
+〇 [ 1 ] C
+Ｘ [ 2 ] D
+Ｘ [ 3 ] E
+
+開始時刻 19:26
+終了時刻 19:26
+所要時間 0 分
+正答率 40.00 ％ ( 〇2問 / 全5問 )
+*/
+
