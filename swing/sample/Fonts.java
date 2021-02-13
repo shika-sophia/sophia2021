@@ -175,8 +175,8 @@ Mongolian Baiti
 Monospaced
 Monotype Corsiva
 MS Outlook
-MS Reference Sans Serif
-MS Reference Specialty
+MS IReference Sans Serif
+MS IReference Specialty
 MS UI Gothic
 MT Extra
 MV Boli

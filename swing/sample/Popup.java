@@ -53,7 +53,7 @@ public class Popup extends JFrame {
                     output.setBackground(Color.BLUE);
                 }
 
-                String s = "イベントソース" + source.getText() + "\n";
+                String s = "イベントソース: " + source.getText() + "\n";
                 output.append(s);
                 output.setCaretPosition(output.getDocument().getLength());
             }
