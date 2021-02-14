@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import utility.interfaceUT.CorrectData;
 import utility.interfaceUT.ICalcCorrect;
 import utility.interfaceUT.ICalcTime;
+import utility.interfaceUT.IReference;
 import utility.interfaceUT.TimeData;
 
 public class PracticeEditor
@@ -18,14 +19,15 @@ public class PracticeEditor
     public void run() {
         //---- 問題項目の入力 ----
         List<String> questList = scanExe.getQuestList();
-        questList.add("問題の項目を");
+        questList.add("問題の項目を入力して下さい。(数字は全角)");
         scanExe.multiAnsStr(questList);
         List<String> inListStr = scanExe.getInListStr();
 
         //---- 練習問題の回答 ----
         questList.clear();              //questListを初期化
         inListStr = inListStr.stream()
-            .map(s -> s.replace("[ \\d ]", ""))
+            .map(s -> s.replaceAll("[ [\\d] ]", ""))
+            .map(s -> s.replace("[]", ""))
             .collect(Collectors.toList());
 
         questList.addAll(inListStr);    //questListを更新
@@ -37,8 +39,11 @@ public class PracticeEditor
         inListStr = scanExe.getInListStr();
 
         //---- 答え合わせ ----
-        System.out.println("*** 答え合わせ *** \n");
+        System.out.println("*** 答え合わせ ***");
         prepairRange(inListStr);
+        inListStr = inListStr.stream()
+            .map(s -> s + " => ")
+            .collect(Collectors.toList());
         scanExe.singleAnsInt(inListStr);
         List<Integer> inListInt = scanExe.getInListInt();
         CorrectData correctData = zeroToString(inListInt);
@@ -49,14 +54,9 @@ public class PracticeEditor
 
         //---- javaDoc 作成 ----
         String className = ioFileExe.getClassName();
-        boolean isRepeat = ioFileExe.readPathFile(
-                    ioFileExe.getFilePath()).contains("/**");
-        //初回なら javaDoc作成
-        if(!isRepeat) {
-            String reference = IReference.seekRef(className);
-            String content = questList.toString();
-            ioFileExe.buildJavaDoc(reference, content);
-        }
+        String reference = IReference.seekRef(className);
+        String content = questList.toString();
+        ioFileExe.buildJavaDoc(reference, content);
 
         //---- javaDoc 追加 ----
         String appendix = buildAppendix(timeData, correctData);
@@ -64,6 +64,7 @@ public class PracticeEditor
 
         //---- writeFile ----
         ioFileExe.buildFilePage(practiceResult);
+        System.out.println("【終了】 " + className +" 書き込み完了");
     }//run()
 
     private void prepairRange(List<String> list) {
