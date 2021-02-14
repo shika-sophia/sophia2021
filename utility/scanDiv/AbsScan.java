@@ -24,7 +24,7 @@ public abstract class AbsScan implements ICalcTime {
     protected List<String> inListStr; //inputStr を記録
     protected List<Integer> inListInt;//inputInt を記録
     protected final String SUFFIX = "入力して下さい。";
-    protected final String FINKEY = "[ -99: 終了]";
+    protected final String FINKEY = " [-99:終了]";
     protected final String CONFIRMKEY = " [Y] YES / [N] NO ";
 
     public AbsScan() {
