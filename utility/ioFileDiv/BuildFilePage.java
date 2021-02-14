@@ -1,6 +1,6 @@
 package utility.ioFileDiv;
 
-import javaGold.IReference;
+import utility.interfaceUT.IReference;
 
 public class BuildFilePage extends BuildJavaDoc {
     public BuildFilePage() { }
@@ -30,12 +30,13 @@ public class BuildFilePage extends BuildJavaDoc {
     }//buildFilePage()
 
     public void buildFilePage(String fileContent) {
-        //【註】buildJavaDoc(reference);を完了させてからここを起動する。
+        //【註】buildJavaDoc();を完了させてからここを起動する。
         if(javaDoc == null) {
             javaDoc = "/** \n * \n */";
         }
 
-        readPathFile(filePath);
+        //fileContentは引数から取得
+        //readPathFile(filePath);
 
         var bld = new StringBuilder();
         bld.append(javaDoc);

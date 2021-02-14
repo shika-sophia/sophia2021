@@ -10,13 +10,23 @@ package utility.ioFileDiv;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javaGold.IReference;
+import utility.interfaceUT.IReference;
 
 public class BuildJavaDoc extends WriteFile implements IReference {
 
     public BuildJavaDoc() {}
 
     public void buildJavaDoc(String reference, String content) {
+        boolean isRepeat = readPathFile(filePath).contains("/**");
+
+        //すでにjavaDocがあるなら既存のものを利用
+        if(isRepeat) {
+            super.javaDoc = readText.substring(
+                readText.indexOf("/**"), readText.indexOf("package"));
+            super.readText = readText.replace(javaDoc, "");
+            return;
+        }
+
         var bld = new StringBuilder(100);
 
         bld.append("/** \n");
@@ -33,6 +43,7 @@ public class BuildJavaDoc extends WriteFile implements IReference {
 
         setJavaDoc(bld.toString());
     }//buildJavaDoc()
+
 
     //====== setter ======
     @Override
