@@ -35,7 +35,7 @@ public class ScanStr extends ScanConfirm {
 
             answerLoop:
             for(int j = 0;  ; j++) {
-                System.out.printf("[ %d ] ", j + 1);
+                System.out.printf("(%d) ", j + 1);
                 String inputStr = scan.nextLine();
 
                 //input '0'でループ終了
@@ -51,7 +51,7 @@ public class ScanStr extends ScanConfirm {
                 } //if 0
 
                 inListStr.add(String.format(
-                    "[ %d ] %s", (j + 1), inputStr));
+                    "（%d） %s", (j + 1), inputStr));
             }//for j answerLoop
         } //for i quest
     }//multiAnsStr()

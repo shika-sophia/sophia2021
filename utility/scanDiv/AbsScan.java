@@ -46,7 +46,7 @@ public abstract class AbsScan implements ICalcTime {
         return inListStr;
     }
 
-    protected void setInListStr(List<String> inListStr) {
+    public void setInListStr(List<String> inListStr) {
         this.inListStr = inListStr;
     }
 
