@@ -19,15 +19,14 @@ public class PracticeEditor
     public void run() {
         //---- 問題項目の入力 ----
         List<String> questList = scanExe.getQuestList();
-        questList.add("問題の項目を入力して下さい。(数字は全角)");
+        questList.add("問題の項目を入力して下さい。");
         scanExe.multiAnsStr(questList);
         List<String> inListStr = scanExe.getInListStr();
 
         //---- 練習問題の回答 ----
         questList.clear();              //questListを初期化
         inListStr = inListStr.stream()
-            .map(s -> s.replaceAll("[ [\\d] ]", ""))
-            .map(s -> s.replace("[]", ""))
+            .map(s -> s.replaceAll("（[\\d]）", ""))
             .collect(Collectors.toList());
 
         questList.addAll(inListStr);    //questListを更新
@@ -44,7 +43,14 @@ public class PracticeEditor
         inListStr = inListStr.stream()
             .map(s -> s + " => ")
             .collect(Collectors.toList());
+
         scanExe.singleAnsInt(inListStr);
+
+        inListStr = inListStr.stream()
+            .map(s -> s.replace("=>",""))
+            .collect(Collectors.toList());
+        scanExe.setInListStr(inListStr); //AbsScanのフィールドに登録
+
         List<Integer> inListInt = scanExe.getInListInt();
         CorrectData correctData = zeroToString(inListInt);
 
@@ -103,7 +109,7 @@ public class PracticeEditor
 
             answer:
             for(int i = count; i < inListStr.size(); i++) {
-                if(i != count && inListStr.get(i).startsWith("[ 1 ]")) {
+                if(i != count && inListStr.get(i).startsWith("（1）")) {
                     count = i;
                     break answer; //to next quest
                 }
