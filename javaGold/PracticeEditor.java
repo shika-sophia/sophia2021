@@ -116,6 +116,8 @@ public class PracticeEditor
                 bld.append(String.format("%s %s \n",
                     correctList.get(i), inListStr.get(i)));
             }//for inListStr
+
+            bld.append("\n");
         }//for questList
 
         //---- timeData ----
