@@ -38,18 +38,26 @@ public class ScanStr extends ScanConfirm {
                 System.out.printf("(%d) ", j + 1);
                 String inputStr = scan.nextLine();
 
-                //input '0'でループ終了
-                if (inputStr.equals("-99") || inputStr.equals("ー９９")) {
-                    //終了していいかを確認[ Y / N ]
-                    boolean isFin = questConfirm(
-                        String.format("回答を終了しますか？ (回答数: %d)"
-                            , inListStr.size()));
+                //---- [終了][戻る]の判定 ----
+                String fnFlag = judgeFnKey(inputStr, inListStr, j);
 
-                    if (isFin) {
-                        break answerLoop;
-                    } //if isFin
-                } //if 0
+                if (fnFlag.equals("Fin")) {
+                    break answerLoop;
+                } //if Fin
 
+                if(fnFlag.equals("cantReverse")) {
+                    j--;
+                    continue answerLoop;
+                }//if cantReverse
+
+                if(fnFlag.equals("Reverse")) {
+                    //直近のリスト要素を削除
+                    inListStr.remove(inListStr.size() - 1);
+                    j -= 2; // j-2して上で +1される -> j-1で１つ戻る
+                    continue answerLoop;
+                }//if Reverse
+
+                //---- inListStrに登録 ----
                 inListStr.add(String.format(
                     "（%d） %s", (j + 1), inputStr));
             }//for j answerLoop
