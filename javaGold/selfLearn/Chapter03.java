@@ -37,7 +37,8 @@ public class Chapter03 {
 〇 （3） ② "123" = 123 -> コンパイルエラー: Stringとintの同値比較は不可。
 〇 （4） ③ new String("abc") == new String("abc") -> false 参照は異なるため
 Ｘ （5） ④ Arrays.equals(new int[]{1, 2, 3}, new int[]{1, 2, 3}) -> false 同上。
-    =>
+    => @see testExamin / TestAryEquals.java
+    => Array.equals(ary1, ary2)は、参照比較ではなく、要素が一致しているかを比較。
 
  ◆章末問題 / p107
 〇 （1） ①算術演算子 ②代入演算子 ③? true:false ④論理演算子 ⑤ &, |, ~, >>, <<, >>>
