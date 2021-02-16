@@ -46,7 +46,7 @@ public interface ICalcTime {
 
         String startTimeStr = formatTime(startTime);
         String lastTimeStr = formatTime(lastTime);
-        bld.append("\n開始時刻 ").append(startTimeStr).append("\n");
+        bld.append("開始時刻 ").append(startTimeStr).append("\n");
         bld.append("終了時刻 ").append(lastTimeStr).append("\n");
         bld.append("所要時間 ").append(costTime.toMinutes()).append(" 分").append("\n");
 
