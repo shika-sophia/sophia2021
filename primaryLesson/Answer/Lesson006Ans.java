@@ -30,6 +30,21 @@ public class Lesson006Ans {
 }//class
 
 /*
+//====== 解説 ======
+int 同士の計算結果は intになるので、
+普通に int result = x / y; をすると、resultは 2 になる。
+
+resultの型を doubleにすると
+double result = x / y; int同士の計算結果 2が、
+doubleで小数になるので 2.00になる。
+
+正しく計算結果を出すには、 xをキャスト(double) x で double値として
+演算し、 double型の resultに入れないといけない。
+
+printf()部分は 「+」演算子を用いて表示してもよい。
+System.out.println("x ÷ y = " + result);
+
+//====== 実行結果 ======
 x ÷ y = 2.50
 x ÷ y の余りは 2
 */
