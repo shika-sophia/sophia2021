@@ -22,6 +22,25 @@ public class ScanStr extends ScanConfirm {
             System.out.println(questList.get(i) + FINKEY);
             String inputStr = scan.nextLine();
 
+            //---- [終了][戻る]の判定 ----
+            String fnFlag = judgeFnKey(inputStr, inListStr, i);
+
+            if (fnFlag.equals("Fin")) {
+                break;
+            } //if Fin
+
+            if(fnFlag.equals("cantReverse")) {
+                i--;
+                continue;
+            }//if cantReverse
+
+            if(fnFlag.equals("Reverse")) {
+                //直近のリスト要素を削除
+                inListStr.remove(inListStr.size() - 1);
+                i -= 2; // j-2して上で +1される -> j-1で１つ戻る
+                continue;
+            }//if Reverse
+
             inListStr.add(inputStr);
         }//for i
     }//singleAnsStr()

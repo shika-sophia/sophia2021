@@ -39,7 +39,25 @@ public class ScanInt extends ScanStr {
         inListInt.clear();
         for(int i = 0; i < questList.size(); i++){
             System.out.print(questList.get(i));
-            inputLoop(i, -1);
+            String fnFlag = inputLoop(i, -1);
+
+            if (fnFlag.equals("Fin")) {
+                break;
+            } //if Fin
+
+            if(fnFlag.equals("cantReverse")) {
+                i--;
+                continue;
+            }//if cantReverse
+
+            if(fnFlag.equals("Reverse")) {
+                //直近のリスト要素を削除
+                inListInt.remove(inListInt.size() - 1);
+                i -= 2; // j-2して上で +1される -> j-1で１つ戻る
+                continue;
+            }//if Reverse
+
+            inListInt.add(Integer.parseInt(fnFlag));
         }//for
     }//singleAnsInt()
 
@@ -47,31 +65,47 @@ public class ScanInt extends ScanStr {
         inListInt.clear();
         //quest:
         for(int i = 0; i < questList.size(); i++){
-            System.out.print(questList.get(i));
+            System.out.print(questList.get(i) + FINKEY);
 
             answerLoop:
             for (int j = 0;  ; j++) {
-                boolean isFin = inputLoop(i, j);
+                String fnFlag = inputLoop(i, j);
 
-                if (isFin) {
+                if (fnFlag.equals("Fin")) {
                     break answerLoop;
-                } //if isFin
+                } //if Fin
+
+                if(fnFlag.equals("cantReverse")) {
+                    j--;
+                    continue answerLoop;
+                }//if cantReverse
+
+                if(fnFlag.equals("Reverse")) {
+                    //直近のリスト要素を削除
+                    inListInt.remove(inListInt.size() - 1);
+                    j -= 2; // j-2して上で +1される -> j-1で１つ戻る
+                    continue answerLoop;
+                }//if Reverse
+
+                inListInt.add(Integer.parseInt(fnFlag));
             }//for j answerLoop
         }//for i quest
     }//multiAnsInt()
 
-    public boolean inputLoop(int i, int j) {
+    public String inputLoop(int i, int j) {
+        String fnFlag = "";
+
         while (true) {
             scan = new Scanner(System.in);
 
             int inputInt = 0;
             try {
                 //singleAns
-                if(j == -1) {
-                    ;
+                if(j == -1) {// -1は singleAnsInt()からの flag
+                    j = i;   // judgeFnKey()で[戻る]にしないため iを代入
                 //multiAns
                 } else {
-                    System.out.printf("[ %d ] ", j + 1);
+                    System.out.printf("（%d） ", j + 1);
                 }
                 inputInt = scan.nextInt();
 
@@ -85,6 +119,7 @@ public class ScanInt extends ScanStr {
             //---- 不正値チェック(範囲外) ----
             if(preList.get(i) <= inputInt
                 && inputInt <= lastList.get(i)
+                || inputInt == -88
                 || inputInt == -99){
                 ;
             } else {
@@ -95,20 +130,19 @@ public class ScanInt extends ScanStr {
                 continue;
             }
 
-            //---- input '-99'で answerLoop終了 ----
-            if (inputInt == -99) {
-                //終了していいかを確認[ Y / N ]
-                boolean isFin = questConfirm(
-                    String.format("回答を終了しますか？ (回答数: %d)"
-                        , inListInt.size()));
-                return isFin;
-            } //if -99
+            //---- inputInt -> inputSt ----
+            String inputStr = String.valueOf(inputInt);
 
-            inListInt.add(inputInt);
+            //---- [終了][戻る]の判定 ----
+            fnFlag = judgeFnKey(inputStr, inListInt, j);
+
+            if(fnFlag.equals("")) {
+                fnFlag = inputStr; //NoFlag なら inputを代入
+            }
             break;
         }//while
 
-        return false;
+        return fnFlag;
     }//inputLoop()
 
     //====== getter, setter ======

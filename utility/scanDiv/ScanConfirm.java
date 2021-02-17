@@ -16,7 +16,9 @@ public class ScanConfirm extends AbsScan{
 
             if (isFin) {
                 return "Fin";
-            } //if isFin
+            } else {
+                return "cantReverse";
+            }//if isFin
         } //if -99
 
         //---- input '-88' で戻る ----
@@ -35,6 +37,8 @@ public class ScanConfirm extends AbsScan{
 
             if(isReverse) {
                 return "Reverse";
+            } else {
+                return "cantReverse";
             }
         }//if
 
