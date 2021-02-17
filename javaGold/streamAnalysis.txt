@@ -1,0 +1,67 @@
+/**
+ * @title javaGold / streamAnalysis.txt
+ * @content Stream, Lambda式のコードに関する考察
+ *
+ *      ---- Streamコードを書いたクラス ----
+ * @see utility / interfaceUT / ICalcCorrect
+ *    filter(), count, map(): 従来コードと Streamコードの処理速度を比較
+ * @see javaGold / PracticeEditor
+ *    map(): Listの各要素に String追加、削除
+ * @see testExamin / TestAryEquals
+ *    IntStream.range(): 配列の初期値を代入
+ * @see selfLearn / Chapter02App
+ *    flatMap(), boxed(), map(): 各要素にランダムで値を設定
+ * @see selfLearn / Chapter04Multiple
+ *    IntStream.generate().limit(): 配列の初期値に全て同じ値を代入
+ *    for文を使わずに Streamで九九を表示(失敗)
+ * @see selfLearn / Chapter04Sum
+ *    filter(), sum(): 1～100の合計が 1000を超えたら break;
+ * @see selfLearn / Chapter04_Odd
+ *    filter(), sum(): 100-200の奇数の合計をStreamで求める
+ *
+ * @author shika
+ * @date 2021-02-17
+/*
+//====== Test zeroToString() ======
+answerNum:5
+correctNum:3
+correctRate: 60.00
+correctList[〇, 〇, ×, ×, 〇]
+costTime: 3.91224E+7 = 39122400 (nanoSecond)
+costTime: 4E+1 = 40 (miliSecond)
+
+//====== Test zeroToStringSTM() ======
+answerNum: 5
+correctNum: 3
+correctRate: 60.00
+correctList: [〇, 〇, ×, ×, 〇]
+
+answerNum: 6
+correctNum: 4
+correctRate: 66.67
+correctList: [〇, 〇, ×, ×, 〇, 〇]
+costTime: 5.30811E+7 = 53081100 (nanoSecond)
+costTime: 48 (miliSecond)
+
+//====== ICalcCorrect / 2021-02-10 ======
+従来型メソッドの処理時間
+    costTime: 3.91224E+7 = 39122400 (nanoSecond)
+    costTime: 4E+1 = 40 (miliSecond)
+
+Strem型メソッドの処理時間
+    costTime: 5.30811E+7 = 53081100 (nanoSecond)
+    costTime: 48 (miliSecond)
+
+Stream型のが遅いやん。対数メモリなので差がよくわからず。
+浮動小数点数シミュレーター(URL上記)をお借りして、10進数化。
+やっぱり Stream少し遅い。
+ */
+//====== selfLearn.Chapter04Multiple / 2021-02-17 =======
+for文を使わずに、Streamで九九を表示する試み -> 失敗 Give up
+
+＊ラムダ内でローカル変数を参照すると、finalしか無理と言われるので、
+  必要な外生変数を参照したい場合は、fieldにすると解決する。
+
+＊map()の 「引数 <no type> -> { }は対応してません」というエラー、
+  { }ブロック内が完成し、returnで値を返すと解決する。
+ */
