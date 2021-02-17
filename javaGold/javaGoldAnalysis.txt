@@ -1,6 +1,10 @@
-
-@see TestPracticeEd
-
+/**
+ * @title javaGold / javaGoldAnalysis.txt
+ * @content 実行ファイルである PracticeEditor, AnswerEditorに関する分析
+ * @see TestPracticeEd
+ * @see TestReverse
+ * @author shika
+ * @date 2021-02-15
 /*
 //======= Chapter02App / 2021-02-15 ======
 PracticeEditorは改行すると、次の回答に移ってしまうため、
