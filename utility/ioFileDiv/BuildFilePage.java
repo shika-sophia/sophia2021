@@ -1,14 +1,11 @@
 package utility.ioFileDiv;
 
-import utility.interfaceUT.IReference;
-
 public class BuildFilePage extends BuildJavaDoc {
     public BuildFilePage() { }
 
     //====== javaDocの書き込み時にだけ利用 ======
     public BuildFilePage(String docContent) {
-        String reference = IReference.seekRef(className);
-        buildJavaDoc(reference, docContent);
+        buildJavaDoc(docContent);
         buildFilePage();
         System.out.println(className + " / javaDoc完了");
     }

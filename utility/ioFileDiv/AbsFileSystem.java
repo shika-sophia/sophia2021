@@ -19,18 +19,22 @@
 
 package utility.ioFileDiv;
 
-public abstract class AbsFileSystem extends Thread {
+import utility.interfaceUT.IReference;
+
+public abstract class AbsFileSystem extends Thread implements IReference {
     protected String className; //呼び出し元のクラス名
     protected String currentDir;//カレント(eclipseはプロジェクト)絶対パス
     protected String filePath;  //呼び出しクラスの絶対フルパス
     protected String readText;  //ReadFileクラスで読み込んだ現ファイルの記述内容
     protected String javaDoc;   //BuildJavaDocクラスで生成した javaDocの内容
+    protected String reference; //JavaDocの @referenceを classNameから自動読み込み
 
     protected AbsFileSystem() {
         setClassName();
         setCurrentDir();
         setFilePath();
-    }
+        setReference();
+    }//constructor
 
     //====== setter ======
     protected void setClassName() {
@@ -53,6 +57,14 @@ public abstract class AbsFileSystem extends Thread {
             + className.replace('.','\\') + ".java";
     }//setFilePath()
 
+    public void setReference() {
+        this.reference = IReference.seekRef(className);
+    }//setReference()
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
     //====== getter ======
     public String getClassName() {
         return className;
@@ -74,11 +86,15 @@ public abstract class AbsFileSystem extends Thread {
         return javaDoc;
     }
 
+    public String getReference() {
+        return reference;
+    }
+
+
     //====== abstract ======
     protected abstract void setReadText(String readText);
 
     protected abstract void setJavaDoc(String javaDoc);
-
 
 //    //====== Test main() ======
 //    public static void main(String[] args) {

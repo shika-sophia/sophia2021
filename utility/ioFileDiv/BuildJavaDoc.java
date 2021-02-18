@@ -16,7 +16,7 @@ public class BuildJavaDoc extends WriteFile implements IReference {
 
     public BuildJavaDoc() {}
 
-    public void buildJavaDoc(String reference, String content) {
+    public void buildJavaDoc(String content) {
         boolean isRepeat = readPathFile(filePath).contains("/**");
 
         //すでにjavaDocがあるなら既存のものを利用
