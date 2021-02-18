@@ -1,5 +1,5 @@
 /**
- * @title swing / sample / IconButton.java
+ * @title swing / sample / DrawShape.java
  * @reference 日向俊二『JavaGUIプログラミング
  *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020
  * @content List 14.3 / p266 / 図形の描画
