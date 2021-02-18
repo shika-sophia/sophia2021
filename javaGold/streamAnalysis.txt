@@ -18,6 +18,12 @@
  *    filter(), sum(): 1～100の合計が 1000を超えたら break;
  * @see selfLearn / Chapter04_Odd
  *    filter(), sum(): 100-200の奇数の合計をStreamで求める
+ * @see swing / sample / DrawFont
+ *    int[], String[]の定義。
+ *    toArray()で配列の定義が可能。 toArray(String[]::new)も。
+ * @see swing / sample / BarGraph
+ *    Random.ints(begin, end).limit():
+ *    ints()は非staticのため new Random().ints()で使う。
  *
  * @author shika
  * @date 2021-02-17
