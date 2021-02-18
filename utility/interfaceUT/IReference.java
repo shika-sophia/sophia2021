@@ -16,7 +16,9 @@ public interface IReference {
             "米山 学 『徹底攻略 Java Gold SE8 問題集 [1Z0-809]』 インプレス, 2020",
             "swing",
             "日向俊二『JavaGUIプログラミング\r\n" +
-            " *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020"
+            " *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020",
+            "multiThread",
+            "結城 浩『Java言語で学ぶデザインパターン入門～マルチスレッド編 [改訂増補版]』, 2006"
         ));
 
     public static String seekRef(String className) {
