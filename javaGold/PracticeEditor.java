@@ -60,9 +60,8 @@ public class PracticeEditor
 
         //---- javaDoc 作成 ----
         String className = ioFileExe.getClassName();
-        String reference = IReference.seekRef(className);
         String content = questList.toString();
-        ioFileExe.buildJavaDoc(reference, content);
+        ioFileExe.buildJavaDoc(content);
 
         //---- javaDoc 追加 ----
         String appendix = buildAppendix(timeData, correctData);
