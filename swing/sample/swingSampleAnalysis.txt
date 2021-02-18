@@ -252,7 +252,37 @@ label.setText(String.format("%5s","one が選択されました。"));
 ただ、JLabel部分の文字列の後ろが少し欠ける。
 
 /*
-//====== ComnboBox / 2021-02-14 ======
+//====== ComboBox / 2021-02-14 ======
 @see resultImage / ComboBox.jpg
 選択すると編集可能だが、編集内容を保存しておくボタンや、その仕組みは書かれていない。
+*/
+/*
+//====== ChangeImage / 2021-02-18 ======
+FlowLayoutだと ScrollPaneのバーが表示されない。
+BorderLayoutだと、button.setSize()が機能しない。
+*/
+//====== ImageButton / 2021-02-18 ======
+クリックすると、アイコンとボタンの文字が変化する仕様で自作してみた。
+
+Button のテキストが半角英数字のとき、後半少し文字が切れるので、
+後ろに半角スペース２つ入れて、ちょうど良い。
+
+button.setText()/setIcon()ではなく、
+フィールドの button = new JButton("Wait", icon);だと反映しなかった。
+
+else節
+コンストラクタの仕様に戻そうと思い、new IconButton();をしたら、
+新しいウィンドウができた。そりゃそうか。これは納得。
+今ある buttonの内容を変更するには、
+button.setText()/setIcon()でするべし。
+*/
+/*
+//====== DrawShape / 2021-02-18 ======
+@see DrawShape.jpg
+
+【疑問点】
+@Overrideした paint()を どこからも呼び出していないのに、
+勝手に描画している。なんじゃこりゃ。
+
+JFrameのほうのコンストラクタ内に paint()を起動する記述があるのだろうか？
 */
