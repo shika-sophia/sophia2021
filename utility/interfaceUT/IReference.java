@@ -9,16 +9,16 @@ public interface IReference {
     public static final Map<String,String>
         refMap = new HashMap<>(Map.of(
             "selfLearn",
-            "山田祥寛『独習 Java 新版』 翔泳社, 2019",
+            "山田祥寛 『独習 Java 新版』 翔泳社, 2019",
             "se11Violet",
-            "山本道子『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021",
+            "山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021",
             "se08Black",
             "米山 学 『徹底攻略 Java Gold SE8 問題集 [1Z0-809]』 インプレス, 2020",
             "swing",
-            "日向俊二『JavaGUIプログラミング\r\n" +
+            "日向俊二 『JavaGUIプログラミング\r\n" +
             " *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020",
             "multiThread",
-            "結城 浩『Java言語で学ぶデザインパターン入門～マルチスレッド編 [改訂増補版]』, 2006"
+            "結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [改訂増補版]』, 2006"
         ));
 
     public static String seekRef(String className) {
