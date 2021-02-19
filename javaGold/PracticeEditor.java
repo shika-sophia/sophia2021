@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 import utility.interfaceUT.CorrectData;
 import utility.interfaceUT.ICalcCorrect;
 import utility.interfaceUT.ICalcTime;
-import utility.interfaceUT.IReference;
 import utility.interfaceUT.TimeData;
 
 public class PracticeEditor
-    implements IAnsNeedInstance, IReference, ICalcTime, ICalcCorrect {
+    implements IAnsNeedInstance, ICalcTime, ICalcCorrect {
 
     public PracticeEditor() {
         run();
