@@ -10,6 +10,8 @@ public class AnswerEditor
     }//constructor
 
     public void run() {
+
+        @SuppressWarnings("unused")
         String className = ioFileExe.getClassName();
         String content = "";
 
