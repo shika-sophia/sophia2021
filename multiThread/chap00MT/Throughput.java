@@ -55,7 +55,7 @@ taskPerNano: 0.01920
 
 【考察】
 マルチスレッドは処理量が２倍なので BOUND * 2
-throughput: 単位時間当りの処理量は taskPerNano = 処理数 / 処理の全時間で求める。
+throughput: 単位時間当りの処理量は taskPerNano = 処理数 / 処理時間 で求める。
 
 結果は上記の通りで、スループット２倍と言うには、
 マルチスレッド の taskPerNano が シングルスレッドの２倍ないといけない。
