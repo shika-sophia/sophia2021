@@ -1,0 +1,49 @@
+/**
+ * @title multiThread / multiThreadAnalysis.txt
+ * @content 各クラスに記述した考察などを１つのファイルにまとめる。
+ * @author shika
+ * @date 2021-02-21
+*/
+/*
+//###### chap00MT.Throughput / 2021-02-21 ######
+//====== Test th1 only at singleStream ======
+costTime: 534400
+taskPerNano: 0.01871
+
+//====== Test th1 & th2 at singleStream ======
+costTime: 1135400
+taskPerNano: 0.01761
+
+//====== Test parallelStream at singleThread ======
+costTime: 520700
+taskPerNano: 0.01920
+
+【考察】
+マルチスレッドは処理量が２倍なので BOUND * 2
+throughput: 単位時間当りの処理量は taskPerNano = 処理数 / 処理の全時間で求める。
+
+結果は上記の通りで、スループット２倍と言うには、
+マルチスレッド の taskPerNano が シングルスレッドの２倍ないといけない。
+むしろシングルスレッドより下がっている。
+
+また同様の処理を parallelStremで行ったが
+こちらもsingleStream(sequential:直列)と大差ない結果。
+
+スレッドを立ち上げる際に、Threadクラスのインスタンスをする必要があり、
+マルチになればその分のオーバーヘッド(= 処理負担)が掛かるのと、
+Thread切り替えたりする時間が掛かるのではなかろうか。
+
+【解答】解説 p468
+一般的に２倍にはならない。
+〔理由１〕
+＊ハードウェアの制約により、
+    真に同時に動作する(= 並列に処理をする)とは限らない。
+＊その場合、スレッドの切り替えのオーバーヘッドが掛かるから
+
+〔理由２〕
+処理する仕事を全てのスレッドに均一に分担させるとは限らない。
+
+〔理由３〕
+たとえ２倍のスレッドが並列に動作したとしても、
+スレッド間の排他制御を行うオーバーヘッドがあるから。
+ */
