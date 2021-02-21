@@ -9,7 +9,8 @@
  */
 /*
 //[2]
- * ① import java.lang.regex.Pattern;
+ * Ｘ① import java.lang.regex.Pattern;
+ * 	=>java.util.～
  * ② try
  * ③　Paths.get()
  * ④ readLine()
