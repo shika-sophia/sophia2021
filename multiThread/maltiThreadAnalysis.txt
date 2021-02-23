@@ -47,3 +47,72 @@ Thread切り替えたりする時間が掛かるのではなかろうか。
 たとえ２倍のスレッドが並列に動作したとしても、
 スレッド間の排他制御を行うオーバーヘッドがあるから。
  */
+/*
+//====== Practice01MT / 2021-02-23 ======
+解答 p475
+    〔getCounter()を synchronized / volatile にする理由〕
+    他のスレッドがいくらcounterフィールドを変更しても、
+    個々のスレッドが持っているキャッシュに対する操作であり、
+    共有メモリに反映されるとは限らないから。
+*/
+/*
+//====== DeadLockRV / 2021-02-23 ======
+【考察】
+EaterThread.eat() に２つあった synchronizedを
+１つ eat()だけにすれば解決。必ず leftしたら rightも同じ synchronized内で行うにした。
+
+結果を見ると必ずしも eat()内の一連の行動を完了する前に
+他の行動が入り込んでいるが、
+デッドロックでプログラムが止まることはなかったので、
+処理は完了したが、表示が遅れたということか。
+
+【解答】 解説 p475
+new EaterThreadRV("Alice", spoon, fork).start();
+new EaterThreadRV("Bobby", fork, spoon).start();
+    ↓
+new EaterThreadRV("Alice", spoon, fork).start();
+new EaterThreadRV("Bobby", spoon, fork).start();
+
+同じ順でオブジェクト生成。
+=> 「synchronizedの対称性」を崩すという解決法
+
+〔別解〕
+Pair pair = new Pair(spoon, folk);
+new EaterThreadRV("Alice", pair).start();
+new EaterThreadRV("Bobby", pair).start();
+
+synchronized(pair){ }とする
+
+synchronizedを１つにするという解決法は、私のコードと同じ。
+*/
+/*
+//====== MainMutex / 2021-02-23 ======
+【解答１】 解説 p478 / List A1-9
+boolean busyをフィールドとし
+lock()で while(busy){ wait(); }; busy = true;
+unLock()で busy = false; notifyAll();
+
+この方法だと起こる制約
+〔制約１〕「再入ができない」「reentrantではない」
+    同じクラスが２度続けて lock()を呼び出すと、
+    先ほどの通過で trueになっているので wait()で待たされる
+
+〔制約２〕誰でも unLock()できる
+  lock()を呼び出していないスレッドでも、
+  unLock()を呼び出すことができてしまう。
+
+【解答２】 List A1-10
+  上記の制約の解決法として、
+  lockCountフィールド、ownerフィールドを設ける。
+  assert で意図しない値を検出。
+
+【解答３】 List A1-11(下記)
+java.util.concurrent.locks.ReentrantLockクラスは
+解答２の機能を全て含んでいるので Mutexに extendsするだけでよい。
+
+〔List A1-11〕
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Mutex extends ReentrantLock { }
+
+*/
