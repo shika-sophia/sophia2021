@@ -5,7 +5,8 @@
  *
  * @clsss SemaphoreMT // main()
  * @class BoundedResource, Log // Semphore.acquire(), release()でリソースの増減を計測
- * @class UserThreadSemaphore  // スレッドのコンストラクタ。callResource()の呼び出し。
+ * @class UserThreadSemaphore extends Thread
+ *                             // スレッドのコンストラクタ。run(): callResource()の呼び出し。
  *
  * @author shika
  * @date 2021-02-23

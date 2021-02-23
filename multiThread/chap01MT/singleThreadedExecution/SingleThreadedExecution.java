@@ -1,11 +1,11 @@
 /**
- * @title multiThread / SingleThreadedExecution.java
+ * @title multiThread / chap01MT / singleTreadedExecution / SingleThreadedExecution.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [改訂増補版]』, 2006
- * @content List 1-1, 1-2, 1-3 / p52-54 / synchronized
+ * @content List 1-1, 1-2, 1-3, 1-4 / p52-54 / synchronized
  *
  * @class SingleThreadedExecution // ◆EntryPoint main()で各インスタンス
  * @class Gate                    // pass(), check()の定義。
- * @class UserThread              //ユーザーのコンストラクタ。 pass()の呼び出し。
+ * @class UserThread extends Thread //ユーザーのコンストラクタ。 pass()の呼び出し。
  *
  * @author shika
  * @date 2021-02-23
