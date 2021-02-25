@@ -66,7 +66,10 @@ public class DJchap06Practice {
 〇 （2） LinkedListの挿入・削除は比較的低速。Ｘ -> ArrayListより速い。
 〇 （3） HashSetは要素の重複を許さず、一定の順序で保持。Ｘ -> 順序は維持されない
 〇 （4） HashMapはkey,valueのペア。順序は保証されない。〇
-Ｘ （5） Stack: FIFO, Queue: LIFO。〇 => Stack: LIFO, Queue: FIFO
+Ｘ （5） Stack: FIFO, Queue: LIFO。〇
+    => Stack: LIFO or FILO (車の運搬トレーラー)
+       Queue: FIFO (待ち行列)
+
 〇 （6） [2]① <String,String>
 〇 （7） ② "carrot","ニンジン"
 〇 （8） ③ remove
