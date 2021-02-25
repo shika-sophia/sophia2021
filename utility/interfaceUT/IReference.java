@@ -10,6 +10,8 @@ public interface IReference {
         refMap = new HashMap<>(Map.of(
             "selfLearn",
             "山田祥寛 『独習 Java 新版』 翔泳社, 2019",
+            "webPractice",
+            "山田祥寛 『独習 Java サーバーサイド編 第２版』 翔泳社, 2013",
             "se11Violet",
             "山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021",
             "se08Black",
@@ -18,7 +20,7 @@ public interface IReference {
             "日向俊二 『JavaGUIプログラミング\r\n" +
             " *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020",
             "multiThread",
-            "結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [改訂増補版]』, 2006"
+            "結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006"
         ));
 
     public static String seekRef(String className) {
