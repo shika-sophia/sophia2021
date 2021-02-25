@@ -1,0 +1,54 @@
+﻿----  DBviewerの使い方 ----
+
+■　DBviewer 日本語のインストール
+[step1]
+URL：https://ja.osdn.net/projects/dbviewer/
+
+[step2]
+ダウンロードファイル
+zigen.plugin.db_1.2.2.v20101009.jar 
+
+[step3]
+jarファイルの設置(C:\pleiades\eclipse\plugins)
+C→pleiades→eclipse→plugins内に設置
+
+[step4]
+eclipseの再起動
+
+[step5]
+パースペクティブから「DBviewer」を設定
+
+■　データベースの登録
+[step1]
+DBツリービューのDBviewerPluginを右クリック
+「登録」を選択
+
+[step2]
+データベース定義の登録
+
+データベース名：
+JDBCドライバー：
+　「ファイルの追加」から使用するconnecterを選択
+
+[step3]
+接続情報の設定
+
+JDBC Driver：※使用するDBMSのドライバを指定する
+        com.mysql.cj.jdbc.Driver
+
+JDBCタイプ：type4
+
+接続文字列：※接続先データベースを指定
+        jdbc:mysql://localhost:3306/TEST_DB?characterEncoding=utf-8&serverTimezone=JST
+
+接続ユーザー：root
+
+接続パスワード:root
+
+「テスト接続」接続できるか確認する
+
+接続できれば「完了」
+
+
+◆eclipseのDBViewerからMySQLにアクセスする方法
+https://www.early2home.com/blog/it/eclipse/post-217.html
