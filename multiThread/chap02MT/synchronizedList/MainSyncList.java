@@ -44,6 +44,10 @@ public class MainSyncList {
 
 ＊final List<Integer> list
 finalなのに add(), remove()できるんだ。
+-> final なのは listで、新たな Listの代入は不可。
+-> listの 要素の変更は可能。
+-> final と 不変Listは違うもの。
+不変Listの使い途は、immutableにしたいときに使うんだね。
 
 ＊println()を print()にすると、表示が出なくなる。
 -> Thread.sleep()で表示された。
