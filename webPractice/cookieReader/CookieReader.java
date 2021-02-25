@@ -35,7 +35,7 @@ public class CookieReader {
     }// headerReader()
 
     public String buildHeader() {
-        var bld = new StringBuilder(100);
+        var bld = new StringBuilder(1024);
 
         for(int i = 0; i < nameList.size(); i++) {
             bld.append(nameList.get(i)).append(": ")
@@ -43,6 +43,7 @@ public class CookieReader {
         }
 
         this.headerStr = bld.toString();
+        //System.out.println("str.length(): " + headerStr.length());
         return headerStr;
     }//buildHeader
 
@@ -93,5 +94,7 @@ referer: http://localhost:8080/sophia2021/CookieServlet
 accept-encoding: gzip, deflate, br
 accept-language: ja,en-US;q=0.9,en;q=0.8
 cookie: JSESSIONID=CF3FA7A93F1B6D5DE49AD251778F55B3
+
+headerStr.length(): 845
 */
 

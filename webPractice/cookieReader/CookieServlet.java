@@ -84,4 +84,6 @@ referer: http://localhost:8080/sophia2021/CookieServlet
 accept-encoding: gzip, deflate, br
 accept-language: ja,en-US;q=0.9,en;q=0.8
 cookie: JSESSIONID=CF3FA7A93F1B6D5DE49AD251778F55B3
+
+headerStr.length(): 845
 */
