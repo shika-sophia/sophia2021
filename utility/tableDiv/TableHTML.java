@@ -13,7 +13,7 @@ public class TableHTML extends AbsTableData {
 
     public String buildTableHTML() {
         var bld = new StringBuilder(dataLength);
-        bld.append("<table  border='1'> \n");
+        bld.append("<table border='1'> \n");
 
         //---- build columnName ----
         bld.append("<tr> \n  ");

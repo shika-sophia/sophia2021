@@ -42,7 +42,7 @@ public abstract class AbsTableData {
         //データサイズ概算  = (行数 + カラム行) * １行当たりの文字数
         dataLength = (rowNum + 1) * rowContentSize;
         //HTML<table>の文字数概算 = <table> + <tr>*行数 + <td>*列数
-        int htmlLength = 30 + (10 * rowNum) + (10 * columnNum);
+        int htmlLength = 30 + (15 * rowNum) + (15 * columnNum);
 
         dataLength += htmlLength;
         dataLength *= 2; //謎の「*2」, 改行分や余裕を持たせる分
