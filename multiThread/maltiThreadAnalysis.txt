@@ -114,5 +114,32 @@ java.util.concurrent.locks.ReentrantLockクラスは
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Mutex extends ReentrantLock { }
+*/
+/*
+//====== chap02MT / fieldInstance // 2021-02-26 ======
+original: [UserInfo: <info name: Alice, address: Alaska />]
+replaced: [UserInfo: <info name: Bobby, address: Alaska />]
 
+＊replace()
+String.replace(): 新たなStringオブジェクトを生成。
+StringBuffer.replace(): 現在のオブジェクトの状態を変化させる。
+
+＊private final のフィールド infoには他の値を代入不可だが
+infoの中身 StringBufferインスタンスは mutableなので、
+インスタンスの内容を外部から書き換えられてしまう。
+*/
+/*
+//###### chap02MT / directConstructor // 2021-02-26 ######
+//====== Test LineUnsafe ======
+before: Line: (0,0)-(100,0)
+after:  Line: (150,150)-(250,250)
+
+//====== Test LineImmutable ======
+before: Line: (0,0)-(100,0)
+after:  Line: (0,0)-(100,0)
+
+コンストラクタ Line(Point, Point)を そのままフィールド代入ではなく、
+新たに Pointインスタンスを作って代入するようにしたら、
+その後のフィールドの改変の影響を受けなくなった。
+<?> この理由が考えても よう解らん。疑問点として残しておこう。
 */
