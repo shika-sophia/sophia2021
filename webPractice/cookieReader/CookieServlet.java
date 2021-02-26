@@ -48,9 +48,11 @@ public class CookieServlet extends HttpServlet {
             throws ServletException, IOException {
         Enumeration<String> headerEnum = request.getHeaderNames();
         reader. headerReader(headerEnum, request);
-        String headerStr = reader.getHeaderStr();
         sample.requestSample(request);
+
+        String headerStr = reader.getHeaderStr();
         System.out.println(headerStr);
+
         message = "ヘッダー情報を取得しました。";
         doForward(request, response);
     }//doPost()
