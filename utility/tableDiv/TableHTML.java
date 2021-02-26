@@ -60,7 +60,7 @@ public class TableHTML extends AbsTableData {
 
 /*
 //====== Test columnList.stream() ======
-dataLength: 276
+dataLength: 336
 length: 251
 <table  border='1'>
 <tr>
