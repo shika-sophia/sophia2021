@@ -30,10 +30,12 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private CookieReader reader;
+    private MethodSample sample;
     private String message;
 
     public void init(ServletConfig config) throws ServletException {
         reader = new CookieReader();
+        sample = new MethodSample();
     }//init()
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +49,7 @@ public class CookieServlet extends HttpServlet {
         Enumeration<String> headerEnum = request.getHeaderNames();
         reader. headerReader(headerEnum, request);
         String headerStr = reader.getHeaderStr();
-
+        sample.requestSample(request);
         System.out.println(headerStr);
         message = "ヘッダー情報を取得しました。";
         doForward(request, response);
@@ -63,6 +65,35 @@ public class CookieServlet extends HttpServlet {
     }//doForward()
 }//class
 
+/*
+==== request method ====
+---- request header ----
+method: POST
+mine: application/x-www-form-urlencoded
+authType: null
+bodyLength: 20
+locale: ja
+protocol: HTTP/1.1
+addressLocal: 0:0:0:0:0:0:0:1
+addressRemote: 0:0:0:0:0:0:0:1
+host: 0:0:0:0:0:0:0:1
+user: null
+session: 8A58422BE2D942083BB1F38EAEBB5048
+
+---- request path ----
+scheme: http
+server: localhost
+port: 8080
+url: http://localhost:8080/sophia2021/CookieServlet
+uri: /sophia2021/CookieServlet
+appli: /sophia2021
+servlet: /CookieServlet
+query: null
+info: null
+trans: null
+
+String.length(): 526
+*/
 /*
 //====== result ======
 host: localhost:8080
