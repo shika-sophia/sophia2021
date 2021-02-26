@@ -50,8 +50,8 @@ public abstract class AbsTableData {
     }//calcDataLength
 
 //==== Test dataLength ====
-//dataLength: 232
-//length: 195
+//dataLength: 336
+//length: 251
 
     //====== getter ======
     public List<String> getColumnList() {
