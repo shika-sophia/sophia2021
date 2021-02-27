@@ -1,3 +1,17 @@
+/**
+ * @title utility / tableDiv / AbsTableData.java
+ * @content 列リスト、値リスト(行リスト)から HTMLや swingのテーブルを作成
+ *
+ * @class AbsTableData //columnList, valueListsなど全体のフィールド
+ *            |
+ * @class TableHTML extends AbsTableData
+ *            |        //HTML＜table＞形式の表を作成
+ * @class TableSW extends TableHTML
+ *                implements TableModelListener
+ *                     //swing.JTable の表を作成
+ * @author shika
+ * @date 2021-02-26
+ * */
 package utility.tableDiv;
 
 import java.util.ArrayList;
