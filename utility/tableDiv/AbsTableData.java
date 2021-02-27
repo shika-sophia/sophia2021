@@ -88,6 +88,10 @@ public abstract class AbsTableData {
         return rowNum;
     }
 
+    public String tableHtml() {
+        return tableHtml;
+    }
+
     //====== abstract ======
     protected abstract void setTableHtml(String tableHtml);
 
