@@ -3,6 +3,7 @@
  * @reference 日向俊二『JavaGUIプログラミング
  *                     ～Swingを使った今どきのアプリ開発』カットシステム, 2020
  * @content List 11.1 / p219 / Tableの表示
+ * @see utility / tableDiv / TableSW.java
  * @author shika
  * @date 2021-02-15
  */
