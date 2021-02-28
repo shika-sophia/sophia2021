@@ -16,7 +16,10 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,6 +44,16 @@ public class TableSW
     String[][] valueArys; //値の配列: 要素に行配列。valueLists配列化
 
     public TableSW() { }
+
+    public TableSW(String[] columnAry, String[][] valueArys) {
+        this.columnAry = columnAry;
+        this.valueArys = valueArys;
+        super.columnList = Arrays.asList(columnAry);
+        super.valueLists =Arrays.stream(valueArys)
+                .map((Function<String[], List<String>>)
+                    ary -> Arrays.stream(ary).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+    }
 
     public TableSW(
             List<String> columnList, List<List<String>> valueLists) {
@@ -114,7 +127,34 @@ public class TableSW
         return listener;
     }//buildListener()
 
-//    //====== Test main(), run() ======
+}//class
+
+/*
+//====== Result buildAry() ======
+columnAry: [id, name, adress]
+
+valueArys:
+1, Alice, Alaska,
+2, Bobby, Britain,
+3, Charry, Canada,
+
+@see tableDiv / TableSW.jpg 結果のテーブル画像
+
+//====== Result Table(String[], String[][]) ======
+columnList: [id, name, adress]
+valueLists:
+1, Alice, Alaska,
+2, Bobby, Britain,
+3, Charry, Canada,
+
+columnAry: [id, name, adress]
+valueArys:
+1, Alice, Alaska,
+2, Bobby, Britain,
+3, Charry, Canada,
+*/
+/*
+//    //====== Test run() ======
 //    public static void main(String[] args) {
 //        List<String> columnList = List.of("id", "name", "adress");
 //        List<String> rowList1 = List.of("1", "Alice", "Alaska");
@@ -137,16 +177,39 @@ public class TableSW
 //            System.out.println();
 //        }
 //    }//main()
-}//class
-
-/*
-//====== Result buildAry() ======
-columnAry: [id, name, adress]
-
-valueArys:
-1, Alice, Alaska,
-2, Bobby, Britain,
-3, Charry, Canada,
-
-@see tableDiv / TableSW.jpg 結果のテーブル画像
+//
+//    //====== Test Table(String[], String[][]) ======
+//    public static void main(String[] args) {
+//        String[] columnAry = Stream.of("id", "name", "adress")
+//                            .toArray(String[]::new);
+//        String[] rowAry1 = Stream.of("1", "Alice", "Alaska")
+//                .toArray(String[]::new);
+//        String[] rowAry2 = Stream.of("2", "Bobby", "Britain")
+//                .toArray(String[]::new);
+//        String[] rowAry3 = Stream.of("3", "Charry", "Canada")
+//                .toArray(String[]::new);
+//        String[][] valueArys = Stream.of(rowAry1, rowAry2, rowAry3)
+//                               .toArray(String[][]::new);
+//
+//        var here = new TableSW(columnAry, valueArys);
+//
+//        System.out.println("columnList: " + here.columnList);
+//        System.out.println("valueLists: ");
+//        for(List<String> rowList : here.valueLists) {
+//            rowList.stream().map(s -> s + ", ")
+//                    .forEach(System.out::print);
+//            System.out.println();
+//        }//for
+//
+//        //---- Test buildAry() ----
+//        System.out.println("columnAry: " + Arrays.toString(here.columnAry));
+//        System.out.println();
+//
+//        System.out.println("valueArys: ");
+//        for (String[] rowAry : here.valueArys) {
+//            Arrays.stream(rowAry).map(s -> s + ", ")
+//                    .forEach(System.out::print);
+//            System.out.println();
+//        }//for
+//    }//main()
 */
