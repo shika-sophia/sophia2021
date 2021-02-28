@@ -1,16 +1,16 @@
 /**
  * @title multiThread / chap03MT / blockingQueue / MainCientServer.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第３章 GuardedSuspention / List 3-6
+ * @content 第３章 GuardedSuspension / List 3-6
  * @content BlockingQueueで synchronizedと同様の動作するかを検証。
  * @author shika
  * @date 2021-02-27
  */
 package multiThread.chap03MT.blockingQueue;
 
-import multiThread.chap03MT.guardedSuspention.ClientThread;
-import multiThread.chap03MT.guardedSuspention.RequestQueue;
-import multiThread.chap03MT.guardedSuspention.ServerThread;
+import multiThread.chap03MT.guardedSuspension.ClientThread;
+import multiThread.chap03MT.guardedSuspension.RequestQueue;
+import multiThread.chap03MT.guardedSuspension.ServerThread;
 
 public class MainBlockClientServer {
 
