@@ -35,13 +35,18 @@ public class MetaData {
         //getColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern)
         ResultSet showDb = meta.getCatalogs();
         ResultSet showTb = meta.getTables("practice", "%", "%", null);
-        ResultSet showCol = meta.getColumns("practice","%", "%", "%");
+        ResultSet showCol = meta.getColumns("practice", null, "%", "%");
 
         List<String> databaseList = printResult(showDb, "TABLE_CAT");
         List<String> tableList = printResult(showTb, "TABLE_NAME");
         List<String> clumnList = printResult(showCol, "COLUMN_NAME");
         List<String> typeList = printResult(showCol, "TYPE_NAME");
     }//readMeta()
+
+    @SuppressWarnings("unused")
+    private void readMetaAll() throws SQLException {
+        DatabaseMetaData meta = conn.getMetaData();
+    }//readMetaAll
 
     private List<String> printResult(ResultSet rs, String key)
             throws SQLException {
@@ -63,6 +68,7 @@ public class MetaData {
             e.printStackTrace();
         }
     }//main()
+
 }//class
 
 /*
