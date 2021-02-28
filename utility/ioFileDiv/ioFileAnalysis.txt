@@ -129,6 +129,11 @@ herePath: utility\ReadFile.java
 
 【考察】
 FileReaderは絶対パスを指定しないと、ファイルを見つけてくれないようです。
+〔追記 2021-03-01〕
+いや、eclipseの場合 current-directryが プロジェクト名になっているので、
+そこからの相対パスなら見つけてくれます。
+"src\\multiThread\\chap04MT\\balking\\data.txt"
+@see maltiThread / chap04MT / balking / MainBalking.java
 */
 /*
 //###### javaGold.testExamin.TestJavaDoc / 2021-02-01 ######
