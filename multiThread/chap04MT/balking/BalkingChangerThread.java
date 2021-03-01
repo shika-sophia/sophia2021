@@ -14,9 +14,16 @@ public class BalkingChangerThread extends Thread {
 
     //====== データを変更・保存する ======
     public void run() {
+        var bld = new StringBuilder(100);
+
         try {
             for(int i = 0; true; i++) {
-                data.change("No." + i);  //データを変更する
+                bld.delete(0, bld.length());
+                bld.append("No.").append(i).append(" ");
+                if(i % 10 == 0 && i != 0) {
+                    bld.append("\n");
+                }
+                data.change(bld.toString());  //データを変更する
                 Thread.sleep(random.nextInt(1000)); //仕事のつもり
                 data.save();             //明示的に保存する
             }//for

@@ -2,7 +2,8 @@ package multiThread.chap04MT.balking;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class BalkingData {
     private final String fileName;
@@ -33,7 +34,8 @@ public class BalkingData {
         System.out.println(Thread.currentThread().getName()
             + " calls doSave(), content = " + content);
 
-        try(var writer = Files.newBufferedWriter(Path.of(fileName))){
+        try(var writer = Files.newBufferedWriter(
+                Paths.get(fileName), StandardOpenOption.APPEND)){
             writer.write(content);
 
         } catch (IOException e) {
