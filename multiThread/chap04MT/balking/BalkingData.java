@@ -26,9 +26,23 @@ public class BalkingData {
             doSave();
             changed = false;
         } else {
+            System.out.println("<< Balking return >>");
             return;
         }
     }//save()
+
+//    //====== 練習問題 4-2 (2) ======
+//    //synchronized を外し、無駄な書き込みが起こることを確認。
+//    public void save() throws IOException, InterruptedException {
+//        if(changed) {
+//            Thread.sleep(1000);
+//            doSave();
+//            changed = false;
+//        } else {
+//            System.out.println("<< Balking return >>");
+//            return;
+//        }
+//    }//save()
 
     private void doSave() {
         System.out.println(Thread.currentThread().getName()

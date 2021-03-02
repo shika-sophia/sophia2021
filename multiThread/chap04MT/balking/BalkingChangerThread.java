@@ -20,6 +20,7 @@ public class BalkingChangerThread extends Thread {
             for(int i = 0; true; i++) {
                 bld.delete(0, bld.length());
                 bld.append("No.").append(i).append(" ");
+
                 if(i % 10 == 0 && i != 0) {
                     bld.append("\n");
                 }
