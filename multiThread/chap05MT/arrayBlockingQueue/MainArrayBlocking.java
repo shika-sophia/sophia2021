@@ -1,7 +1,7 @@
 /**
  * @title multiThread / chap05MT / arrayBlockingQueue / MainArrayBlocking.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第５章 Producer-Consumer / List 5-5
+ * @content 第５章 Producer-Consumer / List 5-5 ArrayBlockingQueue
  * @author shika
  * @date 2021-03-03
  */
