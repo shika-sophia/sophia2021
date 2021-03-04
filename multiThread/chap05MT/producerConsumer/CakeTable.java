@@ -18,8 +18,12 @@ public class CakeTable {
     //ケーキを置く
     public synchronized void put(String cake)
             throws InterruptedException {
+
         while(count >= BOUND) {
-            wait();
+            clearCake();
+//            printWaitStatus(" waits put()");
+//            wait();
+//            printWaitStatus(" notified put()");
         }//while
 
         System.out.println(
@@ -30,10 +34,22 @@ public class CakeTable {
         notifyAll();
     }//put()
 
+    private void clearCake() {
+        for(int i = 0; i < buffer.length; i++) {
+            buffer[i] = null;
+        }
+        count = 0;
+        System.out.println(
+            Thread.currentThread().getName() + " cleared All cake.");
+        notifyAll();
+    }//clearCake()
+
     public synchronized String take()
             throws InterruptedException {
         while(count <= 0) {
+            printWaitStatus(" waits take()");
             wait();
+            printWaitStatus(" notified take()");
         }
         String cake = buffer[head];
         head = (head + 1) % BOUND;
@@ -44,5 +60,9 @@ public class CakeTable {
 
         return cake;
     }//take()
+
+    private void printWaitStatus(String status) {
+        System.out.println(Thread.currentThread().getName() + status);
+    }//printThread
 
 }//class
