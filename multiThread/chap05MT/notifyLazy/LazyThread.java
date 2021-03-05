@@ -3,11 +3,11 @@ package multiThread.chap05MT.notifyLazy;
 import multiThread.chap05MT.producerConsumer.CakeTable;
 
 public class LazyThread extends Thread {
-    private final CakeTableNotify table;
+    private final CakeTable table;
 
     public LazyThread(String name, CakeTable table) {
         super(name);
-        this.table = (CakeTableNotify) table;
+        this.table = table;
     }
 
     public void run() {
