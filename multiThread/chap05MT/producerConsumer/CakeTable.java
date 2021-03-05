@@ -1,11 +1,11 @@
 package multiThread.chap05MT.producerConsumer;
 
 public class CakeTable {
-    private final String[] buffer;//テーブルに置いているケーキ
-    private final int BOUND;//bufferの上限 = buffer.length
-    private int count;      //buffer内の cake数
-    private int head;       //次に takeする index
-    private int tail;       //次に putする index
+    protected final String[] buffer;//テーブルに置いているケーキ
+    protected final int BOUND;//bufferの上限 = buffer.length
+    protected int count;      //buffer内の cake数
+    protected int head;       //次に takeする index
+    protected int tail;       //次に putする index
 
     public CakeTable(int BOUND) {
         this.buffer = new String[BOUND];
@@ -20,10 +20,10 @@ public class CakeTable {
             throws InterruptedException {
 
         while(count >= BOUND) {
-            clearCake();
-//            printWaitStatus(" waits put()");
-//            wait();
-//            printWaitStatus(" notified put()");
+//            clearCake();
+            printWaitStatus(" waits put()");
+            wait();
+            printWaitStatus(" notified put()");
         }//while
 
         System.out.println(
@@ -34,15 +34,15 @@ public class CakeTable {
         notifyAll();
     }//put()
 
-    private void clearCake() {
-        for(int i = 0; i < buffer.length; i++) {
-            buffer[i] = null;
-        }
-        count = 0;
-        System.out.println(
-            Thread.currentThread().getName() + " cleared All cake.");
-        notifyAll();
-    }//clearCake()
+//    private void clearCake() {
+//        for(int i = 0; i < buffer.length; i++) {
+//            buffer[i] = null;
+//        }
+//        count = 0;
+//        System.out.println(
+//            Thread.currentThread().getName() + " cleared All cake.");
+//        notifyAll();
+//    }//clearCake()
 
     public synchronized String take()
             throws InterruptedException {
