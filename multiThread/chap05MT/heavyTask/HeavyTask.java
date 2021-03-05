@@ -1,8 +1,10 @@
 /**
- * @title multiThread / chap05MT / producerConsumer / MainArrayBlocking.java
+ * @title multiThread / chap05MT / producerConsumer / HeavyTask.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第５章 Producer-Consumer / List 5-1, 5-2, 5-3, 5-4
- * @content 練習問題 5-7 / HeavyTaskを中断可能にする。
+ * @content 練習問題 5-7 自己答案 / HeavyTaskを中断可能にする。
+ * @class HeavyTask   //◆EntryPoint: main(), doHeavyTask()
+ * @class LimitThread //HeavyTask.main()を interrupt()するためのスレッド
  * @author shika
  * @date 2021-03-04
  */
