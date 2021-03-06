@@ -1,3 +1,10 @@
+/**
+ * @title multiThread / chap06MT / readWriteLock / MainRWlock.java
+ * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
+ * @content 第６章 Read-Write Lock /
+ * @author shika
+ * @date 2021-03-06
+ */
 package multiThread.chap06MT.readWriteLock;
 
 public class MainRWlock {
