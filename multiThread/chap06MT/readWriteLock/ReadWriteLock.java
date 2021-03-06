@@ -1,17 +1,45 @@
 package multiThread.chap06MT.readWriteLock;
 
-public class ReadWriteLock {
+public final class ReadWriteLock {
+    private int readingThread = 0;
+    private int waitWrite = 0;
+    private int writingThread = 0;
+    private boolean preferWrite = true; //書くのを優先するなら true
 
-    public void readLock() {
-    }
+    public synchronized void readLock()
+            throws InterruptedException {
+        while(writingThread > 0 || (preferWrite && waitWrite > 0)) {
+            wait();
+        }
 
-    public void readUnlock() {
-    }
+        readingThread++;
+    }//readRock()
 
-    public void writeLock() {
-    }
+    public synchronized void readUnlock() {
+        readingThread--;
+        preferWrite = true;
+        notifyAll();
+    }//readUnlock()
 
-    public void writeUnlock() {
-    }
+    public synchronized void writeLock()
+            throws InterruptedException {
+        waitWrite++;
+
+        try {
+            while(readingThread > 0 || writingThread > 0) {
+                wait();
+            }
+        } finally {
+            waitWrite--;
+        }
+
+        writingThread++;
+    }//writeLock()
+
+    public synchronized void writeUnlock() {
+        writingThread--;
+        preferWrite = false;
+        notifyAll();
+    }//writeUnlock()
 
 }//class

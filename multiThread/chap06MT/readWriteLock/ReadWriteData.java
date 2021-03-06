@@ -1,10 +1,11 @@
 package multiThread.chap06MT.readWriteLock;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ReadWriteData {
-    private final String[] buffer;
+    private String[] buffer;
     private final ReadWriteLock lock = new ReadWriteLock();
 
     public ReadWriteData(int size) {
@@ -37,17 +38,20 @@ public class ReadWriteData {
 
     private String[] doRead() {
         String[] newBuffer
-        = Arrays.stream(buffer).toArray(String[]::new);
+            = Arrays.stream(buffer).toArray(String[]::new);
         slowly();
 
         return newBuffer;
     }//doRead()
 
     private void doWrite(String str) {
-        for (int i = 0; i < buffer.length; i++) {
-            buffer[i] = str;
-            slowly();
-        }
+        buffer = IntStream.range(0, buffer.length)
+                .boxed()
+                .map(i -> {
+                    buffer[i] = str;
+                    slowly();
+                    return buffer[i];
+                }).toArray(String[]::new);
     }//doWrite()
 
     private void slowly() {
