@@ -1,3 +1,10 @@
+/**
+ * @title multiThread / chap06MT / reentrantDataMap / MainDataMap.java
+ * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
+ * @content 第６章 Read-Write Lock / Reentrantと synchonizedのパフォーマンス比較
+ * @author shika
+ * @date 2021-03-07
+ */
 package multiThread.chap06MT.reentrantDataMap;
 
 public class MainDataMap {
@@ -71,3 +78,4 @@ read count: 328
 read count: 4746
 
 */
+
