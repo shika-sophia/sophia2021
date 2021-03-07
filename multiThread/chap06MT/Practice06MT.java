@@ -9,6 +9,10 @@
  * @costTime 16:20 - 16:44 ( 23 分)
  * @correctRate 正答率 53.33 ％ ( 〇8問 / 全15問 )
  */
+/* Appendix
+ * @costTime 12:44 - 12:49 ( 4 分)
+ * @correctRate 正答率 50.00 ％ ( 〇1問 / 全2問 )
+ */
 package multiThread.chap06MT;
 
 import javaGold.PracticeEditor;
@@ -71,5 +75,19 @@ public class Practice06MT {
 終了時刻 16:44
 所要時間 23 分
 正答率 53.33 ％ ( 〇8問 / 全15問 )
+*/
+
+/*
+//====== 2021-03-07 ======
+ 練習問題 6-7
+〇 （1） Ｘ -> writeLock.unlock()中は ReadTh. だけでなく WriteTh.も wait()
+Ｘ （2） 〇 -> readLock.unlock()中は wait()しているのは WriteTh.だけです。
+  => (preferWait && waitingWrite > 0) == trueのとき、
+  ReadThも待たされる。
+
+開始時刻 12:44
+終了時刻 12:49
+所要時間 4 分
+正答率 50.00 ％ ( 〇1問 / 全2問 )
 */
 
