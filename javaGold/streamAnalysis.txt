@@ -11,9 +11,12 @@
  *    IntStream.range(): 配列の初期値を代入
  * @see selfLearn / Chapter02App
  *    flatMap(), boxed(), map(): 各要素にランダムで値を設定
- * @see selfLearn / Chapter04Multiple
+ * @see selfLearn / Chapter04Multiple $1(下段のほう)
  *    IntStream.generate().limit(): 配列の初期値に全て同じ値を代入
- *    for文を使わずに Streamで九九を表示(失敗)
+ * @see selfLearn / Chapter04Multiple
+ *    IntStream.rangeClosed(1, 9)を２つ作り、
+ *    積をして flatMap()で結合
+ *    for文を使わずに Streamで九九を表示
  * @see selfLearn / Chapter04Sum
  *    filter(), sum(): 1～100の合計が 1000を超えたら break;
  * @see selfLearn / Chapter04_Odd
@@ -63,11 +66,30 @@ Stream型のが遅いやん。対数メモリなので差がよくわからず�
 やっぱり Stream少し遅い。
  */
 //====== selfLearn.Chapter04Multiple / 2021-02-17 =======
-for文を使わずに、Streamで九九を表示する試み -> 失敗 Give up
+for文を使わずに、Streamで九九を表示する試み -> 失敗 Give up -> 成功！
 
 ＊ラムダ内でローカル変数を参照すると、finalしか無理と言われるので、
   必要な外生変数を参照したい場合は、fieldにすると解決する。
 
 ＊map()の 「引数 <no type> -> { }は対応してません」というエラー、
   { }ブロック内が完成し、returnで値を返すと解決する。
- */
+    ↓
+//====== selfLearn.Chapter04Multiple / 2021-03-08 =======
+List<Integer> multiplyList =
+    IntStream.rangeClosed(1, 9).boxed() //IntStream -> Stream<Integer>
+    .flatMap(x ->                       //２つの Stream<Integer>を１つに結合
+        IntStream.rangeClosed(1, 9)     // 1-9の yを IntStreamで定義
+            .map(y -> x * y)            // 積 x * y の IntStreamへ格納
+            .boxed())                   // yの IntStream -> Stream<Integer>
+    .collect(Collectors.toList());      //flatMap()で結合された Stream<Interger>を
+                                        //List<Integer>に変換して代入
+ 1  2  3  4  5  6  7  8  9
+ 2  4  6  8 10 12 14 16 18
+ 3  6  9 12 15 18 21 24 27
+ 4  8 12 16 20 24 28 32 36
+ 5 10 15 20 25 30 35 40 45
+ 6 12 18 24 30 36 42 48 54
+ 7 14 21 28 35 42 49 56 63
+ 8 16 24 32 40 48 56 64 72
+ 9 18 27 36 45 54 63 72 81
+*/
