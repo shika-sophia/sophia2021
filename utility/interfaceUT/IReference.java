@@ -12,6 +12,8 @@ public interface IReference {
             "山田祥寛 『独習 Java 新版』 翔泳社, 2019",
             "webPractice",
             "山田祥寛 『独習 Java サーバーサイド編 第２版』 翔泳社, 2013",
+            "se11White",
+            "日本サードパーティ  『Java Gold SE11 オラクル認定問題集 [1Z0-816]』 翔泳社, 2021",
             "se11Violet",
             "山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021",
             "se08Black",
