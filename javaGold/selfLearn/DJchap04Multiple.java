@@ -4,53 +4,93 @@
  * @content 第4章 制御構文 / ◇練習問題 4.1 [2]
  * @content 題意を変えて、for文を使わずに Streamで 九九を表示する試み
  * @author shika
- * @date 2021-02-17
+ * @date 2021-02-17, 2021-03-08
  */
 
 package javaGold.selfLearn;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
+
+
 
 public class DJchap04Multiple {
-    static int[] x = new int[9];
-    static int[] y = new int[9];
-    static Integer result;
+    private static int count = 1;
 
-    static {
-        x = IntStream.rangeClosed(1, 9).toArray();
-        y = IntStream.rangeClosed(1, 9).toArray();
-    }
-
+    //====== 2021-03-08 ======
     public static void main(String[] args) {
-        Stream<Integer> resultSM =
-            Stream.generate(() -> {
-                Arrays.stream(x).map(( xe -> {
-                    Arrays.stream(y).map(ye -> {
-                        result = (Integer)(xe * ye);
-                        return result;
-                    });
-                    return result;
-                }));
-                return result;
-            }).limit(81);
+        List<Integer> multiplyList =
+            IntStream.rangeClosed(1, 9).boxed() //IntStream -> Stream<Integer>
+            .flatMap(x ->                       //２つの Stream<Integer>を１つに結合
+                IntStream.rangeClosed(1, 9)     // 1-9の yを IntStreamで定義
+                    .map(y -> x * y)            // 積 x * y の IntStreamへ格納
+                    .boxed())                   // yの IntStream -> Stream<Integer>
+            .collect(Collectors.toList());      //flatMap()で結合された Stream<Interger>を
+                                                //List<Integer>に変換して代入
+        multiplyList.stream()
+            .forEach(xy -> {
+                System.out.printf("%2d ", xy);
 
-        Arrays.stream(x).forEach(System.out::print);
-        System.out.println();
-        Arrays.stream(y).forEach(System.out::print);
-        System.out.println();
-
-        resultSM.forEachOrdered(re -> {
-            System.out.print(re + " ");
-
-            if(re % 9 == 0) {
-                System.out.println();
-            }
-        });
+                if(count % 9 == 0) {
+                    System.out.println();
+                }
+                count++;
+            });
     }//main()
-
 }//class
+
+/*
+ 1  2  3  4  5  6  7  8  9
+ 2  4  6  8 10 12 14 16 18
+ 3  6  9 12 15 18 21 24 27
+ 4  8 12 16 20 24 28 32 36
+ 5 10 15 20 25 30 35 40 45
+ 6 12 18 24 30 36 42 48 54
+ 7 14 21 28 35 42 49 56 63
+ 8 16 24 32 40 48 56 64 72
+ 9 18 27 36 45 54 63 72 81
+
+ */
+//====== 2021-02-17 (失敗作) ======
+//public class DJchap04Multiple {
+//    static int[] x = new int[9];
+//    static int[] y = new int[9];
+//    static Integer result;
+//
+//    static {
+//        x = IntStream.rangeClosed(1, 9).toArray();
+//        y = IntStream.rangeClosed(1, 9).toArray();
+//    }
+//
+//    public static void main(String[] args) {
+//        Stream<Integer> resultSM =
+//            Stream.generate(() -> {
+//                Arrays.stream(x).map(( xe -> {
+//                    Arrays.stream(y).map(ye -> {
+//                        result = (Integer)(xe * ye);
+//                        return result;
+//                    });
+//                    return result;
+//                }));
+//                return result;
+//            }).limit(81);
+//
+//        Arrays.stream(x).forEach(System.out::print);
+//        System.out.println();
+//        Arrays.stream(y).forEach(System.out::print);
+//        System.out.println();
+//
+//        resultSM.forEachOrdered(re -> {
+//            System.out.print(re + " ");
+//
+//            if(re % 9 == 0) {
+//                System.out.println();
+//            }
+//        });
+//    }//main()
+//
+//}//class
 
 /*
 123456789
