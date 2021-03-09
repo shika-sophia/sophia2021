@@ -1,13 +1,17 @@
 /**
  * @title javaGold / selfLearn / DJchap09Practice.java
  * @reference 山田祥寛 『独習 Java 新版』 翔泳社, 2019
- * @content 第９章 Object, 例外処理 // 練習問題 9.1, 9.2
+ * @content 第９章 Object, 例外処理, ジェネリクス // 練習問題 9.1, 9.2, 章末問題
  * @author shika
  * @date 2021-03-08
  */
 /* Appendix
  * @costTime 08:17 - 08:31 ( 13 分)
  * @correctRate 正答率 92.31 ％ ( 〇12問 / 全13問 )
+ */
+/* Appendix
+ * @costTime 09:08 - 09:25 ( 17 分)
+ * @correctRate 正答率 52.94 ％ ( 〇9問 / 全17問 )
  */
 package javaGold.selfLearn;
 
@@ -51,4 +55,72 @@ public class DJchap09Practice {
 所要時間 13 分
 正答率 92.31 ％ ( 〇12問 / 全13問 )
 */
+/*
+//====== 2021-03-09 ======
+ ジェネリクス / 章末問題
+〇 （1） Ｘ -> 発生した例外と一致するか、その派生クラスの例外も catchする。
+Ｘ （2） Ｘ -> staticもありうるのでは？
+    => メンバークラスは、なるべく staticにする。
+    非staticは エンクロージングclassの参照を持ち続け、メモリを占有し続けるのと
+    エンクロージングclassのガベージコレクションを妨げる可能性があるから。
 
+〇 （3） 〇 -> 匿名クラスは、コンストラクタ不可だが、初期化ブロックは可。
+〇 （4） Ｘ -> 列挙型すべてを得るには、Enum.values()を用いる。
+〇 （5） Ｘ -> ジェネリクスは継承関係にあっても代入不可。
+
+〇 （6） [2]① <T>
+Ｘ （7） ② <? extends T>
+    => <? super T>
+    super（下限限界）は 出力用途のとき利用する。
+
+Ｘ （8） ③ Object...
+    => T...
+〇 （9） ④ add()
+    ◆「|=」 ビット論理和の代入演算子
+    boolean result = false;
+    result |= add();
+    add()の戻り値は booleanのため、一度でもadd()が trueなら、resultは true。
+
+〇 （10） ⑤ result
+
+//---- clone()のところ要復習 ----
+Ｘ （11） [3]① implements Copyable
+    => implements Cloneable
+〇 （12） ② @Override
+Ｘ （13） ③ Object
+    => Person
+Ｘ （14） ④ new Person()
+     =>(Person)super.clone()
+Ｘ （15） ⑤ this.memos
+    => this.memos.clone()
+Ｘ （16） ⑥　？
+    => CloneNotSupportException
+〇 （17） [4]別紙
+
+開始時刻 09:08
+終了時刻 09:25
+所要時間 17 分
+正答率 52.94 ％ ( 〇9問 / 全17問 )
+*/
+/*
+//====== 章末問題 [4] ======
+③ try-catch 〇
+try {
+
+} catch (IOException | SQLException e){
+    e.printStackTrace();
+}
+
+④ inner static class X -> class抜けた
+public class Main {
+
+    private static class Sub {
+
+    }//class Sub
+}//class Main
+
+⑤任意型の可変長引数を受け取って、新規に ArrayListを生成する静的メソッド　〇
+public static <T> ArrayList<T> newArrayList(T... t){
+    return new ArrayList<T>(Arrays.asList(t));
+}//newArrayList()
+ */
