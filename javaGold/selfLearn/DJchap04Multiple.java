@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
-
 public class DJchap04Multiple {
     private static int count = 1;
 
@@ -27,16 +25,15 @@ public class DJchap04Multiple {
                     .map(y -> x * y)            // 積 x * y の IntStreamへ格納
                     .boxed())                   // yの IntStream -> Stream<Integer>
             .collect(Collectors.toList());      //flatMap()で結合された Stream<Interger>を
-                                                //List<Integer>に変換して代入
-        multiplyList.stream()
-            .forEach(xy -> {
-                System.out.printf("%2d ", xy);
+                                                //List<Integer>に変換して代入 or そのまま forEach()も可。
+        multiplyList.forEach(xy -> {
+            System.out.printf("%2d ", xy);
 
-                if(count % 9 == 0) {
-                    System.out.println();
-                }
-                count++;
-            });
+            if(count % 9 == 0) {
+                System.out.println();
+            }
+            count++;
+        });
     }//main()
 }//class
 
