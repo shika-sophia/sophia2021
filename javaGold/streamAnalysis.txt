@@ -82,7 +82,7 @@ List<Integer> multiplyList =
             .map(y -> x * y)            // 積 x * y の IntStreamへ格納
             .boxed())                   // yの IntStream -> Stream<Integer>
     .collect(Collectors.toList());      //flatMap()で結合された Stream<Interger>を
-                                        //List<Integer>に変換して代入
+                                        //List<Integer>に変換して代入 or そのまま forEach()も可。
  1  2  3  4  5  6  7  8  9
  2  4  6  8 10 12 14 16 18
  3  6  9 12 15 18 21 24 27
