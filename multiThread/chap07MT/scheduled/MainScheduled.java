@@ -1,7 +1,7 @@
 /**
  * @title multiThread / chap07MT / scheduled / MainScheduled.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第７章 Thread-Per-Message / List 7-11
+ * @content 第７章 Thread-Per-Message / List 7-12, 7-13
  * @author shika
  * @date 2021-03-10
  */
