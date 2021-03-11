@@ -1,7 +1,7 @@
 package multiThread.chap07MT.threadPerMessage;
 
 public class HostPerMess {
-    private final HelperPerMess helper = new HelperPerMess();
+    protected final HelperPerMess helper = new HelperPerMess();
 
     public void request(final int count, final char c) {
         System.out.printf("\t request(%d, %s) BEGIN \n", count, c);
