@@ -3,11 +3,12 @@ package multiThread.chap07MT.newHelper;
 import multiThread.chap07MT.threadPerMessage.HelperPerMess;
 
 public class HelperThread extends Thread {
-    private final HelperPerMess helper = new HelperPerMess();
+    private final HelperPerMess helper;
     private final int count;
     private final char c;
 
-    public HelperThread(int count, char c) {
+    public HelperThread(HelperPerMess helper, int count, char c) {
+        this.helper = helper;
         this.count = count;
         this.c = c;
     }
