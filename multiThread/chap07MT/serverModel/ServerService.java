@@ -3,12 +3,37 @@ package multiThread.chap07MT.serverModel;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ServerService {
-    private ServerService() {
+    private ScheduledExecutorService scheduled;
+
+    public ServerService() { } //at SingleServer
+
+    public ServerService(ScheduledExecutorService scheduled) {
+        this.scheduled = scheduled;
     }
 
-    public static void service(Socket clientSocket)
+    public void threadService(Socket clientSocket) {
+        scheduled.scheduleAtFixedRate(
+            new Runnable() {
+                public void run() {
+                    try {
+                        service(clientSocket);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }//run()
+            },
+            0L, //long initialDelay
+            1L, //long period
+            TimeUnit.SECONDS
+            );
+    }//threadService()
+
+    public void service(Socket clientSocket)
             throws IOException {
         System.out.printf("%s :service(%s) BEGIN \n ",
             Thread.currentThread().getName(), clientSocket.toString());
@@ -27,12 +52,7 @@ public class ServerService {
                 out.writeBytes("<h1>" + i + "</h1>");
                 out.flush();
 
-                try {
-                    Thread.sleep(1000);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                slowly(1000L);
             } //for i
 
             out.writeBytes("</body></html>");
@@ -43,4 +63,13 @@ public class ServerService {
         System.out.printf("%s :service(%s) END \n ",
             Thread.currentThread().getName(), clientSocket.toString());
     }//service()
+
+    private static void slowly(long rest) {
+        try {
+            Thread.sleep(rest);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }//slowly
 }//class

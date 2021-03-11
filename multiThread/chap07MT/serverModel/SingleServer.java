@@ -21,7 +21,7 @@ public class SingleServer {
                 Socket clientSocket = socket.accept();
                 System.out.println("Connected to " + clientSocket);;
 
-                ServerService.service(clientSocket);
+                callService(clientSocket);
             }//while loop
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,4 +29,10 @@ public class SingleServer {
             socket.close();
         }
     }//execute()
+
+    protected void callService(Socket clientSocket)
+            throws IOException {
+        System.out.println("SingleServer.callService()");
+        new ServerService().service(clientSocket);
+    }//callService()
 }//class
