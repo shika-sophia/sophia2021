@@ -6,6 +6,16 @@
  * @content List A7-5 ThreadService
  * @content serverにおける応答性の改善
  * @note 【実行方法】 ローカルマシンで javaを実行し、webブラウザで「http://127.0.0.1:8888/」にアクセス
+ *
+ * @refrerence ◆【Javaコード入門】 ServerSocketクラス
+ *              	https://java-code.jp/261
+ *              public ServerSocket(int port) throws IOException
+ *              port：ポート番号
+ *
+ *              メソッド	概要
+ *              Socket accept()	接続要求を待機
+ *              void bind(SocketAddress end)	ソケットをバインド（endはバインド先のアドレス）
+ *              void close()	ソケットを閉じる
  * @author shika
  * @date 2021-03-10, 3-11, 3-12
  */
