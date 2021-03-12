@@ -1,11 +1,13 @@
 /**
  * @title multiThread / chap07MT / serverModel / MainServerModel.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第７章 Thread-Per-Message / 練習問題 7-6 / List 7-18, 7-19, 7-20
+ * @content 第７章 Thread-Per-Message / 練習問題 7-6
+ * @content List 7-18, 7-19, 7-20,
+ * @content List A7-5 ThreadService
  * @content serverにおける応答性の改善
  * @note 【実行方法】 ローカルマシンで javaを実行し、webブラウザで「http://127.0.0.1:8888/」にアクセス
  * @author shika
- * @date 2021-03-10, 3-11
+ * @date 2021-03-10, 3-11, 3-12
  */
 
 package multiThread.chap07MT.serverModel;
@@ -16,8 +18,8 @@ public class MainServerModel {
 
     public static void main(String[] args) {
         try {
-            //new SingleServer(8888).execute();
-            new MultiServer(8888).execute();
+            new SingleServer(8888).execute();
+            //new MultiServer(8888).execute();
 
         } catch (IOException e) {
             e.printStackTrace();

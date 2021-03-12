@@ -33,6 +33,7 @@ public class SingleServer {
     protected void callService(Socket clientSocket)
             throws IOException {
         System.out.println("SingleServer.callService()");
-        new ServerService().service(clientSocket);
+        //new ServerService().service(clientSocket);
+        new ThreadService().service(clientSocket);
     }//callService()
 }//class

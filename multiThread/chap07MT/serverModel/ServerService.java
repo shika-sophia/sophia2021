@@ -15,7 +15,7 @@ public class ServerService {
         this.scheduled = scheduled;
     }
 
-    public void threadService(Socket clientSocket) {
+    public void scheduledService(Socket clientSocket) {
         scheduled.scheduleAtFixedRate(
             new Runnable() {
                 public void run() {
