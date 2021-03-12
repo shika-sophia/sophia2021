@@ -60,7 +60,7 @@ public class Practice07MT {
 Ｘ （5） ⑤ execute: BEGIN
 Ｘ （6） ⑥ newThread: BEGIN, END
 〇 （7） ⑦ main: END
-
+    => main -> execute -> nawThread -> runの順
 開始時刻 10:25
 終了時刻 10:49
 所要時間 24 分
