@@ -2,7 +2,7 @@ package multiThread.chap08MT.workerThread;
 
 import java.util.Random;
 
-public class RequestWork {
+public class RequestWork implements Runnable {
     private final String name;
     private final int number;
     private static final Random random = new Random();
@@ -28,4 +28,7 @@ public class RequestWork {
         return String.format(
                 "[Request from %s No.%d]", name, number);
     }//toString()
+
+    //defined in RequestPool
+    public void run() { };
 }//class
