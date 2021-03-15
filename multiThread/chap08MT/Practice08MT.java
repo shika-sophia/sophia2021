@@ -48,6 +48,7 @@ public class Practice08MT {
     ・イベントキューはずっと完了せず、invokeAndWait()から戻れなくなる。
     ・GUIの状態変更は全て EventDispatchThread１つでしているので、GUI全体のイベント処理が滞る。
     ・上記の理由から java.lang.Errorが投げられる。
+   java.lang.Error : Cannot call invokeAndWait from the event dispatcher thread
 
  練習問題 8-5
 〇 （1） GUIの応用 / 別パッケージに記述
