@@ -131,7 +131,9 @@ public class PracticeEditor
     private String buildAppendix(
             TimeData timeData, CorrectData correctData) {
         var bld = new StringBuilder(100);
-        bld.append("/* Appendix \n");
+        bld.append("/* Appendix ")
+            .append(timeData.getStartDay())
+            .append(" \n");
         bld.append(" * @costTime ")
             .append(String.format("%s - %s ( %d 分) \n",
                 formatTime(timeData.getStartTime()),
