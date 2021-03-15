@@ -11,6 +11,7 @@ package javaGold.selfLearn;
 public class DJchap09Clone implements Cloneable {
     private String name;
     private int age;
+
     private String[] memo;
 
     public DJchap09Clone(String name, int age, String[] memo) {
@@ -32,4 +33,16 @@ public class DJchap09Clone implements Cloneable {
 
         return here;
     }//clone()
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String[] getMemo() {
+        return memo;
+    }
 }//class
