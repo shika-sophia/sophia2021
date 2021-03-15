@@ -3,12 +3,14 @@ package multiThread.chap08MT.workerThread;
 import java.util.Arrays;
 
 public class ChannelWork {
-    private static final int MAX_REQUEST = 100;
-    private final RequestWork[] requestAry;
-    private final WorkerThread[] threadPool;
-    private volatile int tail; //次に putRequest()する index
-    private volatile int head; //次に takeRequest()する ingex
-    private volatile int count;//Requestの数
+    protected static final int MAX_REQUEST = 100;
+    protected final RequestWork[] requestAry;
+    protected final WorkerThread[] threadPool;
+    protected volatile int tail; //次に putRequest()する index
+    protected volatile int head; //次に takeRequest()する ingex
+    protected volatile int count;//Requestの数
+    protected static int totalRequest;
+    protected static int totalExecute;
 
     public ChannelWork(int threadNum) {
         this.requestAry = new RequestWork[MAX_REQUEST];
@@ -26,7 +28,8 @@ public class ChannelWork {
         Arrays.stream(threadPool).forEach(Thread::start);
     }
 
-    public synchronized void putRequest(RequestWork request) {
+    public synchronized void putRequest(RequestWork request)
+            throws InterruptedException {
         while(count >= requestAry.length) {
             try {
                 wait();
@@ -39,9 +42,11 @@ public class ChannelWork {
         tail = (++tail % requestAry.length);
         count++;
         notifyAll();
+        totalRequest++;
     }//putRequest()
 
-    public synchronized RequestWork takeRequest() {
+    public synchronized RequestWork takeRequest()
+            throws InterruptedException {
         while(count <= 0) {
             try {
                 wait();
@@ -55,7 +60,19 @@ public class ChannelWork {
         head = (++head % requestAry.length);
         count--;
         notifyAll();
-
+        totalExecute++;
         return request;
     }//takeRequest()
+
+    public static int getTotalRequest() {
+        return totalRequest;
+    }
+
+    public static int getTotalExecute() {
+        return totalExecute;
+    }
+
+    public void stopAllWorker() {
+        Arrays.stream(threadPool).forEach(th -> th.stopThread());
+    }
 }//class
