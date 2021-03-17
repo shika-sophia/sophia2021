@@ -1,18 +1,26 @@
 /**
  * @title multiThread / chap09MT / webReader / MainWebReader.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第９章 Futureパターン / 練習問題 9-3
+ * @content 第９章 Futureパターン / 練習問題 9-3, List 9-8, 9-9, 9-10, 9-11, 解 A9-1, A9-2
+ * @class MainWebReader    //◆main() Retriever呼び出し。 toSaveFile()
+ * @class Retriever        //読み込みクラスのインスタンス生成(Sync,Asyncを切り替え)
+ * @class AbsContent       //Contentの基底インターフェイス。
+ * @class SyncContentImpl implements AbsContent
+ *                        //シングルスレッドの同期Webページ読み込み
+ * @class AsyncContentImpl
+ * 			extends SyncContentImpl implements AbsContent
+ *                        //マルチスレッドの非同期Webページ読み込み
+ * @page /content/ hyuki.html, google.html, yahoo.html
+ *                       //書き込みのために content内に htmlファイルを配置する。
+ *                       //「html内の変数が参照不可」という警告が出るので htmlファイルを削除。
  * @author shika
- * @date 2021-03-16
+ * @date 2021-03-16, 03-17
  */
 package multiThread.chap09MT.webReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import multiThread.chap09MT.webReader.content.AbsContent;
-import multiThread.chap09MT.webReader.content.Retriever;
 
 public class MainWebReader {
 
@@ -23,9 +31,9 @@ public class MainWebReader {
         AbsContent content2 = Retriever.retrieve("http://www.google.com/");
         AbsContent content3 = Retriever.retrieve("http://www.hyuki.com/");
 
-        saveToFile("multiThread/cho09MT/content/yahoo.html", content1);
-        saveToFile("multiThread/cho09MT/content/google.html", content2);
-        saveToFile("multiThread/cho09MT/content/hyuki.html", content3);
+        saveToFile("src/multiThread/chap09MT/webReader/content/yahoo.html", content1);
+        saveToFile("src/multiThread/chap09MT/webReader/content/google.html", content2);
+        saveToFile("src/multiThread/chap09MT/webReader/content/hyuki.html", content3);
 
         long end = System.currentTimeMillis();
         System.out.println("Elapsed time: " + (end - start) + " msec");
@@ -36,7 +44,7 @@ public class MainWebReader {
 
         try (var out = new FileOutputStream(fileName)){
             System.out.printf(
-                "%s: Saving to %s", Thread.currentThread().getName(), fileName);
+                "%s: Saving to %s \n", Thread.currentThread().getName(), fileName);
 
             for(int i = 0; i < byteAry.length; i++) {
                 out.write(byteAry[i]);
@@ -51,38 +59,36 @@ public class MainWebReader {
 }//class
 
 /*
-Getting 45286 bytes form http://www.hyuki.com/
-Getting 45287 bytes form http://www.hyuki.com/
+//====== SyncContentImple ONLY / singleThread ======
   :
-Getting 46909 bytes form http://www.hyuki.com/
-Getting 46910 bytes form http://www.hyuki.com/
-Getting 46911 bytes form http://www.hyuki.com/
-java.io.EOFException
-    at java.base/java.io.DataInputStream.readUnsignedByte(DataInputStream.java:295)
-    at multiThread.chap09MT.webReader.content.SyncContentImpl.<init>(SyncContentImpl.java:22)
-    at multiThread.chap09MT.webReader.content.Retriever.retrieve(Retriever.java:5)
-    at multiThread.chap09MT.webReader.MainWebReader.main(MainWebReader.java:24)
-java.io.FileNotFoundException: multiThread\cho09MT\content\yahoo.html (指定されたパスが見つかりません。)
-    at java.base/java.io.FileOutputStream.open0(Native Method)
-    at java.base/java.io.FileOutputStream.open(FileOutputStream.java:298)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:126)
-    at multiThread.chap09MT.webReader.MainWebReader.saveToFile(MainWebReader.java:37)
-    at multiThread.chap09MT.webReader.MainWebReader.main(MainWebReader.java:26)
-java.io.FileNotFoundException: multiThread\cho09MT\content\google.html (指定されたパスが見つかりません。)
-    at java.base/java.io.FileOutputStream.open0(Native Method)
-    at java.base/java.io.FileOutputStream.open(FileOutputStream.java:298)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:126)
-    at multiThread.chap09MT.webReader.MainWebReader.saveToFile(MainWebReader.java:37)
-    at multiThread.chap09MT.webReader.MainWebReader.main(MainWebReader.java:27)
-java.io.FileNotFoundException: multiThread\cho09MT\content\hyuki.html (指定されたパスが見つかりません。)
-    at java.base/java.io.FileOutputStream.open0(Native Method)
-    at java.base/java.io.FileOutputStream.open(FileOutputStream.java:298)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
-    at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:126)
-    at multiThread.chap09MT.webReader.MainWebReader.saveToFile(MainWebReader.java:37)
-    at multiThread.chap09MT.webReader.MainWebReader.main(MainWebReader.java:28)
-Elapsed time: 4147 msec
+main: Getting form http://www.yahoo.com/
+main: Getting form http://www.google.com/
+main: Getting form http://www.hyuki.com/
+main: Saving to src/multiThread/chap09MT/webReader/content/yahoo.html
+main: Saving to src/multiThread/chap09MT/webReader/content/google.html
+main: Saving to src/multiThread/chap09MT/webReader/content/hyuki.html
+Elapsed time: 1519 msec
 
-*/
+//====== AsyncContentImpl / multiThread ======
+Thread-2: Getting form http://www.hyuki.com/
+Thread-1: Getting form http://www.google.com/
+Thread-0: Getting form http://www.yahoo.com/
+main: Saving to src/multiThread/chap09MT/webReader/content/yahoo.html
+main: Saving to src/multiThread/chap09MT/webReader/content/google.html
+main: Saving to src/multiThread/chap09MT/webReader/content/hyuki.html
+Elapsed time: 695 msec
+
+//====== hyuki.html (already deleted) ======
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="書籍『数学ガール』作者、結城浩の個人サイト。数学、プログラミング、
+        文章書きに関する情報と、気軽な読み物。">
+    <meta name="author" content="結城浩 / Hiroshi Yuki">
+    <meta name="keywords" content="結城浩,Hiroshi Yuki,プログラミング,コンピュータ,数学,アルゴリズム,
+        Java,Perl,C,キリスト教,クリスチャン,文章,メンタルヘルス" >
+             :
+ */
