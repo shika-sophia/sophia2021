@@ -2,14 +2,18 @@
  * @title multiThread / chap09MT / webReader / MainWebReader.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第９章 Futureパターン / 練習問題 9-3, List 9-8, 9-9, 9-10, 9-11, 解 A9-1, A9-2
- * @class MainWebReader    //◆main() Retriever呼び出し。 toSaveFile()
- * @class Retriever        //読み込みクラスのインスタンス生成(Sync,Asyncを切り替え)
+ * @class ◆MainWebReader    //◆main() Retriever呼び出し。 toSaveFile()
+ * @class ◇Retriever        //読み込みクラスのインスタンス生成(◇Sync,Asyncを切り替え)
  * @class AbsContent       //Contentの基底インターフェイス。
  * @class SyncContentImpl implements AbsContent
  *                        //シングルスレッドの同期Webページ読み込み
  * @class AsyncContentImpl
  * 			extends SyncContentImpl implements AbsContent
  *                        //マルチスレッドの非同期Webページ読み込み
+ * @class AsyncCallable
+ *          extends FutureTask implements AbsContent
+ *                        //マルチスレッド、FutureTaskクラスで実現
+ *
  * @page /content/ hyuki.html, google.html, yahoo.html
  *                       //書き込みのために content内に htmlファイルを配置する。
  *                       //「html内の変数が参照不可」という警告が出るので htmlファイルを削除。
@@ -77,6 +81,15 @@ main: Saving to src/multiThread/chap09MT/webReader/content/yahoo.html
 main: Saving to src/multiThread/chap09MT/webReader/content/google.html
 main: Saving to src/multiThread/chap09MT/webReader/content/hyuki.html
 Elapsed time: 695 msec
+
+//====== AsyncCallable / multiThread, FutureTask ======
+Thread-2: Getting form http://www.hyuki.com/
+Thread-0: Getting form http://www.yahoo.com/
+Thread-1: Getting form http://www.google.com/
+main: Saving to src/multiThread/chap09MT/webReader/content/yahoo.html
+main: Saving to src/multiThread/chap09MT/webReader/content/google.html
+main: Saving to src/multiThread/chap09MT/webReader/content/hyuki.html
+Elapsed time: 828 msec
 
 //====== hyuki.html (already deleted) ======
 <!DOCTYPE html>

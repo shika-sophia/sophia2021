@@ -1,8 +1,23 @@
 package multiThread.chap09MT.webReader;
 
+import java.util.concurrent.Callable;
+
 public class Retriever {
     public static AbsContent retrieve(String urlStr) {
-        //---- AsyncContentImpl / multiThread ----
+        //---- ◇AsyncCallable / multiThread, FutureTask ----
+        var future = new AsyncCallableImpl(
+                new Callable<SyncContentImpl>() {
+                   public SyncContentImpl call() {
+                       return new SyncContentImpl(urlStr);
+                   }//call
+               }
+           );
+
+           new Thread(future).start();
+
+           return future;
+
+        //---- ◇AsyncContentImpl / multiThread ----
 //        final AsyncContentImpl future = new AsyncContentImpl();
 //
 //        new Thread() {
@@ -13,7 +28,7 @@ public class Retriever {
 //
 //        return future;
 
-        //---- SyncContentImple ONLY / singleThread ----
-        return new SyncContentImpl(urlStr);
+        //---- ◇SyncContentImple ONLY / singleThread ----
+        //return new SyncContentImpl(urlStr);
     }//retrieve()
 }//class
