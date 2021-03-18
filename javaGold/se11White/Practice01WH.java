@@ -15,6 +15,11 @@
  * @costTime 09:04 - 09:24 ( 19 分)
  * @correctRate 正答率 90.91 ％ ( 〇10問 / 全11問 )
  */
+/* Appendix 2021-03-18
+ * @content [21]-[36]
+ * @costTime 10:17 - 10:45 ( 27 分)
+ * @correctRate 正答率 50.00 ％ ( 〇8問 / 全16問 )
+ */
 package javaGold.se11White;
 
 import javaGold.PracticeEditor;
@@ -82,5 +87,64 @@ public class Practice01WH {
 終了時刻 09:24
 所要時間 19 分
 正答率 90.91 ％ ( 〇10問 / 全11問 )
+*/
+
+/*
+//====== 2021-03-18 ======
+ 1-21から
+Ｘ （1） [21] A -> D
+    => Innerクラスは staticなので
+    new Outer.Inner().increment();
+    Innerの（）が必要。
+
+Ｘ （2） [22] B 2 -> C
+    => new Inner() { }は { }部分が匿名クラス
+    Innerクラスを継承した匿名のサブクラス。
+    => Outer$1.classという暫定的な名前のクラスファイルが生成される。
+
+Ｘ （3） [23] B, D -> A, D
+    => ローカルクラスは、変数?と同じ扱いになるので abstract, final
+
+〇 （4） [24] A
+    => Innerクラスの修飾子はメンバー変数(フィールド)メンバーメソッドと同じ扱い
+    public,(無記入),protected, private
+
+〇 （5） [25] C
+〇 （6） [26] B
+    => Enum.toString()は要素名が出力
+    => コンストラクタでフィールドに入れた値を取り出すなら
+    @Override
+    public String toString(){
+        return field;
+    }
+
+Ｘ （7） [27] B -> D
+    Bronze(2, 1, 0)に対応するコンストラクタが未定義のためコンパイルエラー
+
+〇 （8） [28] D
+〇 （9） [29] D
+Ｘ （10） [30] B, C, D -> C, D, E
+    => A: void fly() -> interfaceは暗黙的に public abstractのため無記入はNG
+    => B: abstractクラスに public void fly();
+    抽象メソッドにするなら ここはクラスなので abstractの明示が必要。
+
+〇 （11） [31] B, C
+Ｘ （12） [32] C -> B
+    => ダイアモンド継承であるが
+    static fanc()は Fooインターフェイスに属すメソッド
+    Bazに継承されるのは Bar.(default fanc())のため、Barと表示が正解。
+
+Ｘ （13） [33] A -> C
+    => オーバーライドのメソッドに staticを付けるとコンパイルエラー
+
+〇 （14） [34] D
+Ｘ （15） [35] B  -> A
+    Sample.fanc1()から呼び出した fanc2()は同じクラス内の fanc2()が呼び出される。
+〇 （16） [36] C
+
+開始時刻 10:17
+終了時刻 10:45
+所要時間 27 分
+正答率 50.00 ％ ( 〇8問 / 全16問 )
 */
 
