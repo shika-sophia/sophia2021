@@ -50,7 +50,7 @@ public class MainArithmetic {
                     System.out.println("MyThread: SLEEP...");
                     Thread.sleep(3000);
                 } catch(InterruptedException e) {
-                    ; //処理が抜けている設定
+                    ;
                 }
 
                 //0除算
