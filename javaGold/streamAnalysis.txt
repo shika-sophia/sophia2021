@@ -27,6 +27,11 @@
  * @see swing / sample / BarGraph
  *    Random.ints(begin, end).limit():
  *    ints()は非staticのため new Random().ints()で使う。
+ * @see multiThread / chap10MT / swingExeCancel / ServiceSW.java
+ *    同じ固定値を入れて、値１つ表示するごとに Thread.sleep(100)を実行
+ *    また値１つごとに if文で条件判定。
+ *    Stream.generate().limit()
+ *        .peek().peek().forEach();
  *
  * @author shika
  * @date 2021-02-17
@@ -92,4 +97,28 @@ List<Integer> multiplyList =
  7 14 21 28 35 42 49 56 63
  8 16 24 32 40 48 56 64 72
  9 18 27 36 45 54 63 72 81
+*/
+/*
+//###### multiThread / chap10MT / swingExeCancel / ServiceSW.java ######
+Stream.generate(() -> ".").limit(MAX)
+    .peek(s -> {
+        if(isCancel()) {
+            th.interrupt();
+        }
+    })
+    .peek(s -> {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    })
+    .forEach(System.out::print);
+【結果】
+Service..................................................done/
+【考察】
+この Stream処理は ちゃんと実行されるが Runnable.run()内に入れると
+    Servicedone/
+という結果になる。interrupt()されていないことは確認済。
+Stream処理そのものがスキップされている感じ。
 */
