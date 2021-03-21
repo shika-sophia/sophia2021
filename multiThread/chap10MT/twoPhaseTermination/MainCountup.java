@@ -1,9 +1,10 @@
 /**
- * @title multiThread / chap10MT / twoPhaseTermination / MainCountup.java
+- * @title multiThread / chap10MT / twoPhaseTermination / MainCountup.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第10章 Two-Phase-Terminationパターン / List 10-1, 10-2
+ * @content 練習問題 10-3 / 終了処理 doShutdown()で counter.txtに書き込み
  * @author shika
- * @date 2021-03-19
+ * @date 2021-03-19, 03-21
  */
 package multiThread.chap10MT.twoPhaseTermination;
 
@@ -75,5 +76,8 @@ main: shutdownRequest()
 main: join()
 doShutdown: counter = 10
 main: END
+
+//---- couter.txt ----
+10 1010
 
 */

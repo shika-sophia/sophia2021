@@ -1,5 +1,9 @@
 package multiThread.chap10MT.twoPhaseTermination;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class CountupThread extends Thread {
     private long counter = 0; //カウンター変数
     private volatile boolean shutdownRequest = false;
@@ -38,5 +42,28 @@ public class CountupThread extends Thread {
 
     private void doShutdown() {
         System.out.println("doShutdown: counter = " + counter);
+
+        String path =
+            "src/multiThread/chap10MT/twoPhaseTermination/counter.txt";
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(path, true);
+            writer.write(String.valueOf(counter) + " ");
+            System.out.printf("%s: fileWrite to %s \n",
+                Thread.currentThread().getName(), path);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                writer.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }//doShutdown()
 }//class
