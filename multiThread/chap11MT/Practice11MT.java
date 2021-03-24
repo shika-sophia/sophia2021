@@ -72,7 +72,7 @@ public class Practice11MT {
         getState(): スレッドの状態
         getUncaughtExceptionHandler(): キャッチされない例外
 
- 練習問題 11-6
+練習問題 11-6
 〇 （1） ThreadPoolで３個しか作っておらず、Threadをキーとして値を取り出すので
 〇 （2） WorkerThreadパターンとの併用は不可。ThreadPoolで仕事が終了したら次の仕事に使いまわし、動いているスレッドは３つだけだから
     => Thread-Specific-Storageパターンでは、
