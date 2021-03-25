@@ -1,7 +1,7 @@
 /**
  * @title multiThread / chap11MT / closeWatcher / MainCloseWatcher.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
- * @content 第11章 Thread-Specific-Storage / List A11-1, A11-2
+ * @content 第11章 Thread-Specific-Storageパターン / List A11-1, A11-2
  * @content 練習問題 11-3 解答 / ClientThreadの終了を監視する新たな WatcherThreadを起動
  * @author shika
  * @date 2021-03-25
