@@ -3,7 +3,7 @@
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第12章 Active Object パターン / List 12-1 ～ 12-15
  *
- * @package ---- chap12 / default ----
+ * @package ---- (default) ----
  * @class + MainActive / ◆main(), ActObj, MakeTh, ShowTh
  * @class + MakeClientThread /
  * @class + ShowClientThread /
