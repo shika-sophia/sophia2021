@@ -1,3 +1,24 @@
+/**
+ * @title multiThread / chap12MT / concurrentActiveObject / MainConcurrent.java
+ * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
+ * @content 第12章 Active Object パターン / List 12-16 ～ 12-21
+ * @content サンプルコード２ / concurrentパケージの各クラスを用いてサンプル１と同様の動作を実現
+ *
+ * @class + MainConcurrent / ◆main(), IActObj, MakeTh, ShowTh, ActObj.shutdown()
+ * @class + MakeClientThread / IActObj(ActObjImpl).makeStr()
+ * @class + ShowClientThread / IActObj(ActObjImpl).showStr()
+ * @interface + IActObj / abstract makeStr(),showStr(),shutdown()
+ * @class + ActObjFactory / new ActObjImpl
+ * @class + ActObjImpl implements IActObj / IActObjを実装、Requestをローカルクラスとしてインスタンス
+ *               //SchedulerThreadの代わり
+ *               ExecutorService exeService= Executors.newSingleThreadExecutor();
+ * @class     MakeRequest implements Callable / LocalClass, call()内で Servantの実行処理
+ * @class     ShowRequest implements Runnable / LocalClass, run()内で Servantの実行処理
+ *
+ * @author shika
+ * @date 2021-03-27
+ */
+
 package multiThread.chap12MT.concurrentActiveObject;
 
 public class MainConCurrent {
