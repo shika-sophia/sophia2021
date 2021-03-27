@@ -5,21 +5,21 @@
  *
  * @package ---- (default) ----
  * @class + MainActive / ◆main(), ActObj, MakeTh, ShowTh
- * @class + MakeClientThread /
- * @class + ShowClientThread /
+ * @class + MakeClientThread / ActObj(Proxy).makeString()
+ * @class + ShowClientThread / ActObj(Proxy).showString()
  * @package ---- activeObject ----
  * @interface + ActObj / super of ActProxy, Servant
  * @class ~ ActObjFactory / new Servant, SchedulerThread, ActQueue, ActProxy
- * @class ~ ActProxy implements ActObj /
- * @class ~ Servant implements ActObj /
- * @class ~ SchedulerThread /
- * @class ~ ActQueue /
+ * @class ~ ActProxy implements ActObj / Clientのメソッド呼出をRequestインスタンスに変える
+ * @class ~ Servant implements ActObj / Scheduleに呼ばれ makeString(),showString()の実行処理
+ * @class ~ SchedulerThread / Requestを ActQueueに格納、Requestを取り出し Servantに渡す。
+ * @class ~ ActQueue / Requestの格納と取り出し。Producer-Consumerの Channel役。
  * @class ~ AbsRequest / super of MakeRequest, ShowRequest
- * @class ~ MakeRequest extends AbsRequest /
- * @class ~ ShowRequest extends AbsRequest /
+ * @class ~ MakeRequest extends AbsRequest /　リクエストのオブジェクト化
+ * @class ~ ShowRequest extends AbsRequest / リクエストのオブジェクト化
  * @class + AbsResult / super of FutureResult, RealResult
- * @class ~ FutureResult extends AbsReault /
- * @class ~ RealResult extends AbsResult/
+ * @class ~ FutureResult extends AbsReault / Futureパターン仮結果
+ * @class ~ RealResult extends AbsResult/ Futureパターン実結果
  * @note UML +:public, ~:package, #:protected, -:private
  *
  * @author shika
