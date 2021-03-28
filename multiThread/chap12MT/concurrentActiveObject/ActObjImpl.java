@@ -1,5 +1,6 @@
 package multiThread.chap12MT.concurrentActiveObject;
 
+import java.math.BigInteger;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -55,6 +56,24 @@ public class ActObjImpl implements IActObj {
         //リクエストの発行
         exeService.execute(new ShowRequest());
     }//showStr()
+
+    @Override
+    public Future<String> add(String x, String y) {
+        //リクエストの定義
+        //NumberFormatException ->
+        //    呼出元の AddClientThreadで ExectionExceptionにラップされ throw
+        class AddRequest implements Callable<String> {
+            public String call() throws NumberFormatException {
+                var xBig = new BigInteger(x);
+                var yBig = new BigInteger(y);
+                var resultXY = xBig.add(yBig);
+
+                return resultXY.toString();
+            }//call()
+        }//class AddRequest
+
+        return exeService.submit(new AddRequest());
+    }//add()
 
     @Override
     public void shutdown() {

@@ -2,7 +2,7 @@
  * @title multiThread / chap12MT / concurrentActiveObject / MainConcurrent.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第12章 Active Object パターン / List 12-16 ～ 12-21
- * @content サンプルコード２ / concurrentパケージの各クラスを用いてサンプル１と同様の動作を実現
+ * @content サンプルコード２ / concurrentパッケージの各クラスを用いてサンプル１と同様の動作を実現
  *
  * @class + MainConcurrent / ◆main(), IActObj, MakeTh, ShowTh, ActObj.shutdown()
  * @class + MakeClientThread / IActObj(ActObjImpl).makeStr()
