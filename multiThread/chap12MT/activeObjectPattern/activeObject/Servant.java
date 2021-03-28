@@ -47,4 +47,20 @@ public class Servant implements ActObj {
         return new RealResult<String>(z) ;
     }//add()
 
+    @Override
+    public AbsResult<String> search(String word) {
+        System.out.printf("Servant: search(%s) \n", word);
+
+        for(int i = 0; i < 50; i++) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Servant: found.");
+        String url = "http://somewhere/" + word + ".html";
+
+        return new RealResult<String>(url);
+    }//search()
 }//class

@@ -1,6 +1,7 @@
 package multiThread.chap12MT.activeObjectPattern.activeObject;
 
 import multiThread.chap12MT.addMethod.AddRequest;
+import multiThread.chap12MT.swingAnsActiveObject.SearchRequest;
 
 class ActProxy implements ActObj {
     private final SchedulerThread scheduler;
@@ -33,5 +34,12 @@ class ActProxy implements ActObj {
 
         return future;
     }//add()
+
+    @Override
+    public AbsResult<String> search(String word) {
+        FutureResult<String> future = new FutureResult<>();
+        scheduler.invoke(new SearchRequest(servant, future, word));
+        return future;
+    }//serch()
 
 }//class
