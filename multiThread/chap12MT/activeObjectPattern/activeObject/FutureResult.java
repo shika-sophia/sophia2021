@@ -1,6 +1,6 @@
 package multiThread.chap12MT.activeObjectPattern.activeObject;
 
-class FutureResult<T> extends AbsResult<T> {
+public class FutureResult<T> extends AbsResult<T> {
     private AbsResult<T> result;
     private volatile boolean ready = false;
 

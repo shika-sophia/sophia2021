@@ -2,7 +2,7 @@
  * @title multiThread / chap12MT / activeObjectPattern / MainActive.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006
  * @content 第12章 Active Object パターン / List 12-1 ～ 12-15
- *
+ * @content 練習問題 12-2 / add()の追加: ActObj, ActProxy, Servantを変更
  * @package ---- (default) ----
  * @class + MainActive / ◆main(), ActObj, MakeTh, ShowTh
  * @class + MakeClientThread / ActObj(Proxy).makeString()

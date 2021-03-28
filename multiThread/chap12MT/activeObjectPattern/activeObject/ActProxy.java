@@ -1,5 +1,7 @@
 package multiThread.chap12MT.activeObjectPattern.activeObject;
 
+import multiThread.chap12MT.addMethod.AddRequest;
+
 class ActProxy implements ActObj {
     private final SchedulerThread scheduler;
     private final Servant servant;
@@ -22,5 +24,14 @@ class ActProxy implements ActObj {
     public void showString(String str) {
         scheduler.invoke(new ShowRequest(servant, str));
     }//showString()
+
+    @Override
+    public AbsResult<String> add(String x, String y) {
+        FutureResult<String> future = new FutureResult<>();
+        scheduler.invoke(
+            new AddRequest(servant, future, x, y));
+
+        return future;
+    }//add()
 
 }//class
