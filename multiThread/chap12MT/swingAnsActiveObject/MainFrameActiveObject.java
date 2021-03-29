@@ -4,10 +4,6 @@
  * @content 第12章 ActiveObject /
  * @content 練習問題 12-3 / Swingで入力した文字列を検索(5秒後に用意したURL)を表示
  * @content 解答１ List A12-7 ～ A12-12 / サンプル１ ActiveObjectを利用
- * 解答２
- * 			＊能動オブジェクト searcher: 単語の検索というサービスを提供
- * 			＊能動オブジェクト MainFrame: JTextAreaへの表示
- * 			２つの能動オブジェクトが会話するように情報のやり取りをするモデル
  * @see result: swingAnsActiveObject.jpg
  * @author shika
  * @date 2021-03-28
