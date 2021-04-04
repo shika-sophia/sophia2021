@@ -1,6 +1,0 @@
-/**
- * @title javaGoF / javaGofAnalysis
- * @content GoFデザインパターンについての考察集
- * @author shika
- * @date 2021-04-03
- */
