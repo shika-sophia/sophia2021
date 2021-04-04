@@ -4,3 +4,24 @@
  * @author shika
  * @date 2021-04-03
  */
+
+//###### chap01JG / shelfArrayList / MainArrayList ######
+//2021-04-04
+ 【考察】 練習問題ではサンプルプログラムの変更により
+どの程度の修正が必要かを体験するのが問題の趣旨のような感じなので、
+元のサンプルプログラムの各クラスを利用。
+
+BookShelfだけ新しくサブクラスとして ShelfArrayListを作る。
+中身は配列を Listの記述に変更しただけ。
+Mainは new BookShelf() -> new ShelfArrayList()に変更。
+入れる変数は extendsしているので、そのまま BookShelf型 shelf。
+継承関係にすることで、そのまま BookIteratorを使える。
+
+//###### chap01JG / shelfArrayList / MainCollectionIterator ######
+//2021-04-04
+Collection内にある Iteratorを利用。
+【考察】順次実行なら Iteratorでなく 拡張forでいい。
+内部的に Iteratorを使って処理しているとのこと。
+
+for文内で remove()するなら Iteratorでないと例外出ます。
+逆順にするなら Itrratorのサブインターフェイス ListIteratorを利用する。
