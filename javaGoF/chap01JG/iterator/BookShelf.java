@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 public class BookShelf implements IAggregate {
     private Book[] bookAry;
     private final int maxSize;
-    private int lastIndex = 0;
+    private int index = 0;
 
     public BookShelf(int maxSize) {
         this.bookAry = new Book[maxSize];
@@ -13,7 +13,7 @@ public class BookShelf implements IAggregate {
     }
 
     public Book getBook(int index) {
-        if(0 <= index && index < maxSize) {
+        if(0 <= index && index < bookAry.length) {
             ;
         } else {
             Toolkit.getDefaultToolkit().beep();
@@ -27,15 +27,15 @@ public class BookShelf implements IAggregate {
     }//getBook()
 
     public void appendBook(Book book) {
-        if(lastIndex == maxSize) {
+        if(index == maxSize) {
             Toolkit.getDefaultToolkit().beep();
             System.out.printf(
                 "< ! > 本棚がいっぱいです。 [0 - %d]で収納してください。\n", maxSize);
             return;
         }
 
-        bookAry[lastIndex] = book;
-        lastIndex++;
+        bookAry[index] = book;
+        index++;
     }//appendBook()
 
     @Override
@@ -43,8 +43,8 @@ public class BookShelf implements IAggregate {
         return new BookIterator(this);
     }
 
-    public int getLastIndex() {
-        return lastIndex;
+    public int getIndex() {
+        return index;
     }
 
 }//class

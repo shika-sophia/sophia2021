@@ -11,7 +11,7 @@ public class BookIterator implements ISimpleIterator {
 
     @Override
     public boolean hasNext() {
-        if(index < shelf.getLastIndex()) {
+        if(index < shelf.getIndex()) {
             return true;
         }
 
