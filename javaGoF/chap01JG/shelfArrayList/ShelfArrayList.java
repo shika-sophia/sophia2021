@@ -13,12 +13,10 @@ import javaGoF.chap01JG.iterator.ISimpleIterator;
 public class ShelfArrayList
         extends BookShelf implements IAggregate {
     private final List<Book> bookList;
-    private int index;
 
     public ShelfArrayList() {
         super(0); //BookShelfの配列は利用しない
         this.bookList = new ArrayList<Book>();
-        this.index = 0;
     }
 
     public Book getBook(int index) {
@@ -37,7 +35,6 @@ public class ShelfArrayList
 
     public void appendBook(Book book) {
         bookList.add(book);
-        index = getIndex() + 1;
     }//appendBook()
 
     @Override
@@ -46,7 +43,7 @@ public class ShelfArrayList
     }
 
     public int getIndex() {
-        return index;
+        return bookList.size();
     }
 
 }//class

@@ -25,8 +25,10 @@ public class MainCollectionIterator {
                 new Book("Bible"),
                 new Book("Cinderella"),
                 new Book("Daddy-Long-Legs"),
-                new Book("England History"),
-                new Book("Fortunately Blue Bird")
+                new Book("East of Eden"),
+                new Book("Fortunately Blue Bird"),
+                new Book("Gulliver\'s Travels"),
+                new Book("Hamlet")
             )
         );//bookList
 
@@ -83,13 +85,16 @@ Fortunately Blue Bird
 bookList: []
 
 //====== ListIterator<Book>.previous() ======
+Hamlet
+Gulliver's Travels
 Fortunately Blue Bird
-England History
+East of Eden
 Daddy-Long-Legs
 Cinderella
 Bible
 Around the World in 80 Days
 bookList: []
+
 
 【考察】順次実行なら Iteratorでなく 拡張forでいい。
 内部的に Iteratorを使って処理しているとのこと。
