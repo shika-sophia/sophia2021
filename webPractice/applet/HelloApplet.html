@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HelloApplet</title>
+</head>
+<body style="background-color: mistyrose">
+<h1>Hello Applet</h1>
+<hr/>
+<noscript>JavaScript is disabled</noscript>
+<script src="http://www.java.com/js/deployJava.js"></script>
+<script>
+    var attribute = {
+        code: "HelloApplet.class"
+        archive: "HelloApplet.jar"
+    };
+
+    var parameter = {
+        jnpl_href: "HelloApplet.jnlp"
+    };
+
+    deployJava.runApplet(attribute, parameter, '1.7')
+
+</script>
+<hr />
+</body>
+</html>
