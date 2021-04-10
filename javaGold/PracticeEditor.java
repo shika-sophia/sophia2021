@@ -59,7 +59,9 @@ public class PracticeEditor
 
         //---- javaDoc 作成 ----
         String className = ioFileExe.getClassName();
-        String content = questList.toString();
+        String content = questList.stream()
+                .reduce((result, str) -> result + "," + str)
+                .orElse("");
         ioFileExe.buildJavaDoc(content);
 
         //---- javaDoc 追加 ----
