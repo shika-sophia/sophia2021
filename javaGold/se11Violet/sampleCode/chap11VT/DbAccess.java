@@ -22,14 +22,4 @@ public class DbAccess {
         return conn;
     }//getConnect()
 
-    public static void close() {
-        try {
-            if(conn != null) {
-                conn.close();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }//close()
 }//class
