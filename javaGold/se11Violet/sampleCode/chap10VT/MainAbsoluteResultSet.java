@@ -2,7 +2,7 @@
  * @title javaGold / se11Violet / sampleCode / chap10VT / MainScrollResultSet.java
  * @reference 山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021
  * @content 第10章 JDBC / List 10-12
- * @content ResultSetの拡張 /
+ * @content ResultSetの拡張
  * 			rs.absolute(int): 絶対位置の行に移動
  * 			rs.relative(int): 相対位置に +-行移動
  * 			SCROLL: 逆方向にも移動可
