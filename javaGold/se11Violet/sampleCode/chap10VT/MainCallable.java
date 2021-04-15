@@ -13,7 +13,10 @@ package javaGold.se11Violet.sampleCode.chap10VT;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -33,6 +36,19 @@ public class MainCallable {
             int result = cs.getInt(2);
             System.out.println("result: " + result);
 
+            //---- procedure metadata ----
+            DatabaseMetaData meta = conn.getMetaData();
+            ResultSet rsProcedure = meta.getProcedures("practice", null, "myProcedure");
+            ResultSetMetaData rsMeta = rsProcedure.getMetaData();
+
+            rsProcedure.next();
+            for (int i = 1; i < rsMeta.getColumnCount(); i++) {
+                System.out.printf(
+                    "%s: %s \n",
+                    rsMeta.getColumnName(i),
+                    rsProcedure.getString(i));
+
+            }//for
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,4 +80,15 @@ CREATE PROCEDURE myProcedure (IN inPara INT, OUT total INT)
       FROM CALLABLE
       WHERE VALUE > inPara;
   END //
+
+//---- procedure metadata ----
+PROCEDURE_CAT: practice
+PROCEDURE_SCHEM: null
+PROCEDURE_NAME: myProcedure
+reserved1: null
+reserved2: null
+reserved3: null
+REMARKS:
+PROCEDURE_TYPE: 1
+
  */
