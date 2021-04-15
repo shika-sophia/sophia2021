@@ -47,8 +47,8 @@ public class MainCallable {
                     "%s: %s \n",
                     rsMeta.getColumnName(i),
                     rsProcedure.getString(i));
-
             }//for
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
