@@ -32,6 +32,10 @@
  *    また値１つごとに if文で条件判定。
  *    Stream.generate().limit()
  *        .peek().peek().forEach();
+ * @see webPractice / resultSetMeta / MainResultSetMeta.java
+ *    Stream内の例外処理は Stream外に記述してもコンパイルエラー。
+ *    Stream内に try-catchすればコンパイル通るが、
+ *    同様のcatch節が外側にある場合は、冗長になるだろう。
  *
  * @author shika
  * @date 2021-02-17
@@ -121,4 +125,23 @@ Service..................................................done/
     Servicedone/
 という結果になる。interrupt()されていないことは確認済。
 Stream処理そのものがスキップされている感じ。
+*/
+/*
+//###### webPractice / resultSetMeta / MainResultSetMeta.java ######
+//2021-04-16
+//---- build columnList ----
+for(int i = 1; i < columnNum; i++) {
+    columnList.add(rsMeta.getColumnName(i));
+}//for
+
+と同様の処理を Streamで試みるが
+IntStream.range(1, columnNum)
+    .mapToObj(i -> rsMeta.getColumnName(i))
+    .forEach(columnList::add);
+
+【考察】
+rsMeta.getColumnName()は thows SQLException
+Streamの外側に 同例外のcatch節があるが、Stream内にないとダメらしい。
+mapToObj()内に try-catchすればコンパイル通るが
+for文より長くなっては Streamを利用する意味がなくなるので不採用。
 */
