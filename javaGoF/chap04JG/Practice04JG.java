@@ -32,6 +32,7 @@ public class Practice04JG {
 
  4-2
 〇 （1） Id番号と ownerの対応表(別紙)
+    => IdCard, IdCardFactoryを修正
 
  4-3
 〇 （1） abstractは継承先でOverrideして実装する前提。
