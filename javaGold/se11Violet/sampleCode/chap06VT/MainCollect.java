@@ -29,14 +29,100 @@
  *                 Collector.Characteristics...)
  *              T:Stremの型, A:コレクタが蓄積する型, R:コレクタの結果型
  * @author shika
- * @date 2021-04-19
+ * @date 2021-04-20
  */
 package javaGold.se11Violet.sampleCode.chap06VT;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainCollect {
 
     public static void main(String[] args) {
+        //---- Stream.collect() ----
+        //R collect(Collector<? super T, A, R>)
+        List<String> data =
+            Stream.of("バラ","さくら","チューリップ","あさがお","ゆり")
+            .collect(Collectors.toList());
+        System.out.println(data);
 
+//    	R collect(Supplier<R> supplier,     //可変コンテナの生成
+//    			  BiConsumer<R, ? super T>  //コンテナに値を渡す式
+//    			  BiConsumer<R, R> combiner)//(並行処理時)コンテナを結合
+//    		T:Streamの要素型, R:可変コンテナの型
+        System.out.println(
+            data.stream()
+                .sorted()
+                .collect(
+                    ArrayList<String>::new,
+                    (list,str) -> list.add(str),
+                    (list1,list2) -> list1.addAll(list2)
+                )
+        );
+
+        //---- Collector.of() ----
+        System.out.println(
+            data.stream()
+                .sorted()
+                .collect(Collector.of(
+                    ArrayList<String>::new,
+                    ArrayList::add,
+                    (list1, list2) -> {
+                        list1.addAll(list2);
+                        return list1;
+                    },
+                    Collector.Characteristics.IDENTITY_FINISH
+                ))
+        );
+
+        System.out.println(Arrays.toString(
+            data.stream()
+                .sorted((str1,str2) -> str1.length() - str2.length())
+                .collect(Collector.of(
+                    ArrayList<String>::new,
+                    ArrayList::add,
+                    (list1, list2) -> {
+                        list1.addAll(list2);
+                        return list1;
+                    },
+                    list -> list.toArray() //finisher
+                ))
+            ));
     }//main()
 
 }//class
+
+/*
+//---- Stream.collect() ----
+[バラ, さくら, チューリップ, あさがお, ゆり]
+[あさがお, さくら, ゆり, チューリップ, バラ]
+
+＊メソッド参照でも可
+    colect(
+        ArrayList<String>::new, //supplier
+        ArrayList::add,         //accumulator
+        ArrayList::addAll       //combiner
+    )
+
+//---- Collector.of() ----
+[あさがお, さくら, ゆり, チューリップ, バラ]
+[バラ, ゆり, さくら, あさがお, チューリップ]
+
+＊この部分
+    (list1, list2) -> {
+        list1.addAll(list2);
+        return list1;
+    },
+
+ArrayList::addAll や
+(list1, list2) -> list1.addAll(list2),だと 型の不一致で
+うまくいきません。上記の形でないとダメです。
+
+collect()を そのまま Collector.of()のにできるわけではないみたい。
+of()を使うメリットは finisherと Characteristicsを記述できることぐらい。
+複雑すぎて使う機会は ほぼなさそう。
+*/
