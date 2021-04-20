@@ -1,8 +1,8 @@
 /**
  * @title javaGold / se11Violet / sampleCode / chap06VT / MainReduce.java
- * @reference 山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021
- * @content 第６章 StreamAPI
- * @reference 山田祥寛『独習 Java 新版』 翔泳社, 2019
+ * @reference YM: 山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021
+ * @content 第６章 StreamAPI / p225 / List 6-5, 6-6
+ * @reference DJ: 山田祥寛『独習 Java 新版』 翔泳社, 2019
  * @content 10.2.4 StreamAPI 終端処理 / p498 / List 10-41, 10-42, 10-43
  * @content ◆Stream.reduce(): Streamを集計して１つの値にまとめる
  *          Optional<T> reduce(BinaryOperator<T>)
@@ -16,6 +16,8 @@
 package javaGold.se11Violet.sampleCode.chap06VT;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -53,6 +55,26 @@ public class MainReduce {
                 )
         );
 
+        //---- YM: List 6-5 ----
+        int result1 = Stream.of(10, 20, 30)
+                      .reduce(0, Integer::sum);
+        System.out.println("result1: " + result1);
+
+        //---- YM: List 6-6
+        BinaryOperator<Integer> operator = (a,b) -> a + b;
+        Stream<Integer> stream2 = Stream.of(10, 20, 30);
+
+        //int result2 = stream2.reduce(operator);
+        //型の不一致: Optional<Integer> から int には変換できません
+
+        Optional<Integer> result2 = stream2.reduce(operator);
+        result2.ifPresent(System.out::println); //結果 60
+
+        Stream<Integer> stream3 = Stream.empty();
+        Optional<Integer> result3 = stream3.reduce(operator);
+        System.out.println(result3);           // 結果 Optional.empty
+        result3.ifPresent(System.out::println);// 結果 (出力なし)
+        System.out.println(result3.isEmpty()); //　結果 true
     }//main()
 
 }//class
@@ -67,4 +89,16 @@ result: ひまわり / あさがお / さくら / ゆり / チューリップ / 
 //---- reduce(identity, accumulator, combiner) ----
 1452
 
+//---- YM: List 6-5 ----
+result1: 60
+
+T BinaryOperator<T> apply(T, T)
+int Integer.sum(int, int)
+メソッド参照が使える
+
+//---- YM: List 6-6 ----
+60
+Optional.empty
+(出力なし) <- ifPresent(empty)
+true
 */
