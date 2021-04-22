@@ -35,6 +35,7 @@ public class Practice06JG {
     || Template パターン ||を利用する。
     Productは、MessageBox, Underlineの superなので、
     両クラスに継承される。
+    => @see prototypeRV パッケージ
 
     (別解) ConcreteProductクラスに記述して、両クラスに継承しても可
 
