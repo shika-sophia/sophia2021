@@ -36,6 +36,8 @@
  *    Stream内の例外処理は Stream外に記述してもコンパイルエラー。
  *    Stream内に try-catchすればコンパイル通るが、
  *    同様のcatch節が外側にある場合は、冗長になるだろう。
+ * @see javaGoF / chap06JG /prototype / MainPrototype.java
+ *    Mapから、「key=value」の取得、表示
  *
  * @author shika
  * @date 2021-02-17
@@ -144,4 +146,13 @@ rsMeta.getColumnName()は thows SQLException
 Streamの外側に 同例外のcatch節があるが、Stream内にないとダメらしい。
 mapToObj()内に try-catchすればコンパイル通るが
 for文より長くなっては Streamを利用する意味がなくなるので不採用。
+*/
+/*
+//###### javaGoF.chap06JG.prototype.MainPrototype.java ######
+＊Mapから、「key=value」の取得、表示
+    manager.getProtoMap()
+        .entrySet()
+        .stream()
+        .map(set -> set.getKey() + " = " + set.getValue())
+        .forEach(System.out::println);
 */
