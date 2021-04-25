@@ -9,6 +9,9 @@
  * @content ListIterator<T> extends Iterator<T>
  * 				listTerator(int size): ListIterator<T>を生成
  *              hasPrevious(), previous()
+ * @content Mapにおいても 拡張for文中の変更は  ConncurrentModificationExecptionで不可。
+ *          IteratorならＯＫ。
+ *
  * @author shika
  * @date 2021-03-31
  */
@@ -19,6 +22,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MainIterator {
 
@@ -44,6 +51,31 @@ public class MainIterator {
         while(itrList.hasPrevious()) {
             System.out.println(itrList.previous());
         }//while
+
+        //====== Map for, Iterator ======
+        Map<Integer,String> map =
+            IntStream.range(0,dataList.size()).boxed()
+                .collect(Collectors.toMap(
+                    i -> i,
+                    i -> dataList.get(i))
+                );
+
+        //---- for map ----
+//        for(Entry<Integer,String> entry : map.entrySet()) {
+//            System.out.printf("map: key = %d, value = %s \n",
+//                    entry.getKey(), entry.getValue());
+//            //map.remove(entry.getKey());
+//            //    java.util.ConcurrentModificationException
+//        }//for map
+
+        //---- Iterator ----
+        Iterator<Entry<Integer, String>> itrMap = map.entrySet().iterator();
+        while(itrMap.hasNext()) {
+            System.out.println(itrMap.next());
+            itrMap.remove();
+        }//while
+
+        System.out.println("map.isEmpty(): " + map.isEmpty());
     }//main()
 
 }//class
@@ -73,5 +105,21 @@ dataList: []
 あさがお
 ひまわり
 バラ
+
+//====== Map for,Iterator ======
+//---- for map ----
+map: key = 0, value = バラ
+map: key = 1, value = ひまわり
+map: key = 2, value = あさがお
+map: key = 3, value = さくら
+
+//---- Itreator map ----
+0=バラ
+1=ひまわり
+2=あさがお
+3=さくら
+
+//----Iterator map with remove() ----
+map.isEmpty(): true
 
 */
