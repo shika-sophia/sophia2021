@@ -57,7 +57,7 @@ public class MainMessageBundle {
             System.out.println("now: " +
                 MessageFormat.format(
                     rb.getString("now"), //propertiesファイルから key「now」の値を読み込み
-                    LocalDate.now().format(dtfLocale))); //今日の各国Locale表記を代入
+                    LocalDate.now().format(dtfLocale))); //現在の各国Locale表記を代入
         }//for
 
     }//main()
@@ -84,6 +84,14 @@ night: Gute Nacht
 now: Es ist jetzt Donnerstag, 29. April 2021
 
 //====== propertiesファイル ======
+◆ msg_jp.properties.utf8
+morning = おはようございます
+night = おやすみなさい
+now = 現在時刻は {0} です
+  ↓
+>cd sophia2021\WebContent\WEB-INF\classes
+>native2ascii -encoding UTF-8 msg_jp.properties.utf8 msg_jp.properties
+  ↓
 ◆msg_ja_JP.properties
 morning = \u304a\u306f\u3088\u3046\u3054\u3056\u3044\u307e\u3059
 night = \u304a\u3084\u3059\u307f\u306a\u3055\u3044
