@@ -1,5 +1,5 @@
 /**
- * @title javaGold / se11Violet / sampleCode / chap11Locale / MainLocale.java
+ * @title javaGold / se11Violet / sampleCode / chap11Locale / resourceBundle / MainListResourceBundle.java
  * @reference 山本道子 『Java Gold SE11 オラクル認定教科書 [1Z0-816]』 翔泳社, 2021
  * @content 第11章 Locale, Format / List 11-3, 11-4
  * @content ListResourceBundle getBundle(), getString(), getObject()

@@ -20,6 +20,17 @@ public class MainLocale {
         showProperty("Locale.JAPANESE: ", Locale.JAPANESE);
 
         //---- List 11-2 ----
+        Locale us = new Locale("en", "US");
+        System.out.println(
+            us.getDisplayCountry() + ": " + us.getDisplayLanguage());
+        System.out.println(
+            us.getDisplayCountry(us) + ": " + us.getDisplayLanguage(us));
+
+        Locale japan = new Locale.Builder()
+                .setLanguage("ja")
+                .setRegion("JP")
+                .build();
+        System.out.println(japan);
     }//main()
 
     private static void showProperty(String str, Locale locale) {
@@ -30,6 +41,7 @@ public class MainLocale {
 }//class
 
 /*
+//---- List 11-1 ----
 デフォルト: locale = ja_JP
 デフォルト: language = ja
 デフォルト: country = JP
@@ -45,5 +57,10 @@ Locale.JAPAN: country = JP
 Locale.JAPANESE: locale = ja
 Locale.JAPANESE: language = ja
 Locale.JAPANESE: country =
+
+//---- List 11-2 ----
+アメリカ合衆国: 英語
+United States: English
+ja_JP
 
 */
