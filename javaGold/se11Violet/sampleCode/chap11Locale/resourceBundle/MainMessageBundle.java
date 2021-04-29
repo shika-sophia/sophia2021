@@ -83,4 +83,20 @@ morning: Guten Morgen
 night: Gute Nacht
 now: Es ist jetzt Donnerstag, 29. April 2021
 
+//====== propertiesファイル ======
+◆msg_ja_JP.properties
+morning = \u304a\u306f\u3088\u3046\u3054\u3056\u3044\u307e\u3059
+night = \u304a\u3084\u3059\u307f\u306a\u3055\u3044
+now = \u73fe\u5728\u6642\u523b\u306f {0} \u3067\u3059
+
+◆msg_en_US.properties
+morning = Good Morning
+night = Good Night
+now = It is {0} Now
+
+◆msg_de_DE.properties
+morning = Guten Morgen
+night = Gute Nacht
+now = Es ist jetzt {0}
+
  */
