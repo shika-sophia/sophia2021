@@ -58,13 +58,69 @@ public class Practice12whLocale {
         MissingResourceException
 
 〇 （8） B
+    => ◆DateFormatクラス abstract
+        Dateクラスのためのフォーマットを提供
+        static final
+        DateFormat getDateInstance(int DateFormat定数, Locale)
+            DateFormat.DEFAULT MEDIUMと同じ
+            DateFormat.FULL
+            DateFormat.LONG
+            DateFormat.MEDIUM
+            Dateformat.SHORT
+
 〇 （9） A
+    => ◆NumberFormat abstract
+        static NumberFormat getInstance([Locale])
+        void setIntegerMaximumDigits(int)  整数部分の最大桁数を指定
+        void setFractionMaximunDigits(int) 小数部分の最大桁数を指定
+        Minimunも同様
+
 〇 （10） D
-Ｘ （11） D: String
+    => ◆SimpleDateFoemat
+        new SimpleDateFormat(String pattern [, Locale])
+
+Ｘ （11） D -> C
+    => LocalDateなど java.timeの DateTimeAPIは
+        コンストラクタ private設定。= newできない
+        不変オブジェクトとなり、スレッドセーフなクラスを提供。
+        GoF||Immutableパターン||
+
 〇 （12） A
+    => LocalDate LocalDate.of(int　year, int month, int dayOfMonth)
+       LocalDate LocalDate.of(int, Month列挙型, int)
+
 〇 （13） C
-Ｘ （14） B
-Ｘ （15） D
+Ｘ （14） B -> A
+    => ◆ZonedDateTimeクラス
+         タームゾーン付き日時を表す
+         ZoneId.of(String timeZone/regionName)
+         "UTC": 協定世界時
+         "UTC-7": 協定世界時から７時間遅らせた時間。
+             UTC = 8:00 -> UTC-7 = 15:00
+
+    => ◆java.time.temporal.ChronoUnit列挙型
+        ChronoUnit.HOURS.between(
+            Temporal beginInclusive「=含む」, Temporal endExclusive「=含まない」)
+
+Ｘ （15） D -> C
+    => ◆Instantクラス
+        static Instant Instant.now()
+        Insatnt Instant.parse(String "1970-01-01T00:00:00Z")
+        Instant ChronoZonedDateTime.toInstant()
+        Instant ChronoZonedDateTime.toInstant(ZoneOffset)
+            ┗ LocalDateTimeからはこれ。
+
+    => ◆ZoneOffsetクラス
+        ZoneOffset ZoneOffset.of(String)
+            引数に "+2"など文字列でタイムゾーン OffsetIDを渡す
+            "Asia/Tokyo"などは不可。 DateTimeException
+
+    => ◆LocalDateTime -> ZonedDateTime
+        ZonedDateTime LocalDatTime.atZone(ZoneId)
+        ZoneId ZoneId.of("Asia/Tokyo") "UTC-9"も可。
+
+    => ◆LocalDateTime -> OffsetDateTime
+        OffsetDateTime LocalDateTime.atOffset(ZoneOffset)
 
 開始時刻 11:52
 終了時刻 12:21
