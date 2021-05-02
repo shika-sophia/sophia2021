@@ -2,6 +2,8 @@
  * @title javaGold / se08Black / Practice01bkJavaPrimary.java
  * @reference 米山 学 『徹底攻略 Java Gold SE8 問題集 [1Z0-809]』 インプレス, 2020
  * @content  第１章 Java Primary
+ * @see se11Violet/sampleCode/chap01VT/ MainClassLoader.java
+ * @see se11Violet/sampleCode/chap01VT/ SampleImmutable.java
  * @author shika
  * @date 2021-05-02
  */
@@ -82,22 +84,64 @@ public class Practice01bkJavaPrimary {
 〇 （9） B, D ◆final
 〇 （10） D ◆static
 〇 （11） C ◆static{ }
-    => ◆Class.forName(Path, boolean ?, クラス名.getClassLoader())
+    => ◆ClassLoader <クラス名>.class.getClassLoader());
+    => ◆Class<?> Class.forName()
+            Class.forName(
+                String className,
+                boolean initialize,
+                ClassLoader
+            );
+     => 〔@see se11Violet/sampleCode/chap01VT/ MainClassLoader.java〕
 
 〇 （12） D, F
+    => ◆Singleton
+            ・private コンストラクタ
+            ・private staticフィールドに保存
+            ・public staticな getInstance()
+
 〇 （13） C
+    => ◆Immutable
+        java.lang.String
+        java.util.regex.Pattern
+        java.lang.Integerなどラッパークラス
+        java.math.BigDecimal/BigInteger
+        java.time.LocalDate系
+        java.awt.Color
+        java.lang.Enum<T>
+
 〇 （14） B, C
-Ｘ （15） C
-Ｘ （16） D
-〇 （17） A
-〇 （18） E
-〇 （19） D
-〇 （20） D
-〇 （21） C
-Ｘ （22） C
-Ｘ （23） B
+    => interfaceの staticメソッドは、インターフェイス名.メソッド名で呼び出す。
+    実装クラス名や、そのインスタンス変数では呼出不可。
+
+Ｘ （15） C -> A
+    => 同じシグニチャを持つ defaultの継承はコンパイルエラー
+    => クラスCで 当該メソッドを Overrideすれば解決する。
+
+Ｘ （16） D -> A
+    => ダイアモンド継承で同じシグニチャのメソッドはコンパイルエラー
+    => 型階層の距離が異なる場合は距離の近いほうが呼び出されるため問題ない。
+
+〇 （17） A ◆抽象クラス
+〇 （18） E ◆NestedClass
+〇 （19） D 他クラスからの InnerClass呼出
+〇 （20） D 匿名クラス
+〇 （21） C 列挙型
+Ｘ （22） C -> B
+    => Enumは コンパイル後に、 class A extends Enum<T>
+        java.lang.Enumクラスを継承するので、他クラスの継承は不可。
+        -> インターフェイスは可。
+    => 暗黙的に public static finalを付与。final, abstractを記述不可。
+
+Ｘ （23） B -> A, C
+    => 題意「列挙定数名」: 定数のほう。name(), toString()
+        E valueOf(String): 列挙型名
+        E[] values(): 全列挙定数を要素とする配列
+
 〇 （24） B
 〇 （25） A, C
+    => Enum<T>インスタンスは Singleton かつ 不変オブジェクトとしての設計を求められる。
+    定数であることを考えれば、それも納得できる。
+    よって、privateコンストラクタ、private フィールド、getterのみ
 
 開始時刻 08:13
 終了時刻 08:36
