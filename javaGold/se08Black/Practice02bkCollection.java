@@ -122,11 +122,22 @@ public class Practice02bkCollection {
 〇 （17） C
 〇 （18） B, C
 〇 （19） B
+    => Set<Map.Entry<K, V>> Map.entrySet()
+    -> for(Map.Entry<K, V> : Map.entrySet())
+        Set<E>の要素を次々と取り出す
+
 〇 （20） A, C
 〇 （21） C
 〇 （22） C, E
-Ｘ （23） D
-Ｘ （24） A
+Ｘ （23） D -> E
+    => Product implements Comparator<Product>
+    TreeSet, TreeMapは add()時に Camparableにキャストを行うので、
+    要素のクラスは Camparableを実装している必要がある。
+    題意のように、違うインターフェイスを実装していると add()時に
+    ClassCastExceptionが出る。コンパイル時ではないことに注意。
+
+Ｘ （24） A -> B
+    => int Comparator.compare(T, T)
 
 開始時刻 09:52
 終了時刻 10:15
