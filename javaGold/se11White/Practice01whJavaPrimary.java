@@ -20,10 +20,10 @@
  * @costTime 10:17 - 10:45 ( 27 分)
  * @correctRate 正答率 50.00 ％ ( 〇8問 / 全16問 )
  */
-/* Appendix 2021-05-04 
- * @costTime 10:07 - 11:15 ( 68 分) 
+/* Appendix 2021-05-04
+ * @costTime 10:07 - 11:15 ( 68 分)
  * @correctRate 正答率 80.56 ％ ( 〇29問 / 全36問 )
- */ 
+ */
 package javaGold.se11White;
 
 import javaGold.PracticeEditor;
@@ -32,9 +32,15 @@ public class Practice01whJavaPrimary {
 
     public static void main(String[] args) {
         new PracticeEditor();
+        //Exam ex = new Gold();
+        //Bronze br = (Bronze) ex;
     }//main()
 
 }//class
+
+interface Exam { }
+class Bronze { }
+class Gold  extends Bronze implements Exam { }
 
 /*
 //====== 2021-03-16 ======
@@ -52,6 +58,9 @@ public class Practice01whJavaPrimary {
     -> Exam と Bronzeに継承関係はないので
     Bronze b2 = (Bronze) e; は Exam e = new Gold();でも
     コンパイルエラーが出ると思うのだが・・
+    => 検証の結果(上記)コンパイル通ります。
+    ex内の GoldがBronzeの superなので継承関係と見なされる。
+    キャストの際、exの変数型ではなく、オブジェクト型の Goldに注目してコンパイルしている。
 
     上記が通るとして、staticメソッドは 変数型のメソッドが呼び出される。
     非staticは 変数型ではなくオブジェクト型の @Overrideしたメソッドが呼び出される。
@@ -152,49 +161,84 @@ public class Practice01whJavaPrimary {
 正答率 50.00 ％ ( 〇8問 / 全16問 )
 */
 
-/* 
-//====== 2021-05-04 ====== 
+/*
+//====== 2021-05-04 ======
  JavaPrimary[２回目]
-〇 （1） C, E   
-〇 （2） C   
-〇 （3） C, D   
-〇 （4） A, C   
-〇 （5） C   
-〇 （6） B   
-Ｘ （7） F   
-〇 （8） E   
-〇 （9） A   
-Ｘ （10） D   
-〇 （11） C   
-〇 （12） A, C   
-〇 （13） C   
-Ｘ （14） A, C   
-〇 （15） B   
-〇 （16） A, C   
-〇 （17） B   
-〇 （18） D   
-〇 （19） A   
-〇 （20） C, E   
-Ｘ （21） B   
-〇 （22） C   
-Ｘ （23） B, D?   
-〇 （24） A   
-〇 （25） C   
-〇 （26） B   
-〇 （27） D   
-〇 （28） D   
-Ｘ （29） A   
-〇 （30） C, D, E   
-〇 （31） B, C   
-〇 （32） B   
-Ｘ （33） A   
-〇 （34） D   
-〇 （35） A   
-〇 （36） C   
+〇 （1） C, E
+〇 （2） C
+〇 （3） C, D
+〇 （4） A, C
+〇 （5） C
+〇 （6） B
+Ｘ （7） F -> D 同じ間違い ClassCastExceptionならランタイム
+   => Exam と Bronzeに継承関係はないので
+  Bronze b2 = (Bronze) ex; は Exam ex = new Gold();でも
+    コンパイルエラーが出ると思うのだが・・
+
+    => 検証の結果(上記)コンパイル/実行とも通ります。
+     ex内の GoldがBronzeの superなので継承関係と見なされる。
+        キャストの際、exの変数型ではなく、オブジェクト型の Goldに注目してコンパイルしている。
+
+〇 （8） E
+〇 （9） A
+Ｘ （10） D -> F
+    => StringBuffer.equals(): 参照同一性の比較。「==」と同じ
+
+〇 （11） C
+〇 （12） A, C
+〇 （13） C
+Ｘ （14） A, C -> A, D
+    => ◆abstract class
+        public abstract void foo();
+        public void foo(){ } 具象クラスのみ可。
+        抽象クラスは abstractを自動追加しない。
+
+〇 （15） B
+〇 （16） A, C
+〇 （17） B
+〇 （18） D
+〇 （19） A
+〇 （20） C, E
+Ｘ （21） B -> D
+    => static Inner from same class
+    new Outer.Inner().foo()
+
+〇 （22） C
+Ｘ （23） B, D? -> A, D
+    => ◆ローカルクラス = メソッド内のクラス。ローカル変数と同じ扱い。
+    -> X public, protected, private不可。static不可。
+
+    final, abstractは可。
+〇 （24） A
+〇 （25） C
+〇 （26） B
+〇 （27） D
+〇 （28） D
+Ｘ （29） A -> D
+    => interface内のメソッドは 暗黙的に public abstract
+    -> Overrideするとき、publicを付けないとコンパイルエラー。
+
+〇 （30） C, D, E
+〇 （31） B, C
+    => Flyer型にすると land()を定義していないので呼び出せない。
+
+〇 （32） B
+Ｘ （33） A -> C 同じ間違い
+    => default fanc() を継承し、static func()を定義
+    シグニチャが同じなので Overrideと見なされるとのこと。
+
+    => interface Bar extends Fooには、
+    default foo(), static foo()の両方がある
+    staticは別領域なので Overrideできないと思う。
+    どちらのfoo()か選べないという意味のコンパイルエラーなのでは？
+
+〇 （34） D
+〇 （35） A
+〇 （36） C
 
 開始時刻 10:07
 終了時刻 11:15
 所要時間 68 分
 正答率 80.56 ％ ( 〇29問 / 全36問 )
-*/ 
+*/
 
