@@ -1,7 +1,7 @@
 /**
  * @title javaGold / se11White / Practice05whFunctionLambda.java
  * @reference 日本サードパーティ 『Java Gold SE11 オラクル認定問題集 [1Z0-816]』 翔泳社, 2021
- * @content 第５章 Collection, Lambda
+ * @content 第５章 Function, Lambda
  * @author shika
  * @date 2021-04-05
  */
