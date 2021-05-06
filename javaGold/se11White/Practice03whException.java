@@ -124,7 +124,7 @@ public class Practice03whException {
     文中の assert文は何も処理されない。
 
 Ｘ （15） D
-    => assert 条件文が falseのとき、AeertionError
+    => assert 条件文が falseのとき、AssertionError
 
 開始時刻 11:12
 終了時刻 11:46
