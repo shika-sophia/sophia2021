@@ -9,6 +9,10 @@
  * @costTime 11:52 - 12:21 ( 29 分)
  * @correctRate 正答率 73.33 ％ ( 〇11問 / 全15問 )
  */
+/* Appendix 2021-05-07
+ * @costTime 14:59 - 15:17 ( 17 分)
+ * @correctRate 正答率 93.33 ％ ( 〇14問 / 全15問 )
+ */
 package javaGold.se11White;
 
 import javaGold.PracticeEditor;
@@ -25,6 +29,7 @@ public class Practice12whLocale {
  第12章 Locale, Format
 〇 （1） B, E, F
     => es_ES スペイン
+
 〇 （2） B, E
 〇 （3） B
     => Locale("en")と言語コードのみ指定した場合、
@@ -36,7 +41,7 @@ public class Practice12whLocale {
     ◆Resourceクラスの定義要件
         ・ListResourceBundeleを継承
         ・必ず publicクラス
-        ・Object[][] getContents()を @Override
+        ・protected Object[][] getContents()を @Override
         ・package, クラス名は任意
 
 〇 （6） C
@@ -76,7 +81,7 @@ public class Practice12whLocale {
         Minimunも同様
 
 〇 （10） D
-    => ◆SimpleDateFoemat
+    => ◆SimpleDateFormat
         new SimpleDateFormat(String pattern [, Locale])
 
 Ｘ （11） D -> C
@@ -86,7 +91,7 @@ public class Practice12whLocale {
         GoF||Immutableパターン||
 
 〇 （12） A
-    => LocalDate LocalDate.of(int　year, int month, int dayOfMonth)
+    => LocalDate LocalDate.of(int year, int month, int dayOfMonth)
        LocalDate LocalDate.of(int, Month列挙型, int)
 
 〇 （13） C
@@ -106,6 +111,7 @@ public class Practice12whLocale {
     => ◆Instantクラス
         static Instant Instant.now()
         Insatnt Instant.parse(String "1970-01-01T00:00:00Z")
+        Intstant Instant.EPOCH "1970-01-01T00:00:00Z" = エポック起点を返す
         Instant ChronoZonedDateTime.toInstant()
         Instant ChronoZonedDateTime.toInstant(ZoneOffset)
             ┗ LocalDateTimeからはこれ。
@@ -126,5 +132,40 @@ public class Practice12whLocale {
 終了時刻 12:21
 所要時間 29 分
 正答率 73.33 ％ ( 〇11問 / 全15問 )
+*/
+
+/*
+//====== 2021-05-07 ======
+ Locale, Format [２回目]
+〇 （1） B, E, F
+〇 （2） B, E
+〇 （3） B
+〇 （4） A
+〇 （5） C
+〇 （6） C
+〇 （7） D
+〇 （8） B
+〇 （9） A
+〇 （10） D
+〇 （11） C
+〇 （12） A
+〇 （13） C
+〇 （14） A
+Ｘ （15） B -> C
+      ZoneOffset ZoneOffset.of(String) "+2"などを指定
+      ZoneId ZoneId.of(String) "Asia/Tokyo"など地域情報を指定。
+
+      Instant Instant.now()
+      Instant Instant.parse("1970-01-01T00:00:00Z")
+      Instant ZonedDateTime.toInstant()
+      Instant LocalDateTime.toInstant(ZoneOffset)
+
+      OffsetDateTime LocalDateTime.atOffset(ZoneOffset)
+      ZonedDateTime LocalDateTime.atZone(ZoneId)
+
+開始時刻 14:59
+終了時刻 15:17
+所要時間 17 分
+正答率 93.33 ％ ( 〇14問 / 全15問 )
 */
 
