@@ -107,14 +107,37 @@ public class Practice07bkFileIO {
 〇 （22） D
 〇 （23） B
 Ｘ （24） A, B -> C, D
-    =>
+    => Files.copy()
+        *デフォルトの挙動
+        *コピー先にファイルが存在するとき、FileAlreadyExistsException
+        *ファイル属性はコピーされない。
+        *ディレクトリ内のファイルはコピーされない。
+        *シンボリックリンクは、リンク先だけがコピー、リンクはコピーしない。
+
 〇 （25） B, C, D
-Ｘ （26） B?
+Ｘ （26） B? -> A
+    => AttributeViewインターフェイス (ノートにまとめ)
+
 〇 （27） D
-Ｘ （28） B?
+    => static Object
+        Files.getAttribute(Path, String attribute, LinkOption...)
+
+Ｘ （28） B? -> C [Java7]
+    => static Path
+    Files.walkFileTree(Path, FileVisitor<? super Path>)
+    Files.walkFileTree(Path, Set<FileVisitOption>,
+                       int maxDepth, FileVisitor<? super Path>)
+
 〇 （29） B
+    => Stream<String> Files.lines(Path [, Charset])
+
 〇 （30） A
-Ｘ （31） C?
+    => Stream<Path> Files.list(Path)
+         *指定したディレクトリ内のみ
+
+Ｘ （31） C? -> B
+    => Stream<Path> Files.walk(Path, FileVisitOption...)
+       Stream<Path> Files.walk(Path, int maxDepth, FileVisitOption...)
 
 開始時刻 05:35
 終了時刻 06:10
