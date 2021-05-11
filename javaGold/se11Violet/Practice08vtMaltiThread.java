@@ -9,6 +9,10 @@
  * @costTime 11:07 - 11:47 ( 39 分)
  * @correctRate 正答率 68.75 ％ ( 〇11問 / 全16問 )
  */
+/* Appendix 2021-05-11
+ * @costTime 16:52 - 17:28 ( 36 分)
+ * @correctRate 正答率 87.50 ％ ( 〇14問 / 全16問 )
+ */
 package javaGold.se11Violet;
 
 import javaGold.PracticeEditor;
@@ -96,5 +100,67 @@ public class Practice08vtMaltiThread {
 終了時刻 11:47
 所要時間 39 分
 正答率 68.75 ％ ( 〇11問 / 全16問 )
+*/
+
+/*
+//====== 2021-05-11 ======
+ MultiThread [２回目]
+〇 （1） A, E
+〇 （2） D
+〇 （3） B, F
+〇 （4） C
+〇 （5） D
+〇 （6） D
+     => T Stream.reduce(T, BinaryOperator<T>)
+         引数と戻り値は同じ型でないとコンパイルエラー
+     => U Stream.reduce(
+             U identity,
+             BiFunction<U, ? super T,U> accumurator,
+             BinaryOperator<U> combiner)
+         *Streamの型引数と結果の型が異なる場合に利用
+
+〇 （7） D, F
+       => groupingByConcurrent(): マルチスレッド環境でもスレッドセーフにグループ化
+
+
+〇 （8） B, E, F, G
+     => Callable.call() throws Exception
+         * checked例外をスローできる
+         * Runnable.run()は不可。
+     => Runnable.run()も unchecked例外は throw可
+
+〇 （9） A, C, E
+〇 （10） C
+〇 （11） A
+〇 （12） E
+Ｘ （13） B, D -> C, D
+      Executors.newSingleThreadScheduledExecutor()の戻り値は
+      ScheduledExecutorService。
+      ExecutorServiceは superのためコンパイルエラーにはならない。
+
+      scheduledWithFixedDelay()は ScheduledExecutorServiceのメソッドのためコンパイルエラー。
+      9行目: Callableの定義ラムダ式、System.out.print()は void
+          戻り値を返さないとコンパイルエラー。
+      scheduledWithFixedDeray(Runnable, long, long, TimeUnit)
+      Callableを入れるとコンパイルエラー。
+
+Ｘ （14） B, D -> A, D
+     => Future.get()は処理が完了するまで待機する
+     => Future<?>なので、null,Exceptionクラスも格納可。
+         1回ではなく 10回表示される。
+
+〇 （15） B
+〇 （16） D
+       => void ExecutorService.execute() 戻り値 voidなのでコンパイルエラー。
+       Future<T> ExecutorService.submit()ならＯＫ。
+       その場合、実行結果は null, null, null
+
+    => List<Future<Object>>だが
+    for(Future<?> f : list)でも扱える。
+
+開始時刻 16:52
+終了時刻 17:28
+所要時間 36 分
+正答率 87.50 ％ ( 〇14問 / 全16問 )
 */
 
