@@ -9,10 +9,10 @@
  * @costTime 13:36 - 14:09 ( 32 分)
  * @correctRate 正答率 66.67 ％ ( 〇10問 / 全15問 )
  */
-/* Appendix 2021-05-11 
- * @costTime 16:01 - 16:18 ( 17 分) 
+/* Appendix 2021-05-11
+ * @costTime 16:01 - 16:18 ( 17 分)
  * @correctRate 正答率 100.00 ％ ( 〇15問 / 全15問 )
- */ 
+ */
 package javaGold.se11White;
 
 import javaGold.PracticeEditor;
@@ -88,28 +88,38 @@ public class Practice08whMultiThread {
 正答率 66.67 ％ ( 〇10問 / 全15問 )
 */
 
-/* 
-//====== 2021-05-11 ====== 
+/*
+//====== 2021-05-11 ======
  MultiThread [２回目]
-〇 （1） A   
-〇 （2） A   
-〇 （3） C   
-〇 （4） A   
-〇 （5） C   
-〇 （6） D   
-〇 （7） A   
-〇 （8） B   
-〇 （9） D   
-〇 （10） A   
-〇 （11） D   
-〇 （12） C   
-〇 （13） A, D   
-〇 （14） B   
-〇 （15） D   
+〇 （1） A
+〇 （2） A
+〇 （3） C
+〇 （4） A
+〇 （5） C
+〇 （6） D
+〇 （7） A
+〇 （8） B
+〇 （9） D
+〇 （10） A
+〇 （11） D
+〇 （12） C
+〇 （13） A, D
+      synchronizedは abstractメソッドに記述不可。
+      interfaceのメソッドは、暗黙的に public abstract
+      abstractクラスでも具象メソッドには synchronized可。
+      enumのメソッドにも可。
+
+〇 （14） B
+     => 排他制御: synchronaizedなどを用いて、「同時アクセス」を防ぐ
+     => 同期制御: wait(),notify(),notifiAll()を用いて、
+        *        スレッド間の実行タイミングを合わせる。
+
+〇 （15） D
+    => AtomicIntegerの初期値 0
 
 開始時刻 16:01
 終了時刻 16:18
 所要時間 17 分
 正答率 100.00 ％ ( 〇15問 / 全15問 )
-*/ 
+*/
 
