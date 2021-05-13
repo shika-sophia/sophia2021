@@ -9,6 +9,10 @@
  * @costTime 11:57 - 12:12 ( 14 分)
  * @correctRate 正答率 84.62 ％ ( 〇11問 / 全13問 )
  */
+/* Appendix 2021-05-13
+ * @costTime 19:39 - 19:51 ( 12 分)
+ * @correctRate 正答率 84.62 ％ ( 〇11問 / 全13問 )
+ */
 package javaGold.se11Violet;
 
 import javaGold.PracticeEditor;
@@ -48,9 +52,8 @@ public class Practice11vtLocale {
 
 〇 （11） D
      => LocalDate.parse(
-             CharSequence target, DateTimeFormatter) で
-     LocalDateが生成され、デフォルト設定で表示すると、
-     FormatSytle.MEDIUMと同じ表示。
+     *     CharSequence target, DateTimeFormatter) で
+     *  LocalDateが生成され、デフォルト設定で表示すると、2021-05-13
 
 〇 （12） C
 Ｘ （13） B -> E
@@ -61,6 +64,44 @@ public class Practice11vtLocale {
 開始時刻 11:57
 終了時刻 12:12
 所要時間 14 分
+正答率 84.62 ％ ( 〇11問 / 全13問 )
+*/
+
+/*
+//====== 2021-05-13 ======
+ Locale, Format [２回目]
+〇 （1） A, D
+〇 （2） D
+〇 （3） C
+〇 （4） C
+〇 （5） A, C
+〇 （6） D
+     => ResourceBundle.getObject(String key)は
+     *  引数int未定義でコンパイルエラー。
+
+〇 （7） F
+〇 （8） C
+Ｘ （9） B -> F
+       => Hashtable.get(String key) は引数１つのみ
+       => Properties.getProperty(String key, String default)
+       *  defaultを定義できるのは、getProperty()のみ。
+
+Ｘ （10） B -> F
+       => LocalDateに、
+       *  LocalDateTimeFormatter.ofLocalizeDateTime()を利用。
+       *  UnsupportedTemporaryTypeException
+       *
+       *  LocalDateTimeFormatter.ofLocalizedDate()ならＯＫ。
+       *
+       *  FormatStyle.MEDIUM, SHORTの表示は 2021/05/13に注意。
+
+〇 （11） D
+〇 （12） C
+〇 （13） E
+
+開始時刻 19:39
+終了時刻 19:51
+所要時間 12 分
 正答率 84.62 ％ ( 〇11問 / 全13問 )
 */
 
