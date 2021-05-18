@@ -10,10 +10,10 @@
  * @correctRate 正答率 66.67 ％ ( 〇10問 / 全15問 )
  */
 
-/* Appendix 2021-05-18 
- * @costTime 16:12 - 16:35 ( 22 分) 
+/* Appendix 2021-05-18
+ * @costTime 16:12 - 16:35 ( 22 分)
  * @correctRate 正答率 73.33 ％ ( 〇11問 / 全15問 )
- */ 
+ */
 package javaGold.se11Violet;
 
 import javaGold.PracticeEditor;
@@ -67,28 +67,56 @@ public class Practice01vtJavaPrimary {
 正答率 66.67 ％ ( 〇10問 / 全15問 )
 */
 
-/* 
-//====== 2021-05-18 ====== 
+/*
+//====== 2021-05-18 ======
  JavaPrimary [２回目]
-〇 （1） A, D, E   
-〇 （2） A   
-Ｘ （3） C   
-Ｘ （4） B   
-〇 （5） D   
-〇 （6） B, E   
-〇 （7） E   
-〇 （8） A, B, D, E   
-〇 （9） E   
-Ｘ （10） A   
-Ｘ （11） A   
-〇 （12） E   
-〇 （13） E   
-〇 （14） E   
-〇 （15） A, B, E   
+〇 （1） A, D, E
+〇 （2） A
+Ｘ （3） Cother -> 〇 D
+    => switch()に enumは可能
+    *  case句には 列挙定数を指定する必要がある。(indexは不可)
+    *  コンパイルエラー
+
+Ｘ （4） B -> C
+   => enum内で定義した abstractメソッドは、
+   *  各要素が必ず Overrideする必要がある。
+   *  一部のみではダメ。コンパイルエラー。
+
+〇 （5） D
+〇 （6） B, E
+      => boolean Object.equals(Object)
+      *  null, 別オブジェクトでも false。例外なし。
+
+〇 （7） E
+〇 （8） A, B, D, E
+〇 （9） E
+      => interface内
+      *  staticの抽象は不可。具象は可。
+      *  具象は defaultを明示
+Ｘ （10） A -> E
+       => privateメソッドは どこからも呼び出されておらず、
+       *  到達不能コードの問題は放置。
+       => 多重実装で default print()はシグニチャが同じ
+       *  呼出時に呼出先を特定できずコンパイルエラー。
+
+Ｘ （11） A -> C
+       => インスタンスクラスは staticメンバーを持てずコンパイルエラー。
+       *  staticメンバーはどこからも参照できないのが理由ぽい。
+
+〇 （12） E
+      => private Innerがどこからもインスタンスされておらず、
+      *  到達不能コードであることは放置。見なかったことにしよう。
+
+〇 （13） E
+〇 （14） E
+〇 （15） A, B, E
+    => 非staticを staticで Override不可。その逆も不可。
+    => superで throwしていない例外を subでは無記、同例外、サブ例外なら可。
+    *  RuntimeExceptionなら、superに関係なく throw可。
 
 開始時刻 16:12
 終了時刻 16:35
 所要時間 22 分
 正答率 73.33 ％ ( 〇11問 / 全15問 )
-*/ 
+*/
 
