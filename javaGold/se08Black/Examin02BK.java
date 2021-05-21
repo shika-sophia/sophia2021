@@ -277,18 +277,47 @@ public class Examin02BK {
 〇 （65） A
 〇 （66） C
 〇 （67） C
+    => Collector<T> thenComparing()をしても部分ソートにはならず
+    *  最初のソートで firstNameがソートされ、
+    *  次に lastNameでソートし、この時点で、
+    *  firstName昇順、lastName昇順になっているので、
+    *  reversed()で、逆順・逆順とす。
+
 〇 （68） A
 〇 （69） D
-Ｘ （70） A
+Ｘ （70） A -> C
+    =>  groupingBy(word -> word, Collectors.counting())
+    *  groupingBy()で出現回数を値としてグループ化
+    *  comparingByValue()で値によるソートをしており
+    *  {Blue=1, Green=2, Red=3}
+    *  その keyのみ表示。
+
 〇 （71） C
-Ｘ （72） C
+Ｘ （72） C -> B
+    => void Optional.ifPresent(Comsumer)
+    *  voidのため、これに続けて .orElse()などを記述不可。
+    *  コンパイルエラー。
+
 〇 （73） A
+    => Stream要素の""空文字も要素として残っている
+
 〇 （74） A?
+    => Stream.flatMap()は三連ネストは
+    *  一番外側のListを外した二重ネストとなる新たなStreamを生成。
+    *  map(String::toLowerCase())は
+    *  map(s -> s.toLowerCase())と同じ。
+    *  Streamの要素は List<String>であるため、コンパイルエラー。
+
 〇 （75） C
 〇 （76） B, D
 〇 （77） C, D
 〇 （78） A, C, D
-Ｘ （79） C
+Ｘ （79） C -> B
+    => Collectionなど Comparableを実装するクラスは
+    *  reverseOrder()の引数なしだと、Comparableの順序を参考に逆順とする。
+    => Map.Entryは Comparableを実装しておらず、
+    *  reverseOrder()を引数なしで利用するとコンパイルエラー
+
 〇 （80） D
 〇 （81） A, B
 〇 （82） B
