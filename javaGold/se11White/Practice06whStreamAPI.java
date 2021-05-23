@@ -88,16 +88,16 @@ public class Practice06whStreamAPI {
     new Listを生成して代入しているので、上記の判断は誤り。
 
 〇 （16） D
-    => static Optional<t> Optional.ofNullable(T):
+    => static Optional<T> Optional.ofNullable(T):
         引数に値があれば その値をラップした Optional<T>を返す。
         引数が nullの場合は 空の Optional<T>を返す。
 
-    => boolean Optional.isPresent():
+    => boolean Optional.ifPresent():
         値があれば true, それ以外なら false
-    => add1.isPresent() ? add1.get() : "Not";
+    => add1.ifPresent() ? add1.get() : "Not";
     三項演算子。get()は値がないと NoSuchElementExceptionを throwするので
     こういう形で使うと良い。
-    if(add.isPresen()){ add.get() } else { }と同じ処理。
+    if(add.ifPresent()){ add.get() } else { }と同じ処理。
 
 Ｘ （17） B -> A
     => Conparator<T> Comparator.comparing(Function<T,R>)

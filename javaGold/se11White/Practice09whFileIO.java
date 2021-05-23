@@ -215,9 +215,10 @@ public class Practice09whFileIO {
     => *解答「c:/dir2」を出すには引数に絶対パスを渡す必要がある。
        *題意"\\dir2"は カレントのひとつ下の dir2の意。「./dir2」と同じ相対パス
        *問題文の誤植と判断して 問題文を resolve("C:\\dir2");なら解答通りの答えになる。
+    => Linux表記「/dir」はルート直下 dirの意の絶対パス。誤植ではない。
 
 Ｘ （14） A -> B
-    => Path.getCount(): 名前要素を集計。「.」「..」もカウント
+    => Path.getNameCount(): 名前要素を集計。「.」「..」もカウント
 
 Ｘ （15） B -> E
     => ◆boolean Path.equals(Object)
@@ -233,7 +234,8 @@ public class Practice09whFileIO {
 〇 （16） C
 〇 （17） A
 Ｘ （18） D -> B
-    => Files.move(Path source, Path target, CopyOption...)
+    => Files.move(Path source, Path target, StandardCopyOption...)
+        * StandardCopyOption.REPLACE_EXISTINGなら
         * targetファイルが既に存在してる場合は、置き換わる。
         * ファイル名は 既存targetにリネーム。
         * move()によって移動したので、元の場所の delete()は

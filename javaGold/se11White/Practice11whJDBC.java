@@ -70,6 +70,7 @@ public class Practice11whJDBC {
 Ｘ （9） F -> D
     F コンパイルエラーにした理由は ネストの try{ }のみで catchがなかったから
     外側に catchがあれば try{ }のみでもいいのか。
+    try-with-resourcesの場合、tryのみ可。
 
 〇 （10） B
     => psの「?」に値が入っていないと SQLException
