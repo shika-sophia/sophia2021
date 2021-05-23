@@ -80,8 +80,8 @@ public class Practice07bkFileIO {
        Path Path.get(String, String...)
 
 Ｘ （16） C -> D
-    => Path File.toPath(File)
-       File File.toFile(Path)
+    => Path File.toPath()
+       File File.toFile()
 
 〇 （17） D
     => Path getRoot(): rootのみ
