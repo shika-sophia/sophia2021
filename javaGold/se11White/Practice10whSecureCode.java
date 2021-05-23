@@ -9,6 +9,10 @@
  * @costTime 16:21 - 16:29 ( 7 分)
  * @correctRate 正答率 14.29 ％ ( 〇1問 / 全7問 )
  */
+/* Appendix 2021-05-23
+ * @costTime 09:43 - 09:50 ( 7 分)
+ * @correctRate 正答率 85.71 ％ ( 〇6問 / 全7問 )
+ */
 package javaGold.se11White;
 
 import javaGold.PracticeEditor;
@@ -128,7 +132,7 @@ public class Practice10whSecureCode {
 
 Ｘ （7） A, C -> A, D
     => ◆セキュアコーディング
-        * 抵抗されている機能を活用して、バグやセキュリティ上の脆弱性がないよう
+        * 提供されている機能を活用して、バグやセキュリティ上の脆弱性がないよう
         * プログラミングすること。
         *
         * A: FileNotFoundException発生時に ファイルの絶対パスをコンストラクタに
@@ -143,5 +147,22 @@ public class Practice10whSecureCode {
 終了時刻 16:29
 所要時間 7 分
 正答率 14.29 ％ ( 〇1問 / 全7問 )
+*/
+
+/*
+//====== 2021-05-23 ======
+ SecureCode [２回目]
+〇 （1） D?
+〇 （2） C
+〇 （3） A, C
+〇 （4） C
+Ｘ （5） D -> C, D
+〇 （6） A
+〇 （7） A, D
+
+開始時刻 09:43
+終了時刻 09:50
+所要時間 7 分
+正答率 85.71 ％ ( 〇6問 / 全7問 )
 */
 
