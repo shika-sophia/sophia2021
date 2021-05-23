@@ -38,10 +38,30 @@ public class Practice01whJavaPrimary {
 
 }//class
 
-interface Exam { }
-class Bronze { }
-class Gold  extends Bronze implements Exam { }
+//interface Exam { }
+//class Bronze { }
+//class Gold  extends Bronze implements Exam { }
 
+/*
+interface Foo {
+    public default void func() {
+        System.out.println("Foo");
+    }
+}
+interface Bar extends Foo {
+    public static void func() { //この static メソッドは Foo からのインスタンス・メソッドを隠蔽できません
+        System.out.println("Bar");
+    }
+}
+
+class Baz implements Bar {}
+class Test {
+    public static void main(String[] args) {
+        Baz baz = new Baz();
+        baz.func();
+    }
+}
+*/
 /*
 //====== 2021-03-16 ======
  第１章 Javaの基本
@@ -106,7 +126,7 @@ class Gold  extends Bronze implements Exam { }
 //====== 2021-03-18 ======
  1-21から
 Ｘ （1） [21] A -> D
-    => Innerクラスは staticなので
+    => Innerクラスは staticだが
     new Outer.Inner().increment();
     Innerの（）が必要。
 
@@ -116,7 +136,7 @@ class Gold  extends Bronze implements Exam { }
     => Outer$1.classという暫定的な名前のクラスファイルが生成される。
 
 Ｘ （3） [23] B, D -> A, D
-    => ローカルクラスは、変数?と同じ扱いになるので abstract, final
+    => ローカルクラスは、変数?と同じ扱いになるので abstract, final可。
 
 〇 （4） [24] A
     => Innerクラスの修飾子はメンバー変数(フィールド)メンバーメソッドと同じ扱い
@@ -149,6 +169,9 @@ class Gold  extends Bronze implements Exam { }
 
 Ｘ （13） [33] A -> C
     => オーバーライドのメソッドに staticを付けるとコンパイルエラー
+    => シグニチャが同じだと Overrideと見なされる。
+    *  非staticを staticで Overrdeするとコンパイルエラー。
+    *  その逆も不可
 
 〇 （14） [34] D
 Ｘ （15） [35] B  -> A
@@ -226,11 +249,6 @@ class Gold  extends Bronze implements Exam { }
 Ｘ （33） A -> C 同じ間違い
     => default fanc() を継承し、static func()を定義
     シグニチャが同じなので Overrideと見なされるとのこと。
-
-    => interface Bar extends Fooには、
-    default foo(), static foo()の両方がある
-    staticは別領域なので Overrideできないと思う。
-    どちらのfoo()か選べないという意味のコンパイルエラーなのでは？
 
 〇 （34） D
 〇 （35） A

@@ -46,7 +46,7 @@ public class Practice02whAnnotation {
  => Java8-
  ◆同じ場所に同一アノテーションを付与できる条件
  ① @Repeatable()を指定
- ② 引数に配列を属性に持つクラス名を指定
+ ② 引数に配列を属性に持つクラスを .classで指定
 
 Ｘ （9） A, E -> 〇 C, E
     => @Deprecated 非推奨の要素に付与
@@ -75,7 +75,7 @@ public class Practice02whAnnotation {
           -> 対象のメソッドに private, staitic finalを指定する必要がある。
 
       @SuppressWarnings("unchecked")
-          -> 呼出もとには警告が出る
+          -> 呼出元にも警告が出る
 
 〇 （4） B, D
 〇 （5） B, C

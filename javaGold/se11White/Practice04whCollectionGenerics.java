@@ -37,13 +37,13 @@ public class Practice04whCollectionGenerics {
 
 〇 （5） A
 Ｘ （6） C -> D
-    => push()は addFirst()
+    => Queue.push()は addFirst()
 
 〇 （7） B
     => Set.add()で重複要素は格納されない falseが返ってコンパイルは通る。
     => Set.remove()で消去対象の要素がなくても falseが返り何も起きない。コンパイルも通る。
 
-〇 （8） E TreeSet implement Navigable, Cmparable / Navigable extends SortSet
+〇 （8） E TreeSet implement Navigable, Comparable / Navigable extends SortSet
     => SortedSet<E>.subSet(E from, E to) from以上 to未満の Setを返す。
     => 引数４つ subSet(from, boolean, to, boolean) booleanはその数を含むか。defaultで true, false
 
@@ -52,7 +52,7 @@ public class Practice04whCollectionGenerics {
 
 〇 （10） B
     => TreeMapは キーで sort
-    => Map.add(null)は不可。
+    => TreeMap.put(null, )は不可。ソートの際 Comparableにキャスト
 
 Ｘ （11） A -> D
     => Map.of() 不変Mapを生成。
@@ -92,11 +92,13 @@ public class Practice04whCollectionGenerics {
     Queueで push()は未定義なので使えない。
 
 〇 （16） A, C
-    => Comparable<T> this.compareTo(T)
-    => Comparator<T> compare(T, T)
+    => java.lang.Comparable<T> this.compareTo(T)
+    => java.util.Comparator<T> compare(T, T)
 
 〇 （17） B
-    => Collections.binarySearch(List, T): List内に 要素が存在すれば ingexを返す
+    => Collections.binarySearch(List, T):
+    *    List内に 要素が存在すれば ingexを返す
+    *    事前に自然順序に sort()いておかないと、正しい結果を保証できない。
 
 〇 （18） B
 Ｘ （19） C -> E
@@ -104,7 +106,7 @@ public class Practice04whCollectionGenerics {
     if(check != 0){
         return check;
     } else {
-        check = empName.compareTO(emp.empName);
+        check = empName.compareTo(emp.empName);
     }
     => フィールドの empNoと 引数の empNoを比較して違うならその順。
         empNoが同じなら名前で比較した自然順序。
@@ -135,7 +137,7 @@ public class Practice04whCollectionGenerics {
        Foo foo2 = new Foo(); -> Foo<Object>になる
 
 〇 （2） A, B, E
-    => インスタンス生成時に <?>ワイルドカードは不可。
+    => インスタンス生成時、右辺に<?>ワイルドカードは不可。
 
 Ｘ （3） B, D -> A, B, D
     <? super BBB>, <? extends BBB>は両方とも BBBを格納可。
