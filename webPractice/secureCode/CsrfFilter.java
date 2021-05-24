@@ -14,7 +14,7 @@
  * @author shika
  * @date 2021-05-03
  */
-
+/*
 package webPractice.secureCode;
 
 import java.io.IOException;
@@ -98,7 +98,7 @@ public class CsrfFilter implements Filter {
     }//toHex
 
 }//class
-
+*/
 /*
 ◆攻撃者の用意するページ
 ＊untrue.html

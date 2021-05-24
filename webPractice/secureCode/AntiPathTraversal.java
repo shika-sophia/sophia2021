@@ -14,6 +14,7 @@
  * @author shika
  * @date 2021-05-04
  */
+/*
 package webPractice.secureCode;
 
 import java.io.BufferedReader;
@@ -88,3 +89,4 @@ public class AntiPathTraversal extends HttpServlet {
     }//doPost()
 
 }//class
+*/
