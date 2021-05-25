@@ -1,5 +1,0 @@
-#written by FileProperty
-#Wed Apr 07 10:51:43 JST 2021
-month=04
-year=2021
-day=06
