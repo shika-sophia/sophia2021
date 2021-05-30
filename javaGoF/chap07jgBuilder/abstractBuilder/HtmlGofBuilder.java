@@ -6,13 +6,15 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 public class HtmlGofBuilder extends GofBuilder {
-    private String fileName = "src/javaGoF/chap07jgBuilder/abstractBuilder/htmlBuilder.html";
+    private String fileName;
+    private String dir = "src/javaGoF/chap07jgBuilder/abstractBuilder/";
     private PrintWriter writer;
 
     @Override
     public void makeTitle(String title) {
+        fileName = title + ".html";
         try {
-            writer = new PrintWriter(new FileWriter(fileName));
+            writer = new PrintWriter(new FileWriter(dir + fileName));
 
         } catch(IOException e) {
             e.printStackTrace();

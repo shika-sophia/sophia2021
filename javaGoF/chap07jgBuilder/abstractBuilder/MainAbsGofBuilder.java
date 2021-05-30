@@ -1,15 +1,19 @@
 /**
  * @title javaGoF / chap07jgBuilder / abstractBuilder / MainAbsGofBuilder.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
- * @content 第７章 Builder / p82 / List 7-1 ～ 7-5
+ * @content 第７章 Builder / p82
+ * @content List 7-1 ～ 7-5 / 練習問題 7-3 SwingGofBuilder
  *          ２通りの GofBuilderのサブクラスを １つのBuilderDirectorクラスで実行。
+ *          サブクラスに SwingGofBuilderを追加。BuilderDirectorでそのまま動かす。
  *
  * @class MainAbsBuilder / ◆main(), Scannerで作成するファイルを聞く。
  * @class abstract GofBuilder
  * @class BuilderDirector / 文字列を定義、GofBuilderの実行
  * @class TextGofBuilder extends GofBuilder / プレーンテキスト(普通のテキスト)
  * @class HtmlGofBuilder extends GofBuilder / HTMLファイルを作成
+ * @class SwingGofBuilder extends GofBuilder / Swingウィンドウで表示
  *
+ * @see ./swingBuilderResult.jpg
  * @author shika
  * @date 2021-05-29
  */
@@ -21,7 +25,7 @@ public class MainAbsGofBuilder {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        System.out.print("テキスト形式は？ plain / html ");
+        System.out.print("テキスト形式は？ plain / html / swing ");
         String input = scn.nextLine();
 
         if (input.equals("plain")) {
@@ -37,6 +41,13 @@ public class MainAbsGofBuilder {
             director.construct();
             String fileName = htmlBuilder.getResult();
             System.out.println(fileName + "が作成されました。");
+
+        } else if (input.equals("swing")) {
+            SwingGofBuilder swingBuilder = new SwingGofBuilder();
+            BuilderDirector director = new BuilderDirector(swingBuilder);
+            director.construct();
+            String frameTitle = swingBuilder.getResult();
+            System.out.println(frameTitle);
 
         } else {
             usage();
@@ -116,13 +127,18 @@ src/javaGoF/chap07jgBuilder/abstractBuilder/htmlBuilder.htmlが作成されま�
 <li>さようなら</li>
 </ul>
 </body></html>
+
+//---- swing ----
+テキスト形式は？ plain / html / swing swing
+swing: Greeting
+@see swingBuilderResult.jpg
 */
 /*
-//###### command args version as Sample-code original ######
+//###### main() command args version as Sample-code original ######
 if (args.length != 1) {
-	usage();
-	System.exit(0);
-	
+    usage();
+    System.exit(0);
+
 } else if (args[0].equals("plain")) {
     TextIGofBuilder textBuilder = new TextIGofBuilder();
     IBuilderDirector director = new IBuilderDirector(textBuilder);
