@@ -7,8 +7,8 @@
  * @class MainAbsBuilder / ◆main(), Scannerで作成するファイルを聞く。
  * @class abstract GofBuilder
  * @class BuilderDirector / 文字列を定義、GofBuilderの実行
- * @class TextGofBuilder / プレーンテキスト(普通のテキスト)
- * @class HtmlGofBuilder / HTMLファイルを作成
+ * @class TextGofBuilder extends GofBuilder / プレーンテキスト(普通のテキスト)
+ * @class HtmlGofBuilder extends GofBuilder / HTMLファイルを作成
  *
  * @author shika
  * @date 2021-05-29
@@ -64,6 +64,12 @@ public class MainAbsGofBuilder {
 Eclipseの [実行の構成]->[VM引数],[ワークスペース]を合わせても
 ClassNotFoundExceptionが throwされ、classファイルを見つけられない様子。
 
+ワークスペースを classファイルの置場に変更
+${workspace_loc:sophia2021/build/classes/javaGoF/chap07jgBuilder/interfaceBuilder}
+絶対パスでも同様
+C:\Program Files\pleiades\workspace-web\sophia2021\build\classes\javaGoF\chap07jgBuilder\interfaceBuilder
+やはり ClassNotFoundException
+
 コマンドプロンプトで各ファイルをコンパイルしようと思ったが、
 GofBuilderは成功。
 TextGofBuilderのコンパイルが
@@ -110,5 +116,29 @@ src/javaGoF/chap07jgBuilder/abstractBuilder/htmlBuilder.htmlが作成されま�
 <li>さようなら</li>
 </ul>
 </body></html>
+*/
+/*
+//###### command args version as Sample-code original ######
+if (args.length != 1) {
+	usage();
+	System.exit(0);
+	
+} else if (args[0].equals("plain")) {
+    TextIGofBuilder textBuilder = new TextIGofBuilder();
+    IBuilderDirector director = new IBuilderDirector(textBuilder);
+    director.construct();
+    String result = textBuilder.getResult();
+    System.out.println(result);
 
+} else if (args[0].equals("html")) {
+    HtmlIGofBuilder htmlBuilder = new HtmlIGofBuilder();
+    IBuilderDirector director = new IBuilderDirector(htmlBuilder);
+    director.construct();
+    String fileName = htmlBuilder.getResult();
+    System.out.println(fileName + "が作成されました。");
+
+} else {
+    usage();
+    System.exit(1);
+}
 */

@@ -23,6 +23,7 @@ public class TextGofBuilder extends GofBuilder {
         Arrays.stream(item)
               .map(s -> s + "\n")
               .forEach(buffer::append);
+        buffer.append("\n");
     }//makeItem()
 
     @Override
