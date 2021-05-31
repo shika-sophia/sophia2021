@@ -21,7 +21,7 @@ public abstract class AbsFactory {
         return factory;
     }//getFactory()
 
-    public abstract AbsLink createLink(String url);
+    public abstract AbsLink createLink(String caption, String url);
     public abstract AbsTray createTray(String caption);
     public abstract AbsPage createPage(String title, String author);
 }//class
