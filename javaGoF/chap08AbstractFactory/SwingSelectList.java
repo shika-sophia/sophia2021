@@ -1,10 +1,9 @@
 package javaGoF.chap08AbstractFactory;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -27,6 +26,7 @@ public class SwingSelectList extends JFrame {
     }
 
     public void run() {
+        JFrame frame = this;
         JPanel panel = new JPanel();
         JLabel label = new JLabel();
         JButton button = new JButton("決定");
@@ -47,37 +47,58 @@ public class SwingSelectList extends JFrame {
             }//valueChanged()
         });
 
+        Thread main = Thread.currentThread();
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(jList.getSelectedIndices().length == 1) {
                     select = jList.getSelectedValue();
-                    System.exit(0);
+                    main.interrupt();
+                    frame.setVisible(false);
                 }
             }//actionPerformed()
         });
 
-        this.getContentPane().add(panel);
-        panel.setLayout(new BorderLayout());
-        panel.add(scroll, "North");
-        panel.add(label, "Center");
-        panel.add(button,"South");
+        this.getContentPane().setLayout(new BorderLayout());
+        this.add(scroll, "North");
+        this.add(panel, "South");
+        panel.setLayout(new FlowLayout());
+        panel.add(label);
+        panel.add(button);
 
         this.setTitle("Select List");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+
+        System.out.println("select in Swing Window");
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+            }
+        }
     }//run()
 
     public String getSelect() {
         return select;
     }
 
-    public static void main(String[] args) {
-        List<String> dataList = new ArrayList<>(
-            Arrays.asList("A", "B", "C", "D", "E"));
-        var swing = new SwingSelectList(dataList);
-        String select = swing.getSelect();
-        System.out.println(select);
-    }//main()
+//    //====== Test main() ======
+//    public static void main(String[] args) {
+//        List<String> dataList = new ArrayList<>(
+//            Arrays.asList("A", "B", "C", "D", "E"));
+//
+//        var swing = new SwingSelectList(dataList);
+//        String select = swing.getSelect();
+//        System.out.println("select: " + select);
+//    }//main()
 }//class
+
+/*
+//====== Test of run(), wait(), interrupt() ======
+select in Swing Window
+select: D
+
+ */
