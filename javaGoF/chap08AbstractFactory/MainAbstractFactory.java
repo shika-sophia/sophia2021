@@ -1,3 +1,31 @@
+/**
+ * @title javaGoF / chap08AbstractFactory / MainAbstractFactory.java
+ * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
+ * @content 第８章 AbstractFactory / p96 / List 8-1 ～ 8-14
+ * @content
+ * @class MainAbstractFactory / ◆main(), new SwingSelectList()
+ * @class SwingSelectList
+ *
+ * @package ---- abstractFactory ----
+ * @class AbsFactory
+ * @class AbsItem
+ * @class AbsLink extends AbsItem
+ * @class AbsTray extends AbsItem
+ * @class AbsPage
+ *
+ * @package ---- listFactory ----
+ * @class ListFactory extends AbsFactory
+ * @class ListLink extends AbsLink
+ * @class ListTray extends AbsTray
+ * @class ListPage extends AbsPage / makeHtml(), output()
+ *
+ * @package ---- outputHtml ----
+ * @file listpage.html
+ * @see ./outputHtml/listFactoryResult.jpg
+ *
+ * @author shika
+ * @date 2021-06-01
+ */
 package javaGoF.chap08AbstractFactory;
 
 import java.util.ArrayList;
@@ -12,18 +40,23 @@ import javaGoF.chap08AbstractFactory.abstractFactory.AbsTray;
 public class MainAbstractFactory {
 
     public static void main(String[] args) {
-        //---- view selectList of Swing ----
-        List<String> classNameList = new ArrayList<>(
-            Arrays.asList("ListFactory", "TableFactory"));
+        //---- build List of directory + className ----
+        String here = System.getProperty("sun.java.command");
+        final String dir = here.substring(0, here.lastIndexOf("."));
 
-        System.out.println("Swing Window 作成中...");
+        List<String> classNameList = new ArrayList<>(
+            Arrays.asList(".listFactory.ListFactory", "/tableFactory/TableFactory"));
+
+        //---- view selectList of Swing ----
+        System.out.println("Swing Window is making...");
         var swing = new SwingSelectList(classNameList);
         String select = swing.getSelect();
-        //System.out.println("select: " + select);
+        System.out.println("select: " + select);
+        System.out.println(dir + select);
 
         //---- Factory ----
         @SuppressWarnings("deprecation")
-        AbsFactory factory = AbsFactory.getFactory(select);
+        AbsFactory factory = AbsFactory.getFactory(dir + select);
 
         AbsLink asahi = factory.createLink(
             "朝日新聞", "http://www.asahi.com/");
@@ -63,4 +96,63 @@ public class MainAbstractFactory {
 /*
 select in Swing Window
 select: ListFactory
+
+Swing Window is making...
+select in Swing Window
+select: /listFactory/ListFactory
+build/classes/javaGoF/chap08AbstractFactory/listFactory/ListFactory
+java.lang.ClassNotFoundException: build/classes/javaGoF/chap08AbstractFactory/listFactory/ListFactory
+    at java.base/java.lang.Class.forName0(Native Method)
+    at java.base/java.lang.Class.forName(Class.java:315)
+    at javaGoF.chap08AbstractFactory.abstractFactory.AbsFactory.getFactory(AbsFactory.java:10)
+    at javaGoF.chap08AbstractFactory.MainAbstractFactory.main(MainAbstractFactory.java:33)
+Exception in thread "main" java.lang.NullPointerException
+    at javaGoF.chap08AbstractFactory.MainAbstractFactory.main(MainAbstractFactory.java:35)
+
+Swing Window is making...
+select in Swing Window
+select: .listFactory.ListFactory
+javaGoF.chap08AbstractFactory.listFactory.ListFactory
+linkpage.html を作成しました。
+
+【考察】
+Class.forName()のクラスローダーで pathが通らず
+ClassNotFoundExceptionが出ている状態。
+
+おぉ、できた。
+Eclipseのカレントであるプロジェクト名からの相対パスと考えていたが、
+importと同じで、完全修飾クラス名は「src/」や「build/classes/」は不要で
+package名の最初から、つまりいつもの完全修飾名を
+Class.forName()の引数に渡せばそれで済む。
+
+<html><head><title>LinkPage</title></head>
+<body>
+<h1>LinkPage</h1>
+<ul>
+<li>
+news
+<ul>
+  <li><a href="http://www.asahi.com/"> 朝日新聞 </a></li>
+  <li><a href="http://www.yomiuri.co.jp/"> 讀賣新聞 </a></li>
+</ul>
+</li>
+<li>
+search
+<ul>
+<li>
+yahoo
+<ul>
+  <li><a href="http://www.yahoo.com/"> Yahoo! </a></li>
+  <li><a href="http://www.yahoo.co.jp/"> Yahoo!Japan </a></li>
+</ul>
+</li>
+  <li><a href="http://www.excite.com/"> Excite </a></li>
+  <li><a href="http://www.google.com/"> Google </a></li>
+</ul>
+</li>
+</ul>
+<hr><address>結城 浩</address></body></html>
+
+@see ./outputHtml/listFactoryResult.jpg
 */
+
