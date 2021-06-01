@@ -16,6 +16,7 @@ public class MainAbstractFactory {
         List<String> classNameList = new ArrayList<>(
             Arrays.asList("ListFactory", "TableFactory"));
 
+        System.out.println("Swing Window 作成中...");
         var swing = new SwingSelectList(classNameList);
         String select = swing.getSelect();
         //System.out.println("select: " + select);
