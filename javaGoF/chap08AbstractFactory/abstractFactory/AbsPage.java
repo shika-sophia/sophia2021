@@ -21,10 +21,7 @@ public abstract class AbsPage {
     }//addContent()
 
     public void output() {
-        String className = System.getProperty("sun.java.command");
-        String dir = "src/"
-                + className.substring(0, className.lastIndexOf("."))
-                .replace('.', '/');
+        String dir = "src/javaGoF/chap08AbstractFactory/outputHtml";
         String fileName = title.toLowerCase() + ".html";
 
         try(BufferedWriter writer = new BufferedWriter(
@@ -46,6 +43,5 @@ public static void main(String[] args) {
     var here = new AbsPage("A", "B");
     here.output();
 }//main()
-//System.out.println(dir);
-// src/javaGoF/chap08AbstractFactory/abstractFactory
+
 */
