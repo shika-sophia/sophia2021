@@ -21,7 +21,7 @@ public abstract class AbsPage {
     }//addContent()
 
     public void output() {
-        String dir = "src/javaGoF/chap08AbstractFactory/outputHtml";
+        String dir = "src/javaGoF/chap08AbstractFactory/outputHtml/";
         String fileName = title.toLowerCase() + ".html";
 
         try(BufferedWriter writer = new BufferedWriter(
