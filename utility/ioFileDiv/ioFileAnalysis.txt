@@ -1,3 +1,5 @@
+//###### javaGoF/chap08AbstractFactory/MainAbstractFactory ######
+//2021-06-01
 //---- Eclipse カレント・ディレクトリ作成用 ----
 String className = System.getProperty("sun.java.command");
 String dir = "src/"
@@ -7,11 +9,24 @@ String dir = "src/"
 System.out.println(dir);
 // src/javaGoF/chap08AbstractFactory/abstractFactory
 
+Eclipseの カレント・ディレクトリは、プロジェクト名の位置。
+src以下のソースコードにカレントを持っていくための処理。
+カレントからの相対パスが利用できるようになる。
+
 自クラスの完全修飾名を取得し、
 "src/"を前に付けて、「.クラス名」を除去。
 「.」を「/」に置換。
 
+◆Class.forName()
+【考察】
+Class.forName()のクラスローダーで pathが通らず
+ClassNotFoundExceptionが出ている状態。
 
+おぉ、できた。
+Eclipseのカレントであるプロジェクト名からの相対パスと考えていたが、
+importと同じで、完全修飾クラス名は srcや build/classesは不要で
+package名の最初から、つまりいつもの完全修飾名を
+Class.forName()の引数に渡せばそれで済む。
 //###### AbsFileSystem / 2021-01-25 ######
 public void seekProperty() {
         //====== StackTraceの情報を取得 ======
