@@ -42,7 +42,7 @@ public class MainAbstractFactory {
     public static void main(String[] args) {
         //---- build List of directory + className ----
         String here = System.getProperty("sun.java.command");
-        final String dir = here.substring(0, here.lastIndexOf("."));
+        String dir = here.substring(0, here.lastIndexOf("."));
 
         List<String> classNameList = new ArrayList<>(
             Arrays.asList(".listFactory.ListFactory", "/tableFactory/TableFactory"));
