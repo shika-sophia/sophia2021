@@ -15,7 +15,7 @@ public class ListPage extends AbsPage {
     public String makeHtml() {
         var buffer = new StringBuffer();
         buffer.append(
-            "<html><head><title>" + title + "</title></header> \n");
+            "<html><head><title>" + title + "</title></head> \n");
         buffer.append("<body> \n");
         buffer.append("<h1>" + title + "</h1> \n");
         buffer.append("<ul> \n");
