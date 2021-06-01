@@ -1,3 +1,17 @@
+//---- Eclipse カレント・ディレクトリ作成用 ----
+String className = System.getProperty("sun.java.command");
+String dir = "src/"
+    + className.substring(0, className.lastIndexOf("."))
+    .replace('.', '/');
+
+System.out.println(dir);
+// src/javaGoF/chap08AbstractFactory/abstractFactory
+
+自クラスの完全修飾名を取得し、
+"src/"を前に付けて、「.クラス名」を除去。
+「.」を「/」に置換。
+
+
 //###### AbsFileSystem / 2021-01-25 ######
 public void seekProperty() {
         //====== StackTraceの情報を取得 ======
