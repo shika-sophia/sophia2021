@@ -24,4 +24,12 @@ public abstract class AbsFactory {
     public abstract AbsLink createLink(String caption, String url);
     public abstract AbsTray createTray(String caption);
     public abstract AbsPage createPage(String title, String author);
+
+    public AbsPage createYahooPage(String select) {
+        AbsLink link = createLink("Yahoo!", "http://www.yahoo.com/");
+        AbsPage page = createPage(select + "_Yahoo", "Yahoo!");
+        page.addContent(link);
+
+        return page;
+    }//createYahooPage()
 }//class
