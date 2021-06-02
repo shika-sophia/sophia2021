@@ -2,7 +2,9 @@
  * @title javaGoF / chap08AbstractFactory / MainAbstractFactory.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第８章 AbstractFactory / p96 / List 8-1 ～ 8-14
- * @content
+ * @content abstractの部品で abstractな製品を作る。それを具体化。
+ *          TemplateMethodを、クラス構造にした感じ。
+ *
  * @class MainAbstractFactory / ◆main(), new SwingSelectList()
  * @class SwingSelectList
  *
@@ -19,10 +21,17 @@
  * @class ListTray extends AbsTray
  * @class ListPage extends AbsPage / makeHtml(), output()
  *
+ * @package ---- tableFactory ----
+ * @class TableFactory extends AbsFactory
+ * @class TableLink extends AbsLink
+ * @class TableTray extends AbsTray
+ * @class TablePage extends AbsPage / makeHtml(), output()
+ *
  * @package ---- outputHtml ----
  * @file listpage.html
- * @see ./outputHtml/listFactoryResult.jpg
- *
+ * @see  listFactoryResult.jpg
+ * @file tablefactory.html
+ * @see  tableFactoryResult.jpg
  * @author shika
  * @date 2021-06-01
  */
@@ -45,7 +54,7 @@ public class MainAbstractFactory {
         String dir = here.substring(0, here.lastIndexOf("."));
 
         List<String> classNameList = new ArrayList<>(
-            Arrays.asList(".listFactory.ListFactory", "/tableFactory/TableFactory"));
+            Arrays.asList(".listFactory.ListFactory", ".tableFactory.TableFactory"));
 
         //---- view selectList of Swing ----
         System.out.println("Swing Window is making...");
@@ -84,12 +93,15 @@ public class MainAbstractFactory {
         traySearch.addItem(excite);
         traySearch.addItem(google);
 
-        AbsPage page = factory.createPage("LinkPage", "結城 浩");
+        AbsPage page = factory.createPage(
+            select.substring(select.lastIndexOf(".") + 1), "結城 浩");
         page.addContent(trayNews);
         page.addContent(traySearch);
 
         //---- output ----
         page.output();
+
+        System.exit(0); //Swingを閉じる
     }//main()
 }//class
 
@@ -125,6 +137,7 @@ importと同じで、完全修飾クラス名は「src/」や「build/classes/�
 package名の最初から、つまりいつもの完全修飾名を
 Class.forName()の引数に渡せばそれで済む。
 
+//====== listfactory.html ======
 <html><head><title>LinkPage</title></head>
 <body>
 <h1>LinkPage</h1>
@@ -154,5 +167,28 @@ yahoo
 <hr><address>結城 浩</address></body></html>
 
 @see ./outputHtml/listFactoryResult.jpg
+
+
+//====== tablefactory.html ======
+<html><head><title>TableFactory</title></head>
+<body>
+<h1>TableFactory</h1>
+<table border='1'>
+ <tr><td><table border='1'><tr><td bgcolor='pink' align='center' colspan='2'><b>news</b></td></tr>
+<tr>
+<td><a href="http://www.asahi.com/">朝日新聞</a>
+<td><a href="http://www.yomiuri.co.jp/">讀賣新聞</a>
+</tr></table></td></tr><tr><td><table border='1'><tr><td bgcolor='pink' align='center' colspan='3'><b>search</b></td></tr>
+<tr>
+<td><table border='1'><tr><td bgcolor='pink' align='center' colspan='2'><b>yahoo</b></td></tr>
+<tr>
+<td><a href="http://www.yahoo.com/">Yahoo!</a>
+<td><a href="http://www.yahoo.co.jp/">Yahoo!Japan</a>
+</tr></table></td><td><a href="http://www.excite.com/">Excite</a>
+<td><a href="http://www.google.com/">Google</a>
+</tr></table></td></tr></table>
+<hr><address>結城 浩</address></body></html>
+
+@see tableFactoryResult.jpg
 */
 

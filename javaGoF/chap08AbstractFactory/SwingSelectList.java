@@ -25,7 +25,7 @@ public class SwingSelectList extends JFrame {
         run();
     }
 
-    public void run() {
+    public synchronized void run() {
         JFrame frame = this;
         JPanel panel = new JPanel();
         JLabel label = new JLabel();
@@ -68,16 +68,15 @@ public class SwingSelectList extends JFrame {
 
         this.setTitle("Select List");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
+        this.setSize(300, 250);
         this.setVisible(true);
 
         System.out.println("select in Swing Window");
-        synchronized (this) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                //e.printStackTrace();
-            }
+
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            //e.printStackTrace();
         }
     }//run()
 
