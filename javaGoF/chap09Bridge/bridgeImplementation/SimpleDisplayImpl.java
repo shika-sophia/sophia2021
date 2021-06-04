@@ -7,6 +7,8 @@ public class SimpleDisplayImpl extends AbsDisplayImpl {
     private String line;//文字列幅の区切り横線
     private int width;  //文字列のバイト単位の幅
 
+    public SimpleDisplayImpl() { }
+
     public SimpleDisplayImpl(String str) {
         this.str = str;
         this.width = str.getBytes().length;
@@ -42,4 +44,9 @@ public class SimpleDisplayImpl extends AbsDisplayImpl {
         System.out.println(line);
     }//printLine()
 
+    //---- setter ----
+    protected void setStr(String str) {
+        this.str = str;
+        this.width = str.getBytes().length;
+    }
 }//class
