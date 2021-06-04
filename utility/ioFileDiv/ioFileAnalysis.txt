@@ -4,10 +4,10 @@
 String className = System.getProperty("sun.java.command");
 String dir = "src/"
     + className.substring(0, className.lastIndexOf("."))
-    .replace('.', '/');
+    .replace('.', '/') + "/";
 
 System.out.println(dir);
-// src/javaGoF/chap08AbstractFactory/abstractFactory
+// src/javaGoF/chap08AbstractFactory/abstractFactory/
 
 Eclipseの カレント・ディレクトリは、プロジェクト名の位置。
 src以下のソースコードにカレントを持っていくための処理。
@@ -16,6 +16,18 @@ src以下のソースコードにカレントを持っていくための処理�
 自クラスの完全修飾名を取得し、
 "src/"を前に付けて、「.クラス名」を除去。
 「.」を「/」に置換。
+
+//###### javaGoF/chap09Bridge/bridgeImplementation/
+           ReadFileDisplayImpl ###### 2021-06-04
+【考察】 上記 Eclipse カレント・ディレクトリ作成用
+別階層の Mainから startすると
+src\javaGoF\chap09Bridge\textData.txt
+というPathになり、java.nio.file.NoSuchFileException
+
+System.getProperty("sun.java.command")は
+javaを実行したクラスの完全修飾名を持ってくる。
+固定値に変更。
+String dir = "src/javaGoF/chap09Bridge/bridgeImplementation/";
 
 ◆Class.forName()
 【考察】
