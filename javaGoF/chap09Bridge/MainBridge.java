@@ -25,12 +25,16 @@
  *          ランダム数だけ返すメソッドを分離し、
  *          randomDisplay()と gradualIncrease()で共有。
  *
+ *          => 【解答】 guradualIncrease()は別機能なので、
+ *          新しいクラスとすべき。
+ *          IncrementDisplayを創設。guradualIncrease()を移転
+ *
  * @class MainBridge / ◆main()
  * @package ---- bridgeFunction / 機能の階層 ----
  * @class BridgeDisplay / impl / open(),print(),close(),display()
  * @class CountDisplay extends BridgeDisplay / multiDisplay()
- * @class RandomDisplay extends CountDisplay
- *        / randomReturn(), randomDisplay(), gradualIncrease()
+ * @class RandomDisplay extends CountDisplay / randomReturn(), randomDisplay()
+ * @class IncrementDisplay extends randomDisplay / gradualIncrease()
  *
  * @package ---- bridgeImplementation / 実装の階層 ----
  * @class AbsDisplayImpl
@@ -46,6 +50,7 @@ package javaGoF.chap09Bridge;
 
 import javaGoF.chap09Bridge.bridgeFunction.BridgeDisplay;
 import javaGoF.chap09Bridge.bridgeFunction.CountDisplay;
+import javaGoF.chap09Bridge.bridgeFunction.IncrementDisplay;
 import javaGoF.chap09Bridge.bridgeFunction.RandomDisplay;
 import javaGoF.chap09Bridge.bridgeImplementation.DrawDisplayImpl;
 import javaGoF.chap09Bridge.bridgeImplementation.ReadFileDisplayImpl;
@@ -72,7 +77,7 @@ public class MainBridge {
         d4.randomDisplay(5);
         d5.display();
 
-        RandomDisplay d6 = new RandomDisplay(
+        IncrementDisplay d6 = new IncrementDisplay(
                 new DrawDisplayImpl());
         d6.gradualIncrease(8);
     }//main()
@@ -129,6 +134,16 @@ public class MainBridge {
 |#-
 |##-
 |###-
+
+マークを入力してください。 * / # -> #
+|-
+|#-
+|##-
+|###-
+|####-
+|#####-
+|######-
+|#######-
 
 マークを入力してください。 * / # -> 8
 <!> 「*」か「#」で入力してください。
