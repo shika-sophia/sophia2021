@@ -13,14 +13,11 @@ public class WinningStrategy implements IThreeStrategy {
 
     @Override
     public ThreeHand nextHand() {
-        ThreeHand nextHand = null;
         if(!won) {
-            nextHand = ThreeHand.getHand(random.nextInt(3));
-        } else {
-            nextHand = prevHand;
+            prevHand = ThreeHand.getHand(random.nextInt(3));
         }
 
-        return nextHand;
+        return prevHand;
     }//nextHand()
 
     @Override

@@ -35,10 +35,10 @@ public class PlayerDeadlock {
 
     public String toString() {
         var bld = new StringBuilder();
-        bld.append("[ ").append(playerName);
-        bld.append(String.format("Game: %d, ", gameCount));
-        bld.append(String.format("Win: %d, ", winCount));
-        bld.append(String.format("Lose: %d, ", loseCount));
+        bld.append("[ ").append(playerName).append(": ");
+        bld.append(String.format("Game %d, ", gameCount));
+        bld.append(String.format("Win %d, ", winCount));
+        bld.append(String.format("Lose %d", loseCount));
         bld.append(" ]");
 
         return bld.toString();
