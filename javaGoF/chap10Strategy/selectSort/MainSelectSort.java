@@ -1,7 +1,7 @@
 /**
  * @title javaGoF / chap10Strategy / selectSort / MainSelectSort.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
- * @content 第10章 Strategy / 練習問題 10-1, 10-4, A10-3, A10-4
+ * @content 第10章 Strategy / 練習問題 10-4, A10-3, A10-4
  * @content sort()のソート仕様の切り替えを Strategyで実現。
  *
  * @class MainSelectSort / ◆main()
