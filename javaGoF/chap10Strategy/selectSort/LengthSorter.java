@@ -7,6 +7,7 @@ public class LengthSorter<T> implements ISorter<T> {
     public void sort(Comparable<T>[] data) {
         if(data == null || !(data[0] instanceof String)) {
             System.out.println("<!> このデータは扱えません。Stringのみ可。");
+            System.exit(0);
         }
 
         for(int i = 0; i < (data.length - 1); i++) {
