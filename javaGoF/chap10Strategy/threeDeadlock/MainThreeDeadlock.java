@@ -1,9 +1,10 @@
 /**
  * @title javaGoF / chap10Strategy / threeDeadlock / MainThreeDeadlock.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
- * @content 第10章 Strategy / List 10-1 ～ 10-6
+ * @content 第10章 Strategy / List 10-1 ～ 10-6, 練習問題 10-1
  * @content じゃんけん [英]Jyanken, Three Hand Deadlock
  *          戦略(=アルゴリズム)をクラスで表し、インスタンスごとに切り替える
+ *
  * @class MainThreeDeadlock / ◆main() new PlayerDeadlock() of Taro, Yuri
  * @class PlayerDeadlock
  * @class ThreeHand
@@ -13,6 +14,8 @@
  * @class HistoryStrategy implements IThreeStrategy
  *        / それぞれの手の勝ち数を記録し、
  *          前の手から勝ち数の大きいものを決めるアルゴリズム
+ * @class RandomList implements IThreeStrategy
+ *        / ランダムに次の手を決める
  *
  * @author shika
  * @date 2021-06-05
@@ -26,8 +29,10 @@ public class MainThreeDeadlock {
         int seed1 = 12345;
         int seed2 = 67890;
 
+        //PlayerDeadlock player1 = new PlayerDeadlock(
+        //    "Taro", new WinningStrategy(seed1));
         PlayerDeadlock player1 = new PlayerDeadlock(
-            "Taro", new WinningStrategy(seed1));
+            "Jiro", new RandomStrategy(seed1));
         PlayerDeadlock player2 = new PlayerDeadlock(
             "Yuri", new HistoryStrategy(seed2));
 
@@ -55,6 +60,7 @@ public class MainThreeDeadlock {
         System.out.println("==== Total Result ====");
         System.out.println(player1.toString());
         System.out.println(player2.toString());
+
     }//main()
 
 }//class
@@ -100,4 +106,8 @@ Even..
 ==== Total Result ====
 [ Taro: Game 10000, Win 3204, Lose 3556 ]
 [ Yuri: Game 10000, Win 3556, Lose 3204 ]
+
+==== Total Result ====
+[ Jiro: Game 10000, Win 3322, Lose 3290 ]
+[ Yuri: Game 10000, Win 3290, Lose 3322 ]
 */
