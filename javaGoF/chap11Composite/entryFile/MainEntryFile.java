@@ -2,7 +2,8 @@
  * @title javaGoF / chap11Composite / entryFile / MainEntryFile.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第11章 Composite / List 11-1 ～ 11-5
- * @content 容器と中身の同一視。Fileも Directoryも Entryとして扱う。
+ * @content 容器と中身の同一視。Directoryも Fileも Entryとして扱う。
+ *
  * @class MainEntryFile / ◆main()
  * @class AbsEntryComposite
  *        / abstract getName(), abstract getSize()
