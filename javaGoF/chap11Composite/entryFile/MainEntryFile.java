@@ -7,7 +7,7 @@
  * @class MainEntryFile / ◆main()
  * @class AbsEntryComposite
  *        / abstract getName(), abstract getSize()
- *          add(Entry), printList(), #printList(String), toString()
+ *          add(Entry), printList(), #abstract printList(String), toString()
  * @class FileTreatException extends RuntimeException 〔in AbsEntryComposite$1〕
  * @class DirectoryComposite extends AbsEntryComposite
  *        / name, entryList /
