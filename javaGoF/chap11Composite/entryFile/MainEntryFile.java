@@ -51,8 +51,10 @@ public class MainEntryFile {
             taro.add(new FileComposite("gameMemo.html", 500));
             rootDir.printList();
 
-            System.out.println("absolute path: ");
+            //練習問題 11-2 / File, Directoryの絶対パス表示
+            System.out.println("---- absolute path ----");
             AbsEntryComposite.getAbsolute("JavaGoF.java");
+            AbsEntryComposite.getAbsolute("hanako");
 
         } catch (FileTreatException e) {
             e.printStackTrace();
@@ -105,6 +107,49 @@ JavaGoF.java/MultiThread.java (200)
 
 【考察】
 失敗だ。再考すべし。
+
+//==== 練習問題 11-2 再 ====
+//---- AbsEntryComposite ----
+public static List<String> allList = new ArrayList<>();
+
+public static void getAbsolute(String entryName) {
+    allList.stream()
+        .map(s -> s.substring(0, s.lastIndexOf(" (" )))
+        .filter(s -> s.endsWith(entryName))
+        .forEach(System.out::println);
+}//getAbsolute
+
+//---- MainEntryFile ----
+System.out.println("---- absolute path ----");
+AbsEntryComposite.getAbsolute("JavaGoF.java");
+AbsEntryComposite.getAbsolute("hanako");
+
+---- absolute path ----
+/root/user/yuki/JavaGoF.java
+/root/user/hanako
+
+【考察】
+各 File, Directoryの絶対パスは、すでに コンソールに出力してるので、
+コンソールに出力したものを全て allListに格納し、
+getAbsolute(String entryName)で File, Directoryを指定後、
+allListの各要素からファイルサイズの 「(300)」などを除去。
+指定した entryNameで終了するものを検索し、出力。
+
+endsWith(entryName)を contains(entryName)にすると
+Directory指定時に Directory自身と、その Directory配下のファイルも
+表示されるので、endsWith()が良い。
+
+練習問題 11-2 【解答】
+AbsEntryに、Entry parentを定義。
+Directory.add(entry)時に、parent = this;も行う。
+各Directoryインスタンスには、それぞれの parent(= this)の値を保持しているので
+
+AbsEntry.getFullName()において、
+while(parent != null)になるまで、parentを追い、
+StringBuffer.insert(0, "/" + entry.getName());で
+Stringの先頭に parentのnameを挿入。
+rootは parent == nullで終了。
+それを表示。
 
 */
 

@@ -21,7 +21,9 @@ public class FileComposite extends AbsEntryComposite {
 
     @Override
     protected void printList(String prefix) {
-        System.out.println(prefix + "/" + this);
+        String output = prefix + "/" + this;
+        allList.add(output);
+        System.out.println(output);
     }
 
 }//class

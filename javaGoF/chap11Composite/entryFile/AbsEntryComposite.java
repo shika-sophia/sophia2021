@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsEntryComposite {
-    protected static List<List<AbsEntryComposite>>
-            allList = new ArrayList<>();
+    public static List<String> allList = new ArrayList<>();
+
     public abstract String getName();
     public abstract int getSize();
+
 
     public AbsEntryComposite add(AbsEntryComposite entry)
             throws FileTreatException {
@@ -23,17 +24,12 @@ public abstract class AbsEntryComposite {
         return getName() + " (" + getSize() + ")";
     }
 
-    public static void getAbsolute(final String entryName) {
+    public static void getAbsolute(String entryName) {
         allList.stream()
-            .filter(list ->
-                list.stream()
-                    .anyMatch(e -> e.getName().contains(entryName)))
-            .forEach(list ->
-                    list.stream()
-                        .forEach(e -> e.printList(entryName))
-            );
-    }//getAbsolute()
-
+            .map(s -> s.substring(0, s.lastIndexOf(" (" )))
+            .filter(s -> s.endsWith(entryName))
+            .forEach(System.out::println);
+    }//getAbsolute
 }//class
 
 class FileTreatException extends RuntimeException {

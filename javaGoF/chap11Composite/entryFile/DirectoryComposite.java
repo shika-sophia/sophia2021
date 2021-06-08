@@ -10,7 +10,6 @@ public class DirectoryComposite extends AbsEntryComposite {
 
     public DirectoryComposite(String name) {
         this.name = name;
-        AbsEntryComposite.allList.add(entryList);
     }
 
     @Override
@@ -33,7 +32,9 @@ public class DirectoryComposite extends AbsEntryComposite {
 
     @Override
     protected void printList(final String prefix) {
-        System.out.println(prefix + "/" + this);
+        String output = prefix + "/" + this;
+        allList.add(output);
+        System.out.println(output);
 
         entryList.forEach(entry ->
             entry.printList(prefix + "/" + name));//ここのprintList()は各Fileのメソッド
