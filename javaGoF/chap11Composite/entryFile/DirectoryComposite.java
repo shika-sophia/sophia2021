@@ -10,6 +10,7 @@ public class DirectoryComposite extends AbsEntryComposite {
 
     public DirectoryComposite(String name) {
         this.name = name;
+        AbsEntryComposite.allList.add(entryList);
     }
 
     @Override
