@@ -51,6 +51,9 @@ public class MainEntryFile {
             taro.add(new FileComposite("gameMemo.html", 500));
             rootDir.printList();
 
+            System.out.println("absolute path: ");
+            AbsEntryComposite.getAbsolute("JavaGoF.java");
+
         } catch (FileTreatException e) {
             e.printStackTrace();
         }
@@ -82,6 +85,26 @@ Making user entry...
 /root/user/taro (900)
 /root/user/taro/game.txt (400)
 /root/user/taro/gameMemo.html (500)
+
+//===== 練習問題 11-2 ======
+public static void getAbsolute(final String entryName) {
+    allList.stream()
+        .filter(list ->
+            list.stream()
+                .anyMatch(e -> e.getName().contains(entryName)))
+        .forEach(list ->
+                list.stream()
+                    .forEach(e -> e.printList(entryName))
+        );
+
+}//getAbsolute()
+
+absolute path:
+JavaGoF.java/JavaGoF.java (100)
+JavaGoF.java/MultiThread.java (200)
+
+【考察】
+失敗だ。再考すべし。
 
 */
 
