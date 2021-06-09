@@ -2,21 +2,36 @@
  * @title javaGoF / chap12Decorator / decoBorder / MainDecoBorder.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第12章 Decorator / List 12-1 ～ 12-6
- * @content 飾り枠と中身の同一視
+ * @content 飾り枠と中身の同一視することで、部品同士の互換性ができる。
+ *          コンストラクタで引数に newするだけで、ラップができ機能追加できる。
+ *          入れ替えもコードの修正なく可能。
  *
  * @class MainDecoBorder / ◆main()
+ * @class MainLineSide   / ◆main() LineBorderDeco用
+ * @class MainMultiText  / ◆main() MultiTextDisplayDeco用
+ *
  * @class AbsDisplayDeco
  *        / abstract getColumn(), getRow, getText()
  *        show() ||TemplateMethod||
  * @class TextDiplayDeco extends AbsDisplayDeco
+ *        / String text, int column /
  *        / getColumn(), getRow(), getText()
+ * @class MultiTextDisplayDeco extends AbsDisplayDeco
+ *        / List<String> textList /
+ *        / add(), getColumn(), getRow(), getText()
+ *
  * @class AbsBorderDeco extends AbsDisplayDaco
  *        / AbsDiplayDeco display /
  *        #AbsBorderDeco(AbsDisplayDeco)
+ *        #String insertBlank(String text)
  * @class SideBorderDeco extends AbsBorderDeco
+ *        / String sideDeco /
  *        / getColumn(), getRow(), getText()
  * @class FullBorderDeco extends AbsBorderDeco
  *        / String line /
+ *        / getColumn(), getRow(), getText(), -buildLine()
+ * @class LineBorderDeco extends AbsBorderDeco
+ *        / String lineStr, String line /
  *        / getColumn(), getRow(), getText(), -buildLine()
  *
  * @author shika
@@ -46,7 +61,9 @@ public class MainDecoBorder {
                     new FullBorderDeco(
                         new SideBorderDeco(
                             new FullBorderDeco(
-                                new TextDisplayDeco("This is a Deco.")), "*")
+                                new TextDisplayDeco("This is a Deco.")
+                            )
+                        , "*")
                     )
                 )
             ,"/");
@@ -82,5 +99,5 @@ String.getBytes().lengthで、文字のバイト数を出しているので
 /||*+---------------+*||/
 /|+-------------------+|/
 /+---------------------+/
-デコりすぎや
+
 */

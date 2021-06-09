@@ -2,16 +2,18 @@ package javaGoF.chap12Decorator.decoBorder;
 
 import java.util.stream.Stream;
 
-public class FullBorderDeco extends AbsBorderDeco {
+public class LineBorderDeco extends AbsBorderDeco {
+    private String lineStr;
     private String line;
 
-    public FullBorderDeco(AbsDisplayDeco display) {
+    protected LineBorderDeco(AbsDisplayDeco display, String lineStr) {
         super(display);
+        this.lineStr = lineStr;
     }
 
     @Override
     public int getColumn() {
-        return 1 + display.getColumn() + 1;
+        return display.getColumn();
     }
 
     @Override
@@ -21,24 +23,19 @@ public class FullBorderDeco extends AbsBorderDeco {
 
     @Override
     public String getText(int row) {
-        if (row == 0 || row == display.getRow() + 1 ) {
+        if(row == 0 || row == (display.getRow() + 1)) {
             return buildLine();
         } else {
-            String text = insertBlank(display.getText(row - 1));
-            return "|" + text + "|";
+            return display.getText(row - 1);
         }
     }//getText()
 
     private String buildLine() {
-        if (line == null) {
+        if(line == null) {
             var bld = new StringBuilder();
-
-            bld.append("+");
-            Stream.generate(() -> "-")
+            Stream.generate(() -> lineStr)
                 .limit(display.getColumn())
                 .forEach(bld::append);
-            bld.append("+");
-
             line = bld.toString();
         }
 

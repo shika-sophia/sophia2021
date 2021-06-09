@@ -21,7 +21,8 @@ public class SideBorderDeco extends AbsBorderDeco {
 
     @Override
     public String getText(int row) {
-        return sideDeco + display.getText(row) + sideDeco;
+        String text = insertBlank(display.getText(row));
+        return sideDeco + text + sideDeco;
     }
 
 }//class
