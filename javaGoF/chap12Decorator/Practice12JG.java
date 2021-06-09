@@ -9,3 +9,12 @@ public class Practice12JG {
     }//main()
 
 }//class
+
+/*
+(1) 練習問題 12-1
+    => LineBorderDeco, MainLineSide
+
+(2) 練習問題 12-2
+    => MultiTextDisplayDeco, MainMultiText
+
+*/
