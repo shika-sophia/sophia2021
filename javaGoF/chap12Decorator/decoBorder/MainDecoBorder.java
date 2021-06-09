@@ -2,7 +2,23 @@
  * @title javaGoF / chap12Decorator / decoBorder / MainDecoBorder.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第12章 Decorator / List 12-1 ～ 12-6
- * @content
+ * @content 飾り枠と中身の同一視
+ *
+ * @class MainDecoBorder / ◆main()
+ * @class AbsDisplayDeco
+ *        / abstract getColumn(), getRow, getText()
+ *        show() ||TemplateMethod||
+ * @class TextDiplayDeco extends AbsDisplayDeco
+ *        / getColumn(), getRow(), getText()
+ * @class AbsBorderDeco extends AbsDisplayDaco
+ *        / AbsDiplayDeco display /
+ *        #AbsBorderDeco(AbsDisplayDeco)
+ * @class SideBorderDeco extends AbsBorderDeco
+ *        / getColumn(), getRow(), getText()
+ * @class FullBorderDeco extends AbsBorderDeco
+ *        / String line /
+ *        / getColumn(), getRow(), getText(), -buildLine()
+ *
  * @author shika
  * @date 2021-06-09
  */
