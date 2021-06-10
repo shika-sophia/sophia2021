@@ -74,4 +74,11 @@ insertBlank()を追加。
     String text = insertBlank(display.getText(row));
     return sideDeco + text + sideDeco;
 修正後、ちゃんと枠線が出ました。
+
+【解答】
+insertBlank()を MultiTextDisplayのほうに入れていました。
+MultiText特有の問題だから、こちらに入れたほうがいい。
+display.getText()で取得する Stringに すでに後半の空白が入っている状態にする。
+SideBorder, FullBorderを修正する必要がなくなる。
+
 */

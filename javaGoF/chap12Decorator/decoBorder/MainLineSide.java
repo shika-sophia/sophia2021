@@ -55,4 +55,7 @@ Hello, World.
 |/////////////////////|
 +---------------------+
 
+【解答】
+buildLine()は FullBorderにも登場したので、
+AbsBorderに TemplateMethodとして入れても良い。てかそうすべき。
 */
