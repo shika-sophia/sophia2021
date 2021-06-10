@@ -1,3 +1,27 @@
+/**
+ * @title WebContent / frontControler / FrontServlet.java
+ * @reference 山田祥寛 『独習 Java サーバーサイド編 第２版』 翔泳社, 2013
+ * @content 第６章 Servlet / p297 / List 6-13
+ * @content File Uploadを標準ライブラリで実装する
+ *          Part request.getPart(String name) <form> name属性で指定した値
+ *          String Part.getHeader(String name) ヘッダ属性名を指定
+ *          void Part.write(Path)
+ *            絶対パスを指定 / 相対パスだと location属性からの相対パス
+ *          Path ServletContext.getRealPath(String relativePath)
+ *            アプリルートからの相対パスを絶対パスに変換
+ *
+ * @content 実装手順
+ *          ① <form>内に enctype="multipart/form-data"を指定
+ *          ② @MultipartConfig アノテーション
+ *              location= "" アップロードしたファイルを一時的に保管する場所を指定
+ *          ③ Content-Dispositionヘッダを取得 / Part.getHeader()
+ *          ④ 文字列解析をしてオリジナルのファイル名を抽出 / getFileName()自己定義メソッド
+ *          ⑤ 許容できるファイル型かをチェック  / isValidName() 自己定義メソッド
+ *
+ * @see WebContent/uploadFile/uploadFile.jsp | List 6-12
+ * @author shika
+ * @date 2021-06-10
+ */
 package webPractice.uploadFile;
 
 import java.io.IOException;
@@ -11,7 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@MultipartConfig(location="src/webPractice/uploadFile")
+@MultipartConfig(location="sophia2021/src")
 @WebServlet("/webPractice/uploadFile/UploadServlet")
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -81,6 +105,11 @@ public class UploadServlet extends HttpServlet {
     }//isValidFile()
 }//class
 
+/*
+ * 【実行結果】 404 NotFoundError
+ * uploadFile.jspスタート、ファイル選択はでき、submit送信後
+ * どうも Pathが通らず、Servletまで到達しない。
+ */
 /*
 【参考】 文字列加工の経過
 Content-Disposition: form-data; name="file"; filename="C:\data\wings.jpg";
