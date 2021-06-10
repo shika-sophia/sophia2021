@@ -1,10 +1,7 @@
 package javaGoF.chap12Decorator.decoBorder;
 
-import java.util.stream.Stream;
-
 public class LineBorderDeco extends AbsBorderDeco {
     private String lineStr;
-    private String line;
 
     protected LineBorderDeco(AbsDisplayDeco display, String lineStr) {
         super(display);
@@ -24,22 +21,10 @@ public class LineBorderDeco extends AbsBorderDeco {
     @Override
     public String getText(int row) {
         if(row == 0 || row == (display.getRow() + 1)) {
-            return buildLine();
+            return buildLine(lineStr);
         } else {
             return display.getText(row - 1);
         }
     }//getText()
-
-    private String buildLine() {
-        if(line == null) {
-            var bld = new StringBuilder();
-            Stream.generate(() -> lineStr)
-                .limit(display.getColumn())
-                .forEach(bld::append);
-            line = bld.toString();
-        }
-
-        return line;
-    }//buildLine()
 
 }//class

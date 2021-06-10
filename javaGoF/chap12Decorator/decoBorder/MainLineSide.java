@@ -58,4 +58,11 @@ Hello, World.
 【解答】
 buildLine()は FullBorderにも登場したので、
 AbsBorderに TemplateMethodとして入れても良い。てかそうすべき。
+
+=> 解答のように修正
+buildLine()を AbsBorderに入れ、
+buildLine(String)に変更。
+FullBorderは lineの前後に「+」が付くので、
+lineだけ buildLine()で出して、
+FullBorderにだけ、"+" + buildLine("-") + "+";と修正。
 */

@@ -81,4 +81,8 @@ MultiText特有の問題だから、こちらに入れたほうがいい。
 display.getText()で取得する Stringに すでに後半の空白が入っている状態にする。
 SideBorder, FullBorderを修正する必要がなくなる。
 
+=> 解答のように修正
+insertBlank()を MultiTextDisplayに入れ、
+AbsBorderから削除。
+SideBorder, FullBorderを修正を元に戻す。
 */

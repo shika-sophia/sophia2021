@@ -2,6 +2,8 @@ package javaGoF.chap12Decorator.decoBorder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MultiTextDisplayDeco extends AbsDisplayDeco {
     private List<String> textList = new ArrayList<>();
@@ -27,8 +29,19 @@ public class MultiTextDisplayDeco extends AbsDisplayDeco {
 
     @Override
     public String getText(int row) {
-        return textList.get(row);
+        return insertBlank(textList.get(row));
     }
+
+    private String insertBlank(String text) {
+        int blank = getColumn() - text.length();;
+
+        String blankStr =
+            Stream.generate(() -> " ")
+                .limit(blank)
+                .collect(Collectors.joining());
+
+        return text + blankStr;
+    }//insertBlank()
 
 //    //---- Test main() ----
 //    public static void main(String[] args) {

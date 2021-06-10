@@ -18,21 +18,20 @@
  *        / getColumn(), getRow(), getText()
  * @class MultiTextDisplayDeco extends AbsDisplayDeco
  *        / List<String> textList /
- *        / add(), getColumn(), getRow(), getText()
+ *        / add(), getColumn(), getRow(), getText(), insertBlank()
  *
  * @class AbsBorderDeco extends AbsDisplayDaco
- *        / AbsDiplayDeco display /
+ *        / AbsDiplayDeco display, String line /
  *        #AbsBorderDeco(AbsDisplayDeco)
- *        #String insertBlank(String text)
+ *        #buildLine(String)
  * @class SideBorderDeco extends AbsBorderDeco
  *        / String sideDeco /
  *        / getColumn(), getRow(), getText()
  * @class FullBorderDeco extends AbsBorderDeco
- *        / String line /
- *        / getColumn(), getRow(), getText(), -buildLine()
+ *        / getColumn(), getRow(), getText()
  * @class LineBorderDeco extends AbsBorderDeco
- *        / String lineStr, String line /
- *        / getColumn(), getRow(), getText(), -buildLine()
+ *        / String lineStr /
+ *        / getColumn(), getRow(), getText()
  *
  * @author shika
  * @date 2021-06-09
