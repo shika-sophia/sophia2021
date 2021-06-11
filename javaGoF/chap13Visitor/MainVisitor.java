@@ -3,6 +3,8 @@
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第13章 Visitor / List 13-1 ～ 13-8
  * @content データ構造と処理の分離。entryElementは Composite改。
+ *          Compositeの printList()の処理を
+ *          Directory.accept() -> ShowVisitor.visit()で行う
  *
  * @class MainVisitor / ◆main()
  *
