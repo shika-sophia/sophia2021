@@ -24,7 +24,7 @@
  * @package ---- visitor ----
  * @class AbsVisitor
  *        / abstract visit(File), visit(Directory)
- * @class ShowVistor
+ * @class ShowVisitor
  *        / String currentDir /
  *        visit(File), visit(Directory)
  *
