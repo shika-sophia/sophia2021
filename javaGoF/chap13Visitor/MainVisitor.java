@@ -7,6 +7,9 @@
  *          Directory.accept() -> ShowVisitor.visit()で行う
  * @content 練習問題 13-1
  *          FindVisitorを追加。検索語を含むファイルを抽出。
+ * @content 練習問題 13-2
+ *          FileSizeVisitorを追加。
+ *          各Entryのサイズを Mapに(name,size)と格納。検索可能にする。
  *
  * @class MainVisitor / ◆main()
  *
@@ -32,6 +35,11 @@
  * @class FindVisitor extends AbsVisitor
  *        / String findKey, List<AbsEntryVisit> findList /
  *        visit(File), visit(Directory), getFindList()
+ * @class FileSizeVisitor extends AbsVisitor
+ *        / Map<String,Integer> sizeMap /
+ *        visit(File), visit(Directory),
+ *        getFileSize(AbsEntryVisit), getFileSize(String)
+ *        getSizeMap(), showSize()
  *
  * @author shika
  * @date 2021-06-11
