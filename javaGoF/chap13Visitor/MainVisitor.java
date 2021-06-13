@@ -10,14 +10,25 @@
  * @content 練習問題 13-2
  *          FileSizeVisitorを追加。
  *          各Entryのサイズを Mapに(name,size)と格納。検索可能にする。
+ * @content 練習問題 13-3
+ *          ElemementList extends IElementVisit を追加。
+ *            add(AbsEntryVisit), accept(AbsVisitor)機能
+ *          AbsVisitorに visit(AbsEntryVisit)を追加。
+ *            visit(File), visit(Directory)の振り分け
+ * @content 練習問題 13-4
+ *          Stringが finalの理由
  *
  * @class MainVisitor / ◆main()
+ * @class MainElementList / ◆main() ElementListVisit用
  *
  * @package ---- entryElement ----
  * @interface IElementVisit / abstract accept(Visitor)
  * @class AbsEntryVisit implements IElementVisit
  *        / abstract getName(), getSize()
  *        add(){ throw } , iterator(){ throw }, toString() ||Template||
+ * @class ElementListVisit implements IElementVisit
+ *        / List<AbsEntryVisit> elementList /
+ *        add(AbsEntryVisit), accept(AbsVisitor)
  * @class FileTreatException extends RuntimeException
  * @class FileVisit extends AbsEntryVisit
  *        / String name, int size /
@@ -28,7 +39,8 @@
  *
  * @package ---- visitor ----
  * @class AbsVisitor
- *        / abstract visit(File), visit(Directory)
+ *        / abstract visit(File), abstract visit(Directory)
+ *        visit(AbsEntryVisit)
  * @class ShowVisitor extends AbsVisitor
  *        / String currentDir /
  *        visit(File), visit(Directory)
@@ -42,7 +54,7 @@
  *        getSizeMap(), showSize()
  *
  * @author shika
- * @date 2021-06-11
+ * @date 2021-06-11 ～ 06-13
  */
 package javaGoF.chap13Visitor;
 
@@ -190,4 +202,26 @@ FileSizeVisitorは、もともと要らないのでは。
 main()で利用するなら、
     sizeVisitor.getFileSize(String);
 と記述して、ファイル/ディレクトリ名からサイズを調べる検索用。
+
+//==== 練習問題 13-3 ====
+@see MainElementList
+@see ElementListVisit
+
+//==== 練習問題 13-4 ====
+問 The Open-Closed Principle 「拡張には開き、修正には閉じる」というクラス設計の原則
+Stringは finalクラスで拡張にも閉じているが、なぜか、その理由を説明せよ。
+
+(回答) My Answer
+Immutable 不変であることの利点
+・他クラスと共有時やマルチスレッド環境で、
+オブジェクトの状態を途中で変えられる心配をしなくて済む。
+・不変であることを保証することで、たくさんのクラスやスレッドで共有しやすくなる。
+
+Stringはクラスだけでなく、生成する Stringの値も不変オブジェクト。
+
+=> 【解答】 Text Answer
+効率のため。
+Javaの文字列を扱う基本的なクラスとして重要な役割を担っているので、
+ユーザーによって改変されることを未然に防止している。
+不変オブジェクトにすることで、処理スピードの向上やメモリ量の最適化を行う。
 */
