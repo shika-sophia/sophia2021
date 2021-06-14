@@ -8,16 +8,19 @@
  * @class MainChainResponse / ◆main()
  * @class TroubleChain / -number / +getNumber(), +toString()
  * @class AbsSupportChain
- *        / -name, -next / #abstract boolean resolve(Trouble)
+ *        / -String name, -AbsSupportChain next /
+ *        #abstract boolean resolve(Trouble)
  *        +setNext(), +support(), +toString(), #done(), #fail()
  * @class NoSupportChain extends AbsSupportChain
  *        / #resolve() 常に false
  * @class LimitSupportChain extends AbsSupportChain
- *        / #resolve() コンストラクタ指定 limitまでは true
+ *        / -int limit /
+ *        #resolve() コンストラクタ指定 limitまでは true
  * @class OddSupportChain extends AbsSupportChain
  *        / #resolve() 奇数のみ true
  * @class SpecialSupportChain extends AbsSupportChain
- *        / #resolve() コンストラクタ指定 numberのみ true
+ *        / -int number /
+ *        #resolve() コンストラクタ指定 numberのみ true
  *
  * @author shika
  * @date 2021-06-14
