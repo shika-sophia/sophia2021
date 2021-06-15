@@ -75,7 +75,7 @@ public class Practice14JG {
     *  サンプルでの support()の使い方は、各クラスで遷移のたびに呼び出すので、
     *  Listで全クラスをループさせたらあかん。こっちは１回だけ呼び出す場合の処理。
     *
-    *  解答コード
+    *  【解答コード】
     *  piblic final void support(Trouble trouble){
     *    for(AbsSupport obj = this; true; obj = obj.next){
     *      if(obj.resolve(trouble)){
