@@ -45,13 +45,13 @@ momoru@Htyki.com=Mamoru Talahashi
 //---- welcome.html ----
 <html>
 <head>
-<title> Welcome to Hiroshi Yuki's Page! </title>
+  <title> Welcome to Hiroshi Yuki's Page! </title>
 </head>
 <body>
-<h1> Welcome to Hiroshi Yuki's Page! </h1>
-<p>Hiroshi Yukiのページに ようこそ</p>
-<p>メール待ってますね</p>
-<p><a href='mailto:hyuki@hyuki.com'>Hiroshi Yuki</a></p>
+  <h1> Welcome to Hiroshi Yuki's Page! </h1>
+  <p>Hiroshi Yukiのページに ようこそ</p>
+  <p>メール待ってますね</p>
+  <p><a href='mailto:hyuki@hyuki.com'>Hiroshi Yuki</a></p>
 </body>
 </html>
 
