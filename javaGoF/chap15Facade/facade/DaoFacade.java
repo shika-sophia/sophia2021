@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DaoFacade {
-    private DaoFacade() { }
+public class DaoFacade extends PageMakerFacade {
+    protected DaoFacade() { }
 
     public static Properties getProperty(String dataName) {
         Properties property = new Properties();
