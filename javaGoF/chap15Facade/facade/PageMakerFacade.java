@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class PageMakerFacade {
-    protected PageMakerFacade() { }
+    private PageMakerFacade() { }
 
     public static void welcomePage(
             String mailAd, String output) {

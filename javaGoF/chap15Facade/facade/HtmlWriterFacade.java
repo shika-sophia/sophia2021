@@ -3,10 +3,10 @@ package javaGoF.chap15Facade.facade;
 import java.io.IOException;
 import java.io.Writer;
 
-public class HtmlWriterFacade extends PageMakerFacade {
+class HtmlWriterFacade {
     private Writer writer;
 
-    protected HtmlWriterFacade(Writer writer) {
+    HtmlWriterFacade(Writer writer) {
         this.writer = writer;
     }
 

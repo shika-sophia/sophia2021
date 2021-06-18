@@ -32,6 +32,7 @@ public class Practice15JG {
     *  継承関係にしたので protectedにしたが、
     *  考えてみたら、継承して引き継ぐフィールドやメソッドは何もないので
     *  継承する意味はない。パッケージプライベートで十分ということになる。
+    => 継承関係を解消、package privateに変更。
 
  15-2
 〇 （1）  PageMakerFacade.linkPage()を追加。

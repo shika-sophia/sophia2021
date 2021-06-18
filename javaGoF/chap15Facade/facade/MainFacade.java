@@ -9,20 +9,22 @@
  *          処理クラス群をカプセル化するために
  *          super PageMakerFacadeとする継承関係で結合。
  *          コンストラクタを protectedに変更。メソッドは publicのまま。
+ *          => 解答により継承関係ではなく、
+ *          package privateに変更。
  * @content 練習問題 15-2
  *          PageMakerFacade.linkPage()を追加。
  *
  * @class MainFacade / ◆main()
  * @class PageMakerFacade
- *        / #PageMakerFacade() /
+ *        / -PageMakerFacade() /
  *        +static welcomePage(String mailAd, String output)
  *        +static linkPage(String output)
- * @class HtmlWriterFacade extends PageMakerFacade
+ * @class HtmlWriterFacade
  *        / Writer writer /
- *        #HtmlWriterFacade(Writer writer)
+ *        ~HtmlWriterFacade(Writer writer)
  *        header(), message(), link(), mailto(), footer()
- * @class DaoFacade extends PageMakerFacade
- *        / #DaoFacade() /
+ * @class DaoFacade
+ *        / -DaoFacade() /
  *        +static getProperty(String dataName)
  * @file mailData.txt
  * @file welcome.html
