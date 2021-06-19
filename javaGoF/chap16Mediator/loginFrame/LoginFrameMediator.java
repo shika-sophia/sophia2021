@@ -4,6 +4,7 @@ import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,7 +28,9 @@ public class LoginFrameMediator
         //Compnent配置
         add(checkGuest);
         add(checkLogin);
+        add(new Label("User Name"));
         add(textUser);
+        add(new Label("Password"));
         add(textPass);
         add(buttonOk);
         add(buttonCancel);
@@ -92,10 +95,11 @@ public class LoginFrameMediator
 
     //textUser, textPassに変更があったら、有効/無効の判断
     private void passChanged() {
-        if(textUser.getText().length() > 4) {
+        if(textUser.getText().length() > 0) {
             textPass.setEnableCompo(true);
 
-            if(textPass.getText().length() > 4) {
+            if(textUser.getText().length() >= 4
+                    && textPass.getText().length() >= 4) {
                 buttonOk.setEnableCompo(true);
             } else {
                 buttonOk.setEnableCompo(false);

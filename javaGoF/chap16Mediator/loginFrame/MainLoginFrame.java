@@ -44,7 +44,7 @@
  *        setMediator(IMediatorLogin),
  *        setEnableCompo(boolean)
  *
- * @see loginFrameImage/loginFrameResult.jpg
+ * @see loginFrameResult.jpg
  * @author shika
  * @date 2021-06-18
  */
