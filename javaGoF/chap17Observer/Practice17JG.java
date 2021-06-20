@@ -14,6 +14,6 @@ public class Practice17JG {
 (1) 練習問題 17-1
     => IncrementNumberGeneratorを追加。
 (2) 17-2
-    =>
+    => package swingObserver
 
 */
