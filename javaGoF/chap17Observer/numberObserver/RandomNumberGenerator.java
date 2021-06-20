@@ -5,8 +5,18 @@ import java.util.Random;
 public class RandomNumberGenerator extends AbsNumberGenerator {
     private Random random = new Random();
     private int number;           //生成した数値
-    private final int TIMES = 20; //乱数生成の回数
-    private final int RANGE = 50; //乱数の範囲 [0 <= number < RANGE]
+    private final int TIMES; //乱数生成の回数
+    private final int RANGE; //乱数の範囲 [0 <= number < RANGE]
+
+    public RandomNumberGenerator() {
+        this.TIMES = 20;
+        this.RANGE = 50;
+    }
+
+    public RandomNumberGenerator(int TIMES, int RANGE) {
+        this.TIMES = TIMES;
+        this.RANGE = RANGE;
+    }
 
     @Override
     public int getNumber() {
@@ -20,5 +30,9 @@ public class RandomNumberGenerator extends AbsNumberGenerator {
             notifyObserver();
         }//for
     }//execute()
+
+    public int getTimes() {
+        return TIMES;
+    }
 
 }//class

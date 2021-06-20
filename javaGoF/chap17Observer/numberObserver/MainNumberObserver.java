@@ -30,6 +30,21 @@
  * @class GraphObserver implements INumberObserver
  *        / update(AbsNumberGenerator)
  *
+ * @package ---- swingObserver ----
+ * @class MainSwingObserver
+ *        / ◆main() new DataListObserver, new BarGraphObserver用
+ * @class DataListObserver implements INumberObserver
+ *        / List<Integer> dataList /
+ *        update()
+ * @class BarGraphObserver extends JFrame
+ *        / final int TIMES, final int RANGE,
+ *        List<Integer> dataList /
+ *        BarGraphObserver(int, int, List<Integer>),
+ *        paint(Graphics)
+ *
+ * @see MainSwingObserver/
+ * @see resultBarGraphObserver.jpg
+ * @class
  * @author shika
  * @date 2021-06-19, 06-20
  */
