@@ -2,7 +2,14 @@
  * @title javaGoF / chap17Observer / numberObserver / MainNumberObserver.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第17章 Observer / List 17-1 ～ 17-6
- *          状態の変化を通知する
+ *          状態の変化を通知する。
+ *          RandomNumerGenerator 乱数を生成。
+ *          DigitObserber 数値を表示
+ *          GraphOvserber 数値に対応するグラフを「*」で表示。
+ * @content 練習問題 17-1
+ *          IncementNumberGeneratorを追加。
+ *          開始、終了、間隔の intをコンストラクタで指定。
+ *
  * @class MainNumberObserver / ◆main()
  * @interface INumberObserver
  *            / abstract void update(AbsNumberGernerator)
@@ -15,31 +22,44 @@
  *        / Random random, int number,
  *          final int TIMES, final int RANGE /
  *        getNumber(), execute()
+ * @class IncrementNumberGenerator extends AbsNumberGenerator
+ *        / int number, int begin, int end, int step /
+ *        getNumber(), execute()
  * @class DigitObserver implements INumberObserver
  *        / update(AbsNumberGenerator)
  * @class GraphObserver implements INumberObserver
  *        / update(AbsNumberGenerator)
  *
  * @author shika
- * @date 2021-06-19
+ * @date 2021-06-19, 06-20
  */
 package javaGoF.chap17Observer.numberObserver;
 
 public class MainNumberObserver {
 
     public static void main(String[] args) {
+        //---- RandomNumberGenerator ----
+        //AbsNumberGenerator generator
+        //    = new RandomNumberGenerator();
+
+        //---- IncrementNumberGenerator ----
         AbsNumberGenerator generator
-            = new RandomNumberGenerator();
+            = new IncrementNumberGenerator(10, 50, 5);
+
+        //---- Observer ----
         INumberObserver observer1 = new DigitObserver();
         INumberObserver observer2 = new GraphObserver();
         generator.addObserver(observer1);
         generator.addObserver(observer2);
+
+        //---- execute() ----
         generator.execute();
     }//main()
 
 }//class
 
 /*
+//---- RandomNumberGenerator ----
 DigitObserver: 49
 GraghObserver: *************************************************
 DigitObserver: 37
@@ -80,4 +100,23 @@ DigitObserver: 17
 GraghObserver: *****************
 DigitObserver: 7
 GraghObserver: *******
+
+//---- IncrementNumberGenerator ----
+DigitObserver: 10
+GraghObserver: **********
+DigitObserver: 15
+GraghObserver: ***************
+DigitObserver: 20
+GraghObserver: ********************
+DigitObserver: 25
+GraghObserver: *************************
+DigitObserver: 30
+GraghObserver: ******************************
+DigitObserver: 35
+GraghObserver: ***********************************
+DigitObserver: 40
+GraghObserver: ****************************************
+DigitObserver: 45
+GraghObserver: *********************************************
+
 */
