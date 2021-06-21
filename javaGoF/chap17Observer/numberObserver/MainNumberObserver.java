@@ -30,9 +30,11 @@
  * @class GraphObserver implements INumberObserver
  *        / update(AbsNumberGenerator)
  *
- * @package ---- swingObserver ----
+ * @package ---- swingObserver / 練習問題 17-2 ----
  * @class MainSwingObserver
- *        / ◆main() new DataListObserver, new BarGraphObserver用
+ *        / ◆main()
+ *        new DataListObserver, new BarGraphObserver用
+ *        new CircleGraphObserver
  * @class DataListObserver implements INumberObserver
  *        / List<Integer> dataList /
  *        update()
@@ -41,10 +43,24 @@
  *        List<Integer> dataList /
  *        BarGraphObserver(int, int, List<Integer>),
  *        paint(Graphics)
+ * @class CircleGraphObserver
+ *            extends Frame implements INumberObserver, ActionListener
+ *        / GraphText textGr,
+ *          GraphCanvas canvasGr,
+ *          Button buttonClose /
+ *        update(), actionPerformed()
+ * @class GraphText 〔with CircleGraphObserver.java〕
+ *            extends java.awt.TextField implements INumberObserver
+ *        update()
+ * @class GraphCanvas 〔with CircleGraphObserver.java〕
+ *            extends java.awt.Canvas implements INumberObserver
+ *        / int number /
+ *        update(), paint()
  *
  * @see MainSwingObserver/
  * @see resultBarGraphObserver.jpg
- * @class
+ * @see resultCircleGraphObserver.jpg
+ *
  * @author shika
  * @date 2021-06-19, 06-20
  */
@@ -133,5 +149,28 @@ DigitObserver: 40
 GraghObserver: ****************************************
 DigitObserver: 45
 GraghObserver: *********************************************
+
+//====== Practice17JG Copy ======
+(1) 練習問題 17-1
+    => IncrementNumberGeneratorを追加。
+    => 〔回答〕 My Answer
+    *  public void execute() {
+    *    for(number = begin; number < end; number += step) {
+    *        notifyObserver();
+    *    }//for
+    *  }//execute()
+    *
+    => 【解答】 Text Answer
+    *  ※ コンストラクタで number = begin;
+    *
+    *  while(number < end){
+    *    notifyObserver();
+    *    number += step;
+    *  }//while
+    *
+    => 【考察】
+    *  for文より、while文のがシンプル。
+    *  私もコンストラクタで begin代入を考えたが、
+    *  他のロジックに転用できなくなるので、メソッド内で begin代入とした。
 
 */
