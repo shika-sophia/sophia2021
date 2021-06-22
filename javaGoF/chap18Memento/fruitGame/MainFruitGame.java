@@ -5,6 +5,18 @@
  *          状態を記録するインスタンス。
  *
  * @class MainFruitGame / ◆main() new GamerFruit
+ * @class MementoFruit
+ *        / ~int money, ~List<String> fruitList /
+ *        ~MementoFruit(int)
+ *        +getMoney(), ~addFruit(String), ~getFruitList()
+ * @class GamerFruit
+ *        / -int money, -List<String> fruitList,
+ *          -Random random, -String[] fruitName /
+ *        +GamerFruit(int)
+ *        +getMoney(), +bet(),
+ *        +createMemento(), +restoreMemento()
+ *        -getFruit(), +toString()
+ *
  * @author shika
  * @date 2021-06-22
  */
