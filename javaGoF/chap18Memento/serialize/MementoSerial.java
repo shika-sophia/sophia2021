@@ -1,9 +1,10 @@
-package javaGoF.chap18Memento.fruitGame;
+package javaGoF.chap18Memento.serialize;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MementoFruit {
+public class MementoSerial implements Serializable {
     int money;
     List<String> fruitList;
 
@@ -13,7 +14,7 @@ public class MementoFruit {
     }
 
     //wide instance
-    MementoFruit(int money){
+    MementoSerial(int money){
         this.money = money;
         this.fruitList = new ArrayList<String>();
     }//constructor

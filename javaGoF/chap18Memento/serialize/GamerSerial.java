@@ -1,10 +1,10 @@
-package javaGoF.chap18Memento.fruitGame;
+package javaGoF.chap18Memento.serialize;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GamerFruit {
+public class GamerSerial {
     private int money;
     private List<String> fruitList = new ArrayList<>();
     private Random random = new Random();
@@ -12,7 +12,7 @@ public class GamerFruit {
         "リンゴ","ぶどう","バナナ","みかん"
     };
 
-    public GamerFruit(int money) {
+    public GamerSerial(int money) {
         this.money = money;
     }
 
@@ -43,8 +43,8 @@ public class GamerFruit {
     }//bet()
 
     //所持金と、「おいしい」フルーツだけ Mementoに保存
-    public MementoFruit createMemento() {
-        MementoFruit memento = new MementoFruit(money);
+    public MementoSerial createMemento() {
+        MementoSerial memento = new MementoSerial(money);
         this.fruitList.stream()
                 .filter(f -> f.startsWith("おいしい"))
                 .forEach(f -> memento.addFruit(f));
@@ -53,7 +53,7 @@ public class GamerFruit {
     }//createMemento()
 
     //保存しておいた Mementoに復帰
-    public void restoreMemento(MementoFruit memento) {
+    public void restoreMemento(MementoSerial memento) {
         this.money = memento.money;
         this.fruitList = memento.getFruitList();
     }//resoreMemento()
