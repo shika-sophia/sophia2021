@@ -2,7 +2,8 @@
  * @title javaGoF / chap19State / depositBox / MainDepsitBox.java
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第19章 State / List 19-3 ～ 19-8
- *          状態をクラスで表す。
+ *          状態をクラスで表す。DayState, NightState
+ *          昼間か夜間かを調べる if文は書かなくて済む。
  *          DepositBox: 貸金庫
  *          昼間 09:00 - 16:59 / 夜間 17:00 - 08:59
  *
