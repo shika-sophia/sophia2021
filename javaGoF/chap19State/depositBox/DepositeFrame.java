@@ -19,7 +19,7 @@ public class DepositeFrame
     private Button buttonPhone = new Button("通常通話");
     private Button buttonExit = new Button("終了");
 
-    private IStateSecurity state = DayState.getInstance();
+    private IStateSecurity state = NightState.getInstance();
 
     //コンストラクタ
     public DepositeFrame(String title) {

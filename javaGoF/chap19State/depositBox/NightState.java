@@ -11,7 +11,7 @@ public class NightState implements IStateSecurity {
     //==== State ====
     @Override
     public void doClock(IContextDeposit context, int hour) {
-        if(9 <= hour && hour < 17) {
+        if(hour == 9) {
             context.changeState(DayState.getInstance());
         }
     }//doClock()
@@ -24,6 +24,7 @@ public class NightState implements IStateSecurity {
     @Override
     public void doAlarm(IContextDeposit context) {
         context.callCenter("<!> 非常ベル (夜間)");
+        context.changeState(EmergencyState.getInstance());
     }
 
     @Override

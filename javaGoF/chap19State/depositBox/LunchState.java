@@ -1,9 +1,9 @@
 package javaGoF.chap19State.depositBox;
 
-public class DayState implements IStateSecurity {
+public class LunchState implements IStateSecurity {
     //==== Singleton ====
-    private static DayState singleton = new DayState();
-    private DayState() { }
+    private static LunchState singleton = new LunchState();
+    private LunchState() { }
     public static IStateSecurity getInstance() {
         return singleton;
     }
@@ -11,29 +11,28 @@ public class DayState implements IStateSecurity {
     //==== State ====
     @Override
     public void doClock(IContextDeposit context, int hour) {
-        if(hour == 12) {
-            context.changeState(LunchState.getInstance());
-        } else if (hour == 17) {
-            context.changeState(NightState.getInstance());
+        if(hour == 14) {
+            context.changeState(DayState.getInstance());
         }
     }//doClock()
+
     @Override
     public void doUse(IContextDeposit context) {
-        context.recordLog("金庫使用 (昼間)");
+        context.callCenter("<!> 非常: 昼食時の金庫使用");
     }
 
     @Override
     public void doAlarm(IContextDeposit context) {
-        context.callCenter("<!> 非常ベル (昼間)");
+        context.callCenter("<!> 非常ベル (昼食時)");
         context.changeState(EmergencyState.getInstance());
     }
 
     @Override
     public void doPhone(IContextDeposit context) {
-        context.callCenter("通常の電話 (昼間)");
+        context.callCenter("昼食時の通話録音");
     }
 
     public String toString() {
-        return "[昼間]";
+        return "[昼食時]";
     }
 }//class
