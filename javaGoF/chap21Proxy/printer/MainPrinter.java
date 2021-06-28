@@ -12,11 +12,12 @@
  *              abstract void print(String)
  * @class PrinterProxy implements IPrintable
  *        / String name, Printer real /
- *        setPrintName(), getPrintName(), print(),
+ *        setPrintName(String), getPrintName(), print(String),
  *        -realize() { new Printer(String) }
  * @class Printer implements IPrintable
  *        / String name /
- *        setPrintName(), getPrintName(), print(), -heavyJob(String)
+ *        setPrintName(String), getPrintName(), print(String),
+ *        -heavyJob(String)
  * @author shika
  * @date 2021-06-28
  */
