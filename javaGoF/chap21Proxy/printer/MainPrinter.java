@@ -79,6 +79,9 @@ Printer real に Objectを代入するならキャストが必要。
 そこで IPrintableを実装するクラスならＯＫということにして、
 IPintable realに設定すると両方解決。
 
+下記、実行結果の「Printer生成中」に、name文字列が入っていない。
+これはClass.newInstance()で引数なしのコンストラクタが呼び出されているため。
+
 //---- 実行結果 ----
 現在の名前は Alice です。
 現在の名前は Bob です。
