@@ -16,6 +16,7 @@
  * @class MacroCommand implements ICommand
  *        / ◇Deque<ICommand> cmdDeq /
  *        execute(), append(ICommand), undo(), clear()
+ *
  * @package ---- drawer ----
  * @interface IDrawable / abstract void draw(int, int)
  * @class DrawCommand implements ICommand
