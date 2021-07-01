@@ -3,7 +3,7 @@
  * @reference 結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004
  * @content 第23章 Interpreter / List 23-1 ～ 23-10
  *          ミニ言語の解析
- * @BNF Backus-Nour Form / Buchus Normal Form: 言語の文法表記法
+ * @BNF Backus-Nour Form / Backus Normal Form: 言語文法の表記法
  * @BNF <program> ::= program <commandList>
  * @BNF <commandList> ::= <command>* end
  * @BNF <command> ::= <repeatCommand> | <primitiveCommand>
