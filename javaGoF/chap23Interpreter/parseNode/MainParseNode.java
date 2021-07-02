@@ -55,7 +55,7 @@ import java.io.IOException;
 public class MainParseNode {
 
     public static void main(String[] args) {
-        String dir = "src/javaGoF/chap23Interpreter/";
+        String dir = "src/javaGoF/chap23Interpreter/parseNode/";
         String fileName = "program.txt";
 
         try(var reader =
