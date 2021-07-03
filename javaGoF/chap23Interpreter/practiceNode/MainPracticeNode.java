@@ -6,9 +6,14 @@
  * @class MainPracticeNode / ◆main()
  * @class FramePracticeNode
  *            extends JFrame implements ActionListener
- *
+ *        / Point position, int x, int y,
+ *        int direction, String[] directionAry[]
+ *        JPanel panel, JLabel = label, JTetArea txArea,
+ *        JButton buttonOk, JButton buttonReset /
+ *        FramePracticeNode(), veiwFrame(), actionPerfomed()
+
  * @author shika
- * @date 2021-07-02
+ * @date 2021-07-02, 07-03
  */
 package javaGoF.chap23Interpreter.practiceNode;
 
