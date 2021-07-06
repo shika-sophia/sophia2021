@@ -46,7 +46,7 @@ public class MainFramePractice extends JFrame
     JTextArea txArea = new JTextArea(5, 50);
     JButton buttonOk = new JButton("OK");
     JButton buttonReset = new JButton("Reset");
-    DriveCanvas canvas = new DriveCanvas();
+    PracticeCanvas canvas = new PracticeCanvas();
 
     public MainFramePractice() {
         viewFrame();
