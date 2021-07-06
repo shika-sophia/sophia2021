@@ -13,6 +13,7 @@ public class PrimitiveCommandExe extends AbsNodeExe {
     public void parse(NodeExeContext context) throws NodeParseException {
         current = context.currentToken();
         context.skipToken(current);
+        executor = context.createExecutor(current);
 
         if(!current.equals("go") &&
                 !current.equals("right") &&
