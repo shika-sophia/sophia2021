@@ -5,6 +5,7 @@
  *          sessionの開始・終了をログに記述する
  *          implements HttpSessionListener
  *          @WebListenerを付記すると、 web.xmlの設定を代替。
+ * @content 【web.xml】 リスナークラスの登録
  *
  * @author shika
  * @date 2021-07-11
