@@ -11,6 +11,8 @@
  *          ServletContextListener.contextInitialized()でのみ有効。
  *
  * @content 【web.xml】 Servletの登録(通常の登録) -> @WebServlet()で代替
+ *
+ * @see MyServlet.java
  * @author shika
  * @date 2021-07-12
  */
