@@ -14,8 +14,8 @@
  *          @Override doStartTag(), doEndTag()
  *          int SKIP_BODY; TagSupport定数 タグ本体を処理しない
  *
- * @content タグライブラリ・ディスクリプタ(=記述子) / 拡張子「.tld」
- *          【WingsTag.tld】 /WEB-INF/taglibs/xxxx.tld
+ * @content 【WingsTag.tld】 /WEB-INF/taglibs/xxxx.tld
+ *          タグライブラリ・ディスクリプタ(=記述子) / 拡張子「.tld」
  * @content 【web.xml】デプロイメント・ディスクリプタに タグライブラリ記述子の配置場所を登録
  * @file buildHtmlTag.jsp
  * @author shika
