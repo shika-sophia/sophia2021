@@ -26,7 +26,9 @@ public interface IReference {
             "javaGoF",
             "結城 浩 『Java言語で学ぶデザインパターン入門 [増補改訂版]』 SB Creative, 2004",
             "multiThread",
-            "結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006"
+            "結城 浩 『Java言語で学ぶデザインパターン入門～マルチスレッド編 [増補改訂版]』, 2006",
+            "cSharpSub",
+            "山田祥寛 『独習 C＃ [新版] 』 翔泳社, 2017"
         ));
 
     public static String seekRef(String className) {
