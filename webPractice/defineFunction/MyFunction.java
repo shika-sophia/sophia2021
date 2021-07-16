@@ -39,7 +39,8 @@ public class MyFunction {
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- タグライブラリを有効化 --%>
-  <%@ taglib prefix="win" uri="http://www.webPractice.defineFunction/WingsTagLibs-1.0"  %>
+<%@ taglib prefix="win" uri="http://www.webPractice.defineFunction/WingsTagLibs-1.0"  %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,4 +52,5 @@ public class MyFunction {
   必要なプロパティ: ${win:getProperty("key")}
 </body>
 </html>
-  */
+
+*/
