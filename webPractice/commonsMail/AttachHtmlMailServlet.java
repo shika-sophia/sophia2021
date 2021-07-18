@@ -63,7 +63,7 @@ public class AttachHtmlMailServlet extends HttpServlet {
         HtmlEmail email = new HtmlEmail();
         try {
             email.setHostName(host);
-            email.addTo("dammy@domain.jp", "山田祥寛", "ISO-2022-JP");
+            email.addTo("dammy@domain.jp", "送信先", "ISO-2022-JP");
             email.setFrom("myAdress@domain.jp", "差出人", "ISO-2022-JP");
             email.addHeader("X-Mailer", "Commons Email");
             email.setCharset("ISO-2022-JP");
