@@ -6,7 +6,9 @@
  * @content 【web.xml】 DWR Servletを有効にする / 未配置
  * @content 【context.xml】 JavaScript経由でのアクセスを有効にする / 未配置
  * @deploy /WEB-INF/lib/dwr.jar
+ *         http://directwebremoting.org/dwr/
  * @deploy /WEB-INF/lib/commons.logging-X.X.jar
+ *         https://commons.apache.org/proper/commons-logging/
  * @file ajaxDwr.jsp
  * @author shika
  * @date 2021-07-20
