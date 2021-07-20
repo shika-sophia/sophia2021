@@ -4,8 +4,11 @@
  * @content 第９章 外部ライブラリ / List 9-1, 9-2
  * @content 電子メールを送信するServlet
  * @content 【web.xml】初期化パラメタに送信先メールサーバのアドレスを登録
- * @prepair /WEB-INF/lib/commons-email-x.x.jar
- * @prepair /WEB-INF/lib/javax.mail.jar
+ * @deploy /WEB-INF/lib/commons-email-x.x.jar
+ *         https://commons.apache.org/proper/commons-email/
+ * @deploy /WEB-INF/lib/javax.mail.jar
+ *         https://github.com/javaee/javamail/releases
+ *
  * @see Eclipse: mailRegisterプロジェクト / fakeSMTPにて実装
  * @author shika
  * @date 2021-07-17
