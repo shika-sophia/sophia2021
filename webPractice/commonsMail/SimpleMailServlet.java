@@ -18,6 +18,7 @@ package webPractice.commonsMail;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -51,6 +52,7 @@ public class SimpleMailServlet extends HttpServlet {
             email.addHeader("X-Mailer", "Commons Email");
             email.setCharset("ISO-2022-JP");
             email.setSubject("Title");
+            email.setSentDate(new Date());
             email.setMsg("メール本文");
             //メール送信
             email.send();
