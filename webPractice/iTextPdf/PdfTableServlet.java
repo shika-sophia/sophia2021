@@ -104,7 +104,6 @@ public class PdfTableServlet extends HttpServlet {
                     table.addCell(cellData);
                 }//for
             }//while
-
             doc.add(table);
             doc.close();
 
