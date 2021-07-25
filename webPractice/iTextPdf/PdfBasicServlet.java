@@ -9,6 +9,7 @@
  * @deploy 【BouncyCastle】 /WEB-INF/lib/bcprov-jdk15on-xxx.jar
  *         https://bouncycastle.org/latest_releases.html
  *
+ * @see resultPdfBasic.pdf
  * @see resultPdfBasic.jpg
  * @author shika
  * @date 2021-07-21
@@ -45,9 +46,11 @@ public class PdfBasicServlet extends HttpServlet {
                     doc, response.getOutputStream());
             doc.open();
 //            Font font = new Font(
-//            	    BaseFont.createFont("HeiseiKakuGo-W5", "UniJIS-UCS2-H",
-//            	            BaseFont.NOT_EMBEDDED),
-//            	        18, Font.BOLD);
+//                    BaseFont.createFont(
+//                        "HeiseiKakuGo-W5",
+//                        "UniJIS-UCS2-H",
+//                        BaseFont.NOT_EMBEDDED),
+//                    18, Font.BOLD);
 //            doc.add(new Paragraph("Hello, iText", font));
             doc.add(new Paragraph("Hello, iText"));
             doc.close();
